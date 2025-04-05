@@ -2,29 +2,51 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Redirecting to UPI Payment</title>
-  <script>
-    function redirectToUPI() {
-      // UPI payment URI
-      const upiUrl = "upi://pay?pa=6005973034@ybl&pn=ramchoudhary&am=10000&cu=INR";
-      window.location.href = upiUrl;
-    }
-
-    window.onload = function() {
-      setTimeout(redirectToUPI, 1000); // 1 second delay before redirect
-    };
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Make Payment</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      margin-top: 100px;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    .container {
+      background-color: #fff;
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+    .qr {
+      width: 220px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+    .pay-btn {
+      background-color: #5b2beb;
+      color: white;
+      padding: 12px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-block;
     }
   </style>
 </head>
 <body>
-  <h2>Redirecting you to UPI Payment...</h2>
-  <p>If it doesn't happen automatically, <a href="upi://pay?pa=6005973034@ybl&pn=ramchoudhary&am=10000&cu=INR">click here to pay via UPI</a>.</p>
+  <div class="container">
+    <h2>Pay to Ram Choudhary</h2>
+    <p><strong>Amount:</strong> ₹10,000</p>
+    <p><strong>UPI ID:</strong> 6005973034@ybl</p>
+    
+    <img src="ram-qr.png" alt="Scan & Pay" class="qr" />
+    
+    <p>or tap button below to pay via UPI</p>
+    
+    <a class="pay-btn" href="upi://pay?pa=6005973034@ybl&pn=ramchoudhary&am=10000&cu=INR">Pay ₹10,000 Now</a>
+  </div>
 </body>
 </html>
