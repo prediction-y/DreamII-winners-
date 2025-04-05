@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redirecting to UPI Payment</title>
+  <script>
+    function redirectToUPI() {
+      // UPI payment URI
+      const upiUrl = "upi://pay?pa=6005973034@ybl&pn=ramchoudhary&am=10000&cu=INR";
+      window.location.href = upiUrl;
+    }
+
+    window.onload = function() {
+      setTimeout(redirectToUPI, 1000); // 1 second delay before redirect
+    };
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Redirecting you to UPI Payment...</h2>
+  <p>If it doesn't happen automatically, <a href="upi://pay?pa=6005973034@ybl&pn=ramchoudhary&am=10000&cu=INR">click here to pay via UPI</a>.</p>
+</body>
+</html>
