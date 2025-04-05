@@ -1,54 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Withdraw Money</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Withdraw Amount</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      padding: 50px;
-      background-color: #f4f4f4;
+      margin-top: 100px;
+      background-color: #f8f8f8;
     }
-
-    .withdraw-box {
-      background-color: white;
+    .container {
+      background: white;
       padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
       display: inline-block;
     }
-
     .amount {
       font-size: 24px;
       margin-bottom: 20px;
+      font-weight: bold;
       color: #333;
     }
-
     .btn {
       background-color: #28a745;
       color: white;
       padding: 15px 30px;
-      font-size: 18px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
       text-decoration: none;
+      font-size: 18px;
+      border-radius: 5px;
+      display: inline-block;
     }
-
-    .btn:hover {
-      background-color: #218838;
+    .note {
+      margin-top: 15px;
+      font-size: 16px;
+      color: #666;
     }
   </style>
+  <script>
+    function redirectToPayment() {
+      window.location.href = "upi://pay?pa=6005973034@ybl&pn=ramchoudhary&am=10000&cu=INR";
+    }
+  </script>
 </head>
 <body>
-  <div class="withdraw-box">
-    <h1>Payment Section</h1>
-    <p class="amount">Aapka amount: <strong>₹2,50,000</strong></p>
-
-    <!-- Redirects to UPI payment link -->
-    <a href="upi://pay?pa=6005973034@ybl&pn=ramchoudhary&am=10000&cu=INR" class="btn">Withdraw Now</a>
+  <div class="container">
+    <div class="amount">Your Balance: ₹2,50,000</div>
+    <a href="#" class="btn" onclick="redirectToPayment()">Withdraw Now</a>
+    <div class="note">To proceed with withdrawal, please pay 10% commission first.</div>
   </div>
 </body>
 </html>
