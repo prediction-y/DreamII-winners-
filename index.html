@@ -33,12 +33,19 @@
             background-color: #005f99;
         }
     </style>
+    <script>
+        function redirectToThankYou() {
+            setTimeout(function() {
+                window.location.href = "thank-you.html";
+            }, 2000);
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <h1>Join Our Exclusive Community!</h1>
         <p>Stay updated with the latest insights, expert analysis, and valuable discussions.</p>
-        <a href="https://t.me/+3Ov_qx0gir45YWRl" class="btn">Join Now on Telegram</a>
+        <a href="#" class="btn" onclick="redirectToThankYou()">Join Now on Telegram</a>
         <br>
         <a href="thank-you.html" class="btn" style="background-color: #28a745;">Go to Thank You Page</a>
     </div>
