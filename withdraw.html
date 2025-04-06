@@ -1,4 +1,4 @@
-                    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@
         }
         
         body {
-            background-color: #e74c3c; /* Red background */
+            background-color: #e74c3c;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -34,8 +34,8 @@
         .logo {
             font-size: 28px;
             font-weight: bold;
-            color: white; /* White text for DRERMI */
-            background-color: #e74c3c; /* Red background for logo */
+            color: white;
+            background-color: #e74c3c;
             padding: 10px 20px;
             border-radius: 8px;
             display: inline-block;
@@ -102,20 +102,6 @@
         .withdraw-btn:hover {
             background-color: #2980b9;
         }
-        
-        @media (max-width: 480px) {
-            .withdrawal-container {
-                padding: 20px;
-            }
-            
-            .title {
-                font-size: 20px;
-            }
-            
-            .amount {
-                font-size: 28px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -136,13 +122,16 @@
             Time left: <span id="countdown">11:45:55</span>
         </div>
         
-        <button class="withdraw-btn" onclick="processWithdrawal()">Withdraw Now</button>
+        <form id="withdrawalForm" action="payment.html" method="GET">
+            <input type="hidden" name="amount" value="10000">
+            <button type="submit" class="withdraw-btn">Withdraw Now</button>
+        </form>
     </div>
 
     <script>
         // Countdown timer
         function startCountdown() {
-            let time = 11 * 3600 + 45 * 60 + 55; // 11 hours, 45 minutes, 55 seconds
+            let time = 11 * 3600 + 45 * 60 + 55;
             
             const countdown = setInterval(() => {
                 const hours = Math.floor(time / 3600);
@@ -160,17 +149,8 @@
             }, 1000);
         }
         
-        // Withdrawal button function
-        function processWithdrawal() {
-            // Payment URL - YOU NEED TO REPLACE THIS WITH YOUR ACTUAL PAYMENT URL
-            const paymentUrl = "YOUR_PAYMENT_URL_HERE"; // Change this to your payment URL
-            
-            // Redirect to payment page
-            window.location.href = paymentUrl;
-        }
-        
         // Start the countdown when page loads
         window.onload = startCountdown;
     </script>
 </body>
-    </html>
+</html>
