@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Congratulations!</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #ff5252;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      font-size: 28px;
+      flex-direction: column;
+      text-align: center;
+    }
+    #celebrate {
+      font-size: 40px;
+      animation: pop 0.3s ease-in-out infinite alternate;
+    }
+    @keyframes pop {
+      from { transform: scale(1); }
+      to { transform: scale(1.1); }
+    }
+  </style>
+</head>
+<body>
+  <div id="celebrate">Congratulations!<br>Withdrawal Approved<br>🎉🎊💸💥</div>
+
+  <script>
+    // 3 second ke baad redirect
+    setTimeout(() => {
+      window.location.href = "withdrawal.html"; // Actual withdrawal page
+    }, 3000);
+  </script>
+</body>
+</html>
