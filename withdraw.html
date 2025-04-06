@@ -3,104 +3,161 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Withdraw Winnings</title>
+  <title>Dream11 Withdrawal Page</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      background: #f4f4f4;
+      background-color: #d32f2f;
       margin: 0;
-      padding: 50px;
+      padding: 0;
     }
+
     .container {
       background: white;
-      padding: 30px;
-      border-radius: 10px;
-      max-width: 500px;
-      margin: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin: 80px auto;
+      padding: 30px 20px;
+      border-radius: 20px;
+      max-width: 400px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 10;
     }
-    .amount {
+
+    .logo {
       font-size: 28px;
+      font-weight: bold;
+      color: red;
+      margin-bottom: 10px;
+    }
+
+    .sub-logo {
+      font-size: 18px;
+      font-weight: bold;
+      color: red;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin: 10px 0;
+    }
+
+    .amount {
+      font-size: 32px;
       color: green;
-      margin: 20px 0;
+      font-weight: bold;
     }
+
     .note {
-      margin: 10px 0;
+      margin-top: 15px;
       font-size: 16px;
-      color: #333;
     }
+
     #countdown {
-      font-size: 20px;
-      color: #ff0000;
-      margin: 10px 0;
+      margin-top: 15px;
+      font-size: 18px;
+      color: red;
+      font-weight: bold;
     }
+
     .btn {
       display: inline-block;
-      background-color: #28a745;
+      background-color: green;
       color: white;
-      padding: 15px 25px;
+      padding: 14px 30px;
       font-size: 18px;
       text-decoration: none;
-      border-radius: 5px;
-      margin-top: 20px;
+      border-radius: 6px;
+      margin-top: 25px;
     }
-    .expired {
-      color: red;
-      font-size: 22px;
-      margin-top: 30px;
+
+    canvas#confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
     }
   </style>
 </head>
 <body>
+  <canvas id="confetti-canvas"></canvas>
+
   <div class="container">
-    <h1>Congratulations!</h1>
-    <div class="amount">Your Withdrawal Amount: ₹2,50,000</div>
-    <div class="note">To withdraw, pay 10% commission</div>
-    <div id="countdown"></div>
-    <a id="withdrawBtn" href="#" class="btn">Withdraw Now</a>
-    <div id="expiredMsg" class="expired" style="display: none;">Link Expired</div>
+    <div class="logo">D</div>
+    <div class="sub-logo">DREAM11</div>
+    <h2>Withdrawal Page</h2>
+    <p>Your withdrawal amount is:</p>
+    <div class="amount">₹2,50,000</div>
+    <p class="note">You must pay ₹10,000 commission to proceed with withdrawal.</p>
+    <div id="countdown">Time left: --:--:--</div>
+    <a class="btn" id="withdrawBtn" href="#">Withdraw Now</a>
   </div>
 
-  <canvas id="confetti-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
-
+  <!-- Confetti JS -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
-    // Confetti burst on load
-    confetti({ particleCount: 200, spread: 90, origin: { y: 0.6 } });
+    // Launch confetti on page load
+    window.onload = () => {
+      const duration = 3 * 1000;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
 
-    // Countdown setup
+      function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      const interval = setInterval(function () {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+          return clearInterval(interval);
+        }
+
+        const particleCount = 50 * (timeLeft / duration);
+        confetti({
+          particleCount,
+          origin: {
+            x: randomInRange(0.1, 0.3),
+            y: Math.random() - 0.2
+          },
+          ...defaults
+        });
+        confetti({
+          particleCount,
+          origin: {
+            x: randomInRange(0.7, 0.9),
+            y: Math.random() - 0.2
+          },
+          ...defaults
+        });
+      }, 250);
+    };
+
+    // Countdown Timer
     const countdownEl = document.getElementById("countdown");
     const withdrawBtn = document.getElementById("withdrawBtn");
-    const expiredMsg = document.getElementById("expiredMsg");
 
-    const storageKey = 'withdrawalStartTime';
-    let startTime = localStorage.getItem(storageKey);
-
-    if (!startTime) {
-      startTime = new Date().getTime();
-      localStorage.setItem(storageKey, startTime);
-    } else {
-      startTime = parseInt(startTime);
-    }
-
-    const twelveHours = 12 * 60 * 60 * 1000;
+    const startTime = new Date().getTime();
+    const deadline = startTime + 12 * 60 * 60 * 1000;
 
     function updateCountdown() {
       const now = new Date().getTime();
-      const distance = startTime + twelveHours - now;
+      const distance = deadline - now;
 
-      if (distance <= 0) {
-        countdownEl.style.display = 'none';
-        withdrawBtn.style.display = 'none';
-        expiredMsg.style.display = 'block';
+      if (distance < 0) {
+        countdownEl.innerHTML = "Link Expired";
+        withdrawBtn.style.display = "none";
         return;
       }
 
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      countdownEl.innerHTML = `Time left: ${hours}h ${minutes}m ${seconds}s`;
+      const hours = String(Math.floor((distance / (1000 * 60 * 60))) % 24).padStart(2, '0');
+      const minutes = String(Math.floor((distance / (1000 * 60)) % 60)).padStart(2, '0');
+      const seconds = String(Math.floor((distance / 1000) % 60)).padStart(2, '0');
+
+      countdownEl.innerHTML = `Time left: ${hours}:${minutes}:${seconds}`;
     }
 
     updateCountdown();
