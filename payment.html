@@ -1,52 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Make Payment</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f4f4f4;
-      padding: 20px;
-    }
-    .container {
-      background-color: #fff;
-      max-width: 400px;
-      margin: auto;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-    }
-    .qr {
-      width: 220px;
-      border-radius: 10px;
-      margin: 20px 0;
-    }
-    .pay-btn {
-      background-color: #5b2beb;
-      color: white;
-      padding: 12px 20px;
-      font-size: 18px;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      display: inline-block;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Gateway</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .payment-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .title {
+            font-size: 22px;
+            color: #444;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .payment-method {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        
+        .payment-method label {
+            display: block;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        
+        .payment-method input {
+            margin-right: 10px;
+        }
+        
+        .upi-details {
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .upi-id {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: white;
+            border-radius: 8px;
+            border: 1px dashed #3498db;
+        }
+        
+        .copy-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .amount-box {
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .amount-label {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .amount {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .note {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+        
+        .pay-btn {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        .pay-btn:hover {
+            background-color: #27ae60;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Pay to Ram Choudhary</h2>
-    <p><strong>Amount:</strong> ₹10,000</p>
-    <p><strong>UPI ID:</strong> 6005973034@ybl</p>
-    
-    <img src="ram-qr.png" alt="Scan & Pay" class="qr" />
-    
-    <p>or tap button below to pay via UPI</p>
-    
-    <a class="pay-btn" href="upi://pay?pa=6005973034@ybl&pn=ramchoudhary&am=10000&cu=INR">Pay ₹10,000 Now</a>
-  </div>
+    <div class="payment-container">
+        <div class="logo">Payment Gateway</div>
+        <div class="title">Complete Your Payment</div>
+        
+        <div class="payment-method">
+            <label>
+                <input type="radio" name="paymentMethod" checked> UPI Payment
+            </label>
+        </div>
+        
+        <div class="upi-details">
+            <div>Send payment to this UPI ID:</div>
+            <div class="upi-id" id="upiId">6005973034@ybl</div>
+            <button class="copy-btn" onclick="copyUpiId()">Copy UPI ID</button>
+        </div>
+        
+        <div class="amount-box">
+            <div class="amount-label">Payment Amount:</div>
+            <div class="amount" id="paymentAmount">₹10,000</div>
+        </div>
+        
+        <div class="note">
+            After making payment, please share the screenshot for verification.
+        </div>
+        
+        <button class="pay-btn" onclick="processPayment()">I've Made Payment</button>
+    </div>
+
+    <script>
+        // Get amount from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const amount = urlParams.get('amount');
+        
+        // Display the amount
+        if (amount) {
+            document.getElementById('paymentAmount').textContent = `₹${(amount/1000).toLocaleString('en-IN')},000`;
+        }
+        
+        function copyUpiId() {
+            const upiId = document.getElementById('upiId');
+            const range = document.createRange();
+            range.selectNode(upiId);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            alert('UPI ID copied to clipboard!');
+        }
+        
+        function processPayment() {
+            alert('Thank you for your payment! Please share the payment screenshot for verification.');
+            // Here you would typically redirect to a confirmation page
+            // window.location.href = "confirmation.html";
+        }
+    </script>
 </body>
 </html>
