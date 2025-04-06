@@ -9,46 +9,47 @@
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #d60000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
     }
 
     .container {
-      max-width: 360px;
-      margin: 60px auto;
-      background: #fff;
+      background-color: white;
       padding: 30px 20px;
       border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
       text-align: center;
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+      width: 90%;
+      max-width: 360px;
     }
 
     .logo {
-      width: 60px;
+      width: 50px;
       margin-bottom: 5px;
     }
 
-    .dream11-text {
-      color: #d60000;
+    .dream11 {
       font-size: 18px;
       font-weight: bold;
+      color: #d60000;
       margin-bottom: 10px;
     }
 
     h2 {
       margin: 10px 0;
-      font-size: 22px;
     }
 
     .amount {
-      color: #28a745;
       font-size: 32px;
+      color: #28a745;
       font-weight: bold;
-      margin: 10px 0;
     }
 
     .info {
       font-size: 15px;
-      color: #000;
-      margin: 10px 0 15px;
+      margin: 15px 0;
     }
 
     .timer {
@@ -61,22 +62,22 @@
     .btn {
       background-color: #28a745;
       color: white;
-      padding: 14px 30px;
       font-size: 16px;
+      padding: 12px 28px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
     }
 
     .btn:hover {
-      background-color: #1e7e34;
+      background-color: #218838;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="1000076820.jpg" alt="Dream11 Logo" class="logo" />
-    <div class="dream11-text">DREAM11</div>
+    <img src="1000076821.jpg" alt="Dream11 Logo" class="logo" />
+    <div class="dream11">DREAM11</div>
     <h2>Withdrawal Page</h2>
     <p>Your withdrawal amount is:</p>
     <div class="amount">₹2,50,000</div>
@@ -86,22 +87,26 @@
   </div>
 
   <script>
-    // Countdown
-    const countdownEl = document.getElementById("countdown");
+    // Countdown logic
     let totalSeconds = 12 * 60 * 60;
+    const countdownEl = document.getElementById("countdown");
 
     function updateCountdown() {
-      let hours = Math.floor(totalSeconds / 3600);
-      let minutes = Math.floor((totalSeconds % 3600) / 60);
-      let seconds = totalSeconds % 60;
+      const hours = Math.floor(totalSeconds / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
       countdownEl.textContent = `Time left: ${hours.toString().padStart(2, '0')}:${minutes
         .toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-      if (totalSeconds > 0) totalSeconds--;
+
+      if (totalSeconds > 0) {
+        totalSeconds--;
+      }
     }
 
     setInterval(updateCountdown, 1000);
 
-    // UPI Payment
+    // Withdraw Button Click
     document.getElementById("withdrawBtn").addEventListener("click", () => {
       window.location.href = "upi://pay?pa=ramchoudhary2315@ybl&pn=Ram%20Choudhary&am=10000&cu=INR";
     });
