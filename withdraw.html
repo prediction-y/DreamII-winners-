@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Withdrawal Page</title>
+  <title>Withdraw Page</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #ffebee; /* Light red background */
+      background-color: #d32f2f; /* Full red background */
       position: relative;
       min-height: 100vh;
       display: flex;
@@ -16,11 +16,12 @@
       justify-content: center;
       overflow: hidden;
     }
+
     body::before {
       content: "Dream11 Official";
       position: absolute;
       font-size: 6rem;
-      color: rgba(255, 0, 0, 0.08); /* Semi-transparent red text */
+      color: rgba(255, 255, 255, 0.15); /* Faint white watermark */
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) rotate(-20deg);
@@ -28,36 +29,44 @@
       z-index: 0;
       pointer-events: none;
     }
+
     .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
       padding: 2rem;
       text-align: center;
       max-width: 90%;
       width: 360px;
       z-index: 1;
     }
+
     .card h2 {
+      font-size: 1.5rem;
       margin-bottom: 1rem;
     }
+
     .amount {
-      font-size: 2rem;
+      font-size: 2.4rem;
       font-weight: bold;
-      color: #0a8f00;
+      color: #2e7d32;
+      margin-bottom: 0.5rem;
     }
+
     .commission {
+      font-size: 1rem;
       font-weight: bold;
-      margin: 1rem 0;
     }
+
     .countdown {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+      font-weight: bold;
       color: red;
       margin-top: 1rem;
-      font-weight: bold;
     }
+
     .button {
-      background-color: #28a745;
+      background-color: #388e3c;
       color: white;
       padding: 0.8rem 1.5rem;
       border: none;
@@ -66,6 +75,7 @@
       cursor: pointer;
       margin-top: 1.5rem;
     }
+
     .button:disabled {
       background-color: #aaa;
       cursor: not-allowed;
@@ -74,9 +84,10 @@
 </head>
 <body>
   <div class="card">
-    <h2>Your withdrawal amount is:</h2>
+    <h2>Withdrawal Page</h2>
+    <p>Your withdrawal amount is:</p>
     <div class="amount">₹2,50,000</div>
-    <p class="commission">To withdraw, pay <strong>₹10,000</strong> commission.</p>
+    <p class="commission">You must pay ₹10,000 commission to proceed with withdrawal.</p>
     <div id="timer" class="countdown">Loading...</div>
     <button id="withdrawBtn" class="button">Withdraw Now</button>
   </div>
@@ -91,7 +102,7 @@
       const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
       const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
       const seconds = String(totalSeconds % 60).padStart(2, '0');
-      return `${hours}h ${minutes}m ${seconds}s`;
+      return `${hours}:${minutes}:${seconds}`;
     }
 
     function startCountdown() {
@@ -110,7 +121,7 @@
         const remaining = endTime - now;
 
         if (remaining > 0) {
-          timerEl.textContent = "Link expires in: " + formatTime(remaining);
+          timerEl.textContent = "Time left: " + formatTime(remaining);
         } else {
           clearInterval(interval);
           timerEl.textContent = "Link Expired";
