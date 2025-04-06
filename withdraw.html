@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -99,7 +99,7 @@
   <!-- Confetti JS -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
-    // Launch confetti on page load
+    // Confetti on page load
     window.onload = () => {
       const duration = 3 * 1000;
       const animationEnd = Date.now() + duration;
@@ -109,7 +109,7 @@
         return Math.random() * (max - min) + min;
       }
 
-      const interval = setInterval(function () {
+      const interval = setInterval(() => {
         const timeLeft = animationEnd - Date.now();
 
         if (timeLeft <= 0) {
@@ -119,33 +119,37 @@
         const particleCount = 50 * (timeLeft / duration);
         confetti({
           particleCount,
-          origin: {
-            x: randomInRange(0.1, 0.3),
-            y: Math.random() - 0.2
-          },
+          origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
           ...defaults
         });
         confetti({
           particleCount,
-          origin: {
-            x: randomInRange(0.7, 0.9),
-            y: Math.random() - 0.2
-          },
+          origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
           ...defaults
         });
       }, 250);
     };
 
-    // Countdown Timer
+    // Countdown Logic (persistent using localStorage)
     const countdownEl = document.getElementById("countdown");
     const withdrawBtn = document.getElementById("withdrawBtn");
 
-    const startTime = new Date().getTime();
+    const STORAGE_KEY = "withdrawStartTime";
+    const now = new Date().getTime();
+
+    let startTime = localStorage.getItem(STORAGE_KEY);
+    if (!startTime) {
+      startTime = now;
+      localStorage.setItem(STORAGE_KEY, startTime);
+    } else {
+      startTime = parseInt(startTime);
+    }
+
     const deadline = startTime + 12 * 60 * 60 * 1000;
 
     function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = deadline - now;
+      const currentTime = new Date().getTime();
+      const distance = deadline - currentTime;
 
       if (distance < 0) {
         countdownEl.innerHTML = "Link Expired";
