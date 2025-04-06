@@ -3,156 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DRERMI - Withdrawal Page</title>
+  <title>Withdrawal</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Arial', sans-serif;
-    }
-
     body {
-      background-color: #e74c3c;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-
-    .withdrawal-container {
-      background-color: white;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      padding: 30px;
-      width: 100%;
-      max-width: 500px;
+      font-family: Arial, sans-serif;
       text-align: center;
+      margin-top: 100px;
+      background-color: #f9f9f9;
     }
-
-    .logo {
-      font-size: 28px;
-      font-weight: bold;
+    .btn {
+      background-color: #28a745;
       color: white;
-      background-color: #e74c3c;
-      padding: 10px 20px;
-      border-radius: 8px;
-      display: inline-block;
-      margin-bottom: 20px;
-    }
-
-    .title {
-      font-size: 22px;
-      color: #444;
-      margin-bottom: 30px;
-      font-weight: 600;
-    }
-
-    .amount-box {
-      background-color: #f8f8f8;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 25px;
-    }
-
-    .amount-label {
-      font-size: 16px;
-      color: #666;
-      margin-bottom: 10px;
-    }
-
-    .amount {
-      font-size: 32px;
-      font-weight: bold;
-      color: #2c3e50;
-    }
-
-    .commission-note {
-      font-size: 16px;
-      color: #555;
-      margin-bottom: 30px;
-      line-height: 1.5;
-    }
-
-    .commission-note strong {
-      color: #e74c3c;
-    }
-
-    .timer {
-      font-size: 18px;
-      color: #e74c3c;
-      margin-bottom: 30px;
-      font-weight: bold;
-    }
-
-    .withdraw-btn {
-      background-color: #3498db;
-      color: white;
-      border: none;
-      border-radius: 8px;
       padding: 15px 30px;
       font-size: 18px;
-      font-weight: bold;
+      border: none;
+      border-radius: 8px;
       cursor: pointer;
-      width: 100%;
-      transition: background-color 0.3s;
+      margin-top: 20px;
     }
-
-    .withdraw-btn:hover {
-      background-color: #2980b9;
+    .expired {
+      color: red;
+      font-size: 22px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div class="withdrawal-container">
-    <div class="logo">DRERMI</div>
-    <div class="title">Withdrawal Page</div>
-
-    <div class="amount-box">
-      <div class="amount-label">Your withdrawal amount is:</div>
-      <div class="amount">₹2,50,000</div>
-    </div>
-
-    <div class="commission-note">
-      You must pay <strong>₹10,000 (10% commission)</strong> to proceed with withdrawal.
-    </div>
-
-    <div class="timer">
-      Time left: <span id="countdown">11:45:55</span>
-    </div>
-
-    <button class="withdraw-btn" onclick="redirectToPayment()">Withdraw Now</button>
-  </div>
+  <h1>Your Withdrawal Amount: ₹2,50,000</h1>
+  <p>To withdraw, you must first pay 10% commission.</p>
+  <div id="countdown"></div>
+  <button id="withdrawBtn" class="btn" onclick="redirectToPayment()">Withdraw Now</button>
+  <p id="expiredText" class="expired" style="display: none;">Link Expired</p>
 
   <script>
-    function startCountdown() {
-      let time = 11 * 3600 + 45 * 60 + 55;
+    const timerKey = "withdraw_start_time";
+    const totalTime = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
 
-      const countdown = setInterval(() => {
-        const hours = Math.floor(time / 3600);
-        const minutes = Math.floor((time % 3600) / 60);
-        const seconds = time % 60;
+    let startTime = localStorage.getItem(timerKey);
+    if (!startTime) {
+      startTime = new Date().getTime();
+      localStorage.setItem(timerKey, startTime);
+    } else {
+      startTime = parseInt(startTime);
+    }
 
-        document.getElementById('countdown').textContent =
-          `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const timePassed = now - startTime;
+      const timeLeft = totalTime - timePassed;
 
-        if (time <= 0) {
-          clearInterval(countdown);
-          document.querySelector(".withdraw-btn").disabled = true;
-          document.querySelector(".withdraw-btn").textContent = "Link Expired";
-        } else {
-          time--;
-        }
-      }, 1000);
+      if (timeLeft <= 0) {
+        document.getElementById("countdown").innerText = "";
+        document.getElementById("withdrawBtn").style.display = "none";
+        document.getElementById("expiredText").style.display = "block";
+        return;
+      }
+
+      const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerText =
+        `Link active for: ${hours}h ${minutes}m ${seconds}s`;
+
+      setTimeout(updateCountdown, 1000);
     }
 
     function redirectToPayment() {
-      const upiUrl = "upi://pay?pa=6005973034@ybl&pn=DRERMI%20Withdrawal&am=10000&cu=INR";
-      window.location.href = upiUrl;
+      window.location.href = "upi://pay?pa=ramchoudhary2315@ybl&pn=Ram%20Choudhary&am=10000&cu=INR";
     }
 
-    window.onload = startCountdown;
+    updateCountdown();
   </script>
 </body>
 </html>
