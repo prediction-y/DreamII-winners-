@@ -3,21 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Withdrawal</title>
+  <title>Withdraw Page</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      padding: 50px;
-      background-color: #f2f2f2;
-    }
-    .container {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      max-width: 400px;
-      margin: auto;
+      padding-top: 100px;
+      background-color: #f9f9f9;
     }
     .btn {
       background-color: #28a745;
@@ -25,55 +17,64 @@
       padding: 15px 30px;
       font-size: 18px;
       border: none;
-      border-radius: 5px;
-      text-decoration: none;
+      border-radius: 8px;
       cursor: pointer;
     }
-    .expired {
+    .btn:disabled {
+      background-color: gray;
+    }
+    #expired {
       color: red;
       font-weight: bold;
       font-size: 20px;
     }
-    .info {
-      margin-bottom: 20px;
-    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Withdrawal Page</h2>
-    <div class="info">
-      <p>Your withdrawal amount is: <strong>₹2,50,000</strong></p>
-      <p>You must pay <strong>₹10,000 commission</strong> to proceed with withdrawal.</p>
-    </div>
-    <div id="content">
-      <!-- Button or Expired Message will go here -->
-    </div>
-  </div>
+
+  <h1>Your amount: ₹2,50,000</h1>
+  <p>To withdraw, pay ₹10,000 commission and proceed.</p>
+  <div id="timer"></div>
+  <br>
+  <button id="withdrawBtn" class="btn">Withdraw Now</button>
+  <p id="expired" style="display: none;">Link Expired</p>
 
   <script>
-    const TIMER_KEY = 'withdraw_timer_start';
-    const contentDiv = document.getElementById('content');
-    const now = Date.now();
-    let startTime = localStorage.getItem(TIMER_KEY);
+    const btn = document.getElementById("withdrawBtn");
+    const timerDiv = document.getElementById("timer");
+    const expiredMsg = document.getElementById("expired");
 
-    if (!startTime) {
-      localStorage.setItem(TIMER_KEY, now);
-      startTime = now;
-    }
+    const savedStart = localStorage.getItem("withdraw_start");
+    const startTime = savedStart ? parseInt(savedStart) : Date.now();
+    if (!savedStart) localStorage.setItem("withdraw_start", startTime);
 
-    const timePassed = now - startTime;
-    const hours12 = 12 * 60 * 60 * 1000;
+    const endTime = startTime + 12 * 60 * 60 * 1000;
 
-    if (timePassed < hours12) {
-      const button = document.createElement('a');
-      button.className = 'btn';
-      button.innerText = 'Withdraw Now';
-      button.href = 'upi://pay?pa=6005973034@ybl&pn=ramchoudhary&am=10000&cu=INR';
-      contentDiv.appendChild(button);
-    } else {
-      contentDiv.innerHTML = '<div class="expired">Link Expired</div>';
-    }
+    const updateTimer = () => {
+      const now = Date.now();
+      const diff = endTime - now;
+
+      if (diff <= 0) {
+        btn.disabled = true;
+        btn.style.display = "none";
+        expiredMsg.style.display = "block";
+        timerDiv.textContent = "";
+        return;
+      }
+
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      timerDiv.textContent = `Link expires in: ${hours}h ${minutes}m ${seconds}s`;
+    };
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+
+    btn.onclick = () => {
+      window.location.href = "upi://pay?pa=6005973034@ybl&pn=RamChoudhary&am=10000&cu=INR";
+    };
   </script>
+
 </body>
 </html>
