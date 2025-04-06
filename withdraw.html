@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -96,12 +96,11 @@
     <a class="btn" id="withdrawBtn" href="#">Withdraw Now</a>
   </div>
 
-  <!-- Confetti JS -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
     // Confetti on page load
     window.onload = () => {
-      const duration = 3 * 1000;
+      const duration = 3000;
       const animationEnd = Date.now() + duration;
       const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
 
@@ -111,10 +110,7 @@
 
       const interval = setInterval(() => {
         const timeLeft = animationEnd - Date.now();
-
-        if (timeLeft <= 0) {
-          return clearInterval(interval);
-        }
+        if (timeLeft <= 0) return clearInterval(interval);
 
         const particleCount = 50 * (timeLeft / duration);
         confetti({
@@ -130,36 +126,36 @@
       }, 250);
     };
 
-    // Countdown Logic (persistent using localStorage)
+    // Timer logic
     const countdownEl = document.getElementById("countdown");
     const withdrawBtn = document.getElementById("withdrawBtn");
-
     const STORAGE_KEY = "withdrawStartTime";
-    const now = new Date().getTime();
+    const TWELVE_HOURS = 12 * 60 * 60 * 1000;
 
-    let startTime = localStorage.getItem(STORAGE_KEY);
-    if (!startTime) {
-      startTime = now;
-      localStorage.setItem(STORAGE_KEY, startTime);
+    let startTime;
+
+    if (localStorage.getItem(STORAGE_KEY)) {
+      startTime = parseInt(localStorage.getItem(STORAGE_KEY));
     } else {
-      startTime = parseInt(startTime);
+      startTime = new Date().getTime();
+      localStorage.setItem(STORAGE_KEY, startTime.toString());
     }
 
-    const deadline = startTime + 12 * 60 * 60 * 1000;
+    const deadline = startTime + TWELVE_HOURS;
 
     function updateCountdown() {
-      const currentTime = new Date().getTime();
-      const distance = deadline - currentTime;
+      const now = new Date().getTime();
+      const remaining = deadline - now;
 
-      if (distance < 0) {
+      if (remaining <= 0) {
         countdownEl.innerHTML = "Link Expired";
         withdrawBtn.style.display = "none";
         return;
       }
 
-      const hours = String(Math.floor((distance / (1000 * 60 * 60))) % 24).padStart(2, '0');
-      const minutes = String(Math.floor((distance / (1000 * 60)) % 60)).padStart(2, '0');
-      const seconds = String(Math.floor((distance / 1000) % 60)).padStart(2, '0');
+      const hours = String(Math.floor(remaining / (1000 * 60 * 60))).padStart(2, '0');
+      const minutes = String(Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+      const seconds = String(Math.floor((remaining % (1000 * 60)) / 1000)).padStart(2, '0');
 
       countdownEl.innerHTML = `Time left: ${hours}:${minutes}:${seconds}`;
     }
