@@ -3,77 +3,107 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Withdrawal</title>
+  <title>Payment Page - DRERMI</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
     body {
-      font-family: Arial, sans-serif;
+      background-color: #e74c3c;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      max-width: 450px;
+      width: 100%;
       text-align: center;
-      margin-top: 100px;
-      background-color: #f9f9f9;
     }
-    .btn {
-      background-color: #28a745;
-      color: white;
-      padding: 15px 30px;
-      font-size: 18px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 20px;
+
+    .logo-img {
+      width: 80px;
+      margin-bottom: 10px;
     }
-    .expired {
-      color: red;
+
+    .logo-text {
+      font-size: 24px;
+      color: #e74c3c;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .title {
       font-size: 22px;
       font-weight: bold;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    .upi-id {
+      font-size: 18px;
+      color: #e74c3c;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .amount {
+      font-size: 20px;
+      color: #2c3e50;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .instruction {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .pay-btn {
+      background-color: #27ae60;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 14px 25px;
+      border-radius: 10px;
+      display: inline-block;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .pay-btn:hover {
+      background-color: #1e944f;
     }
   </style>
 </head>
 <body>
-  <h1>Your Withdrawal Amount: ₹2,50,000</h1>
-  <p>To withdraw, you must first pay 10% commission.</p>
-  <div id="countdown"></div>
-  <button id="withdrawBtn" class="btn" onclick="redirectToPayment()">Withdraw Now</button>
-  <p id="expiredText" class="expired" style="display: none;">Link Expired</p>
+  <div class="container">
+    <img src="1000076818.png" alt="Dream11 Logo" class="logo-img">
+    <div class="logo-text">DREAM11</div>
+    <div class="title">Complete Your Payment</div>
+    
+    <div class="instruction">
+      To withdraw your winnings, please pay the 10% commission amount using the UPI ID below.
+    </div>
 
-  <script>
-    const timerKey = "withdraw_start_time";
-    const totalTime = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
+    <div class="upi-id">6005973034@ybl</div>
+    <div class="amount">Amount: ₹10,000</div>
 
-    let startTime = localStorage.getItem(timerKey);
-    if (!startTime) {
-      startTime = new Date().getTime();
-      localStorage.setItem(timerKey, startTime);
-    } else {
-      startTime = parseInt(startTime);
-    }
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const timePassed = now - startTime;
-      const timeLeft = totalTime - timePassed;
-
-      if (timeLeft <= 0) {
-        document.getElementById("countdown").innerText = "";
-        document.getElementById("withdrawBtn").style.display = "none";
-        document.getElementById("expiredText").style.display = "block";
-        return;
-      }
-
-      const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-      document.getElementById("countdown").innerText =
-        `Link active for: ${hours}h ${minutes}m ${seconds}s`;
-
-      setTimeout(updateCountdown, 1000);
-    }
-
-    function redirectToPayment() {
-      window.location.href = "upi://pay?pa=ramchoudhary2315@ybl&pn=Ram%20Choudhary&am=10000&cu=INR";
-    }
-
-    updateCountdown();
-  </script>
+    <a href="upi://pay?pa=6005973034@ybl&pn=DRERMI%20Withdrawal&am=10000&cu=INR" class="pay-btn">
+      Pay Now via UPI
+    </a>
+  </div>
 </body>
 </html>
