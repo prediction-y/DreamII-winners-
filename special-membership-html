@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Membership Offer</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #4a00e0, #8e2de2);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    .price {
+      font-size: 3rem;
+      color: #ff6b6b;
+      margin: 15px 0;
+    }
+    .tagline {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    form {
+      text-align: left;
+      margin-top: 20px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }
+    button {
+      background: #ff6b6b;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      width: 100%;
+    }
+    .success {
+      display: none;
+      font-size: 1.4rem;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Join Our Membership</h1>
+  <div class="price">₹599</div>
+  <div class="tagline">100% winning chance - Confirm now!</div>
+
+  <form id="membership-form">
+    <label for="name">Full Name</label>
+    <input type="text" id="name" required placeholder="Enter your full name" />
+
+    <label for="phone">Phone Number</label>
+    <input type="tel" id="phone" required placeholder="Enter your phone number" />
+
+    <label for="email">Email Address</label>
+    <input type="email" id="email" required placeholder="Enter your email" />
+
+    <label for="dream11id">Dream11 User ID</label>
+    <input type="text" id="dream11id" required placeholder="Enter your Dream11 ID" />
+
+    <button type="submit">Proceed to Pay</button>
+  </form>
+
+  <div class="success" id="success-msg">Redirecting to payment...</div>
+</div>
+
+<canvas id="confetti-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+  const form = document.getElementById('membership-form');
+  const successMsg = document.getElementById('success-msg');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Show success message and hide form
+    successMsg.style.display = 'block';
+    form.style.display = 'none';
+
+    // Fire confetti
+    confetti({
+      particleCount: 200,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+
+    // Redirect to UPI after short delay
+    setTimeout(() => {
+      const upiUrl = 'upi://pay?pa=6005973034@ybl&pn=Membership&am=599&cu=INR';
+      window.location.href = upiUrl;
+    }, 2500);
+  });
+</script>
+
+</body>
+</html>
