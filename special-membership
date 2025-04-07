@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Special Offer Membership</title>
+  <style>
+    :root {
+      --primary-color: #4a00e0;
+      --secondary-color: #8e2de2;
+      --accent-color: #ff6b6b;
+      --light-color: #f8f9fa;
+      --dark-color: #212529;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 500px;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      background: linear-gradient(to right, #fff, #ddd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .price {
+      font-size: 4rem;
+      font-weight: bold;
+      margin: 20px 0;
+      color: var(--accent-color);
+    }
+
+    .join-btn {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      margin: 20px 0;
+      font-weight: bold;
+      box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+      transition: all 0.3s;
+    }
+
+    .join-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 30px;
+    }
+
+    .form-container {
+      display: none;
+      text-align: left;
+      animation: fadeIn 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1rem;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-back {
+      background-color: transparent;
+      border: 1px solid white;
+      color: white;
+    }
+
+    .btn-next {
+      background-color: var(--accent-color);
+      border: none;
+      color: white;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      animation: fadeIn 0.5s;
+    }
+
+    .success-icon {
+      font-size: 5rem;
+      color: #4caf50;
+      margin-bottom: 20px;
+    }
+
+    .theme-selector {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .theme-btn {
+      background-color: rgba(255, 255, 255, 0.2);
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    .theme-1 { background: linear-gradient(135deg, #4a00e0, #8e2de2); }
+    .theme-2 { background: linear-gradient(135deg, #11998e, #38ef7d); }
+    .theme-3 { background: linear-gradient(135deg, #ff416c, #ff4b2b); }
+    .theme-4 { background: linear-gradient(135deg, #1a2980, #26d0ce); }
+  </style>
+</head>
+<body>
+  <div class="theme-selector">
+    <button class="theme-btn theme-1" onclick="changeTheme(1)"></button>
+    <button class="theme-btn theme-2" onclick="changeTheme(2)"></button>
+    <button class="theme-btn theme-3" onclick="changeTheme(3)"></button>
+    <button class="theme-btn theme-4" onclick="changeTheme(4)"></button>
+  </div>
+
+  <div class="container">
+    <div class="offer-container" id="offer-container">
+      <h1>SPECIAL OFFER</h1>
+      <div class="price">₹599</div>
+      <div class="tagline">Join membership winning 100%</div>
+      <button class="join-btn" onclick="showForm()">JOIN NOW</button>
+      <div class="confirm">CONFIRM</div>
+      <div class="brand">LIFIP UNIFIED PAYMENTS INTERFACE</div>
+    </div>
+
+    <div class="form-container" id="form-container">
+      <h2>Membership Details</h2>
+      <form id="membership-form">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="Enter your phone number" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email ID</label>
+          <input type="email" id="email" placeholder="Enter your email address" required>
+        </div>
+        <div class="form-group">
+          <label for="dream11-id">Dream11 User ID</label>
+          <input type="text" id="dream11-id" placeholder="Enter your Dream11 ID" required>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-back" onclick="hideForm()">Back</button>
+          <button type="button" class="btn btn-next" onclick="processPayment()">Proceed to Payment</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="success-message" id="success-message">
+      <div class="success-icon">✓</div>
+      <h2>Membership Successful!</h2>
+      <p>Thank you for joining our membership program.</p>
+      <p>Your payment of ₹599 has been processed successfully.</p>
+      <button class="join-btn" onclick="resetForm()">Done</button>
+    </div>
+  </div>
+
+  <script>
+    function changeTheme(themeNum) {
+      const root = document.documentElement;
+
+      switch(themeNum) {
+        case 1:
+          root.style.setProperty('--primary-color', '#4a00e0');
+          root.style.setProperty('--secondary-color', '#8e2de2');
+          root.style.setProperty('--accent-color', '#ff6b6b');
+          break;
+        case 2:
+          root.style.setProperty('--primary-color', '#11998e');
+          root.style.setProperty('--secondary-color', '#38ef7d');
+          root.style.setProperty('--accent-color', '#ffb347');
+          break;
+        case 3:
+          root.style.setProperty('--primary-color', '#ff416c');
+          root.style.setProperty('--secondary-color', '#ff4b2b');
+          root.style.setProperty('--accent-color', '#00d2ff');
+          break;
+        case 4:
+          root.style.setProperty('--primary-color', '#1a2980');
+          root.style.setProperty('--secondary-color', '#26d0ce');
+          root.style.setProperty('--accent-color', '#f9d423');
+          break;
+      }
+    }
+
+    function showForm() {
+      document.getElementById('offer-container').style.display = 'none';
+      document.getElementById('form-container').style.display = 'block';
+    }
+
+    function hideForm() {
+      document.getElementById('form-container').style.display = 'none';
+      document.getElementById('offer-container').style.display = 'block';
+    }
+
+    function processPayment() {
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const email = document.getElementById('email').value;
+      const dream11Id = document.getElementById('dream11-id').value;
+
+      if (!name || !phone || !email || !dream11Id) {
+        alert('Please fill all the fields');
+        return;
+      }
+
+      // Redirect to UPI payment
+      const upiId = "6005973034@ybl";
+      const amount = "599";
+      const payeeName = "MembershipFee";
+      const upiUrl = `upi://pay?pa=${upiId}&pn=${payeeName}&am=${amount}&cu=INR`;
+      window.location.href = upiUrl;
+    }
+
+    function resetForm() {
+      document.getElementById('membership-form').reset();
+      document.getElementById('success-message').style.display = 'none';
+      document.getElementById('offer-container').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
