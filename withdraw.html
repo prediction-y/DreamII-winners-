@@ -3,178 +3,117 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dream11 Withdrawal Page</title>
+  <title>Dream11 Rank Booking</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #d32f2f;
-      margin: 0;
-      padding: 0;
+      padding: 20px;
+      background: #f5f5f5;
     }
-
-    .container {
-      background: white;
-      margin: 80px auto;
-      padding: 30px 20px;
-      border-radius: 20px;
-      max-width: 400px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      position: relative;
-      z-index: 10;
+    .rank-box {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-
-    .logo {
-      font-size: 28px;
-      font-weight: bold;
-      color: red;
-      margin-bottom: 10px;
-    }
-
-    .sub-logo {
+    .rank-info {
       font-size: 18px;
-      font-weight: bold;
-      color: red;
-      margin-bottom: 20px;
     }
-
-    h2 {
-      margin: 10px 0;
-    }
-
-    .amount {
-      font-size: 32px;
-      color: green;
-      font-weight: bold;
-    }
-
-    .note {
-      margin-top: 15px;
+    .book-btn {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 5px;
+      cursor: pointer;
       font-size: 16px;
     }
-
-    #countdown {
-      margin-top: 15px;
-      font-size: 18px;
-      color: red;
-      font-weight: bold;
-    }
-
-    .btn {
-      display: inline-block;
-      background-color: green;
-      color: white;
-      padding: 14px 30px;
-      font-size: 18px;
-      text-decoration: none;
-      border-radius: 6px;
-      margin-top: 25px;
-    }
-
-    canvas#confetti-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .greeting {
-      color: green;
-      font-weight: bold;
-      font-size: 18px;
-      margin-bottom: 20px;
+    .book-btn:hover {
+      background: #218838;
     }
   </style>
 </head>
 <body>
-  <canvas id="confetti-canvas"></canvas>
 
-  <div class="container">
-    <div class="logo">D</div>
-    <div class="sub-logo">DREAM11</div>
+  <h2>Dream11 Style Rank Booking</h2>
 
-    <!-- Added Greeting -->
-    <div class="greeting">Dear user; SHAHEBAZ KILLER, CONGRATULATIONS!</div>
+  <!-- RANK BOXES START -->
 
-    <h2>Withdrawal Page</h2>
-    <p>Your withdrawal amount is:</p>
-    <div class="amount">₹3,000,00,00</div>
-    <p class="note">You must pay ₹10,000 commission to proceed with withdrawal.</p>
-    <div id="countdown">Time left: --:--:--</div>
-    <a class="btn" id="withdrawBtn" href="#">Withdraw Now</a>
+  <!-- Rank 1 -->
+  <div class="rank-box">
+    <div class="rank-info">Rank 1 - ₹999</div>
+    <form method="POST" action="https://www.cashfree.com/checkout/post/submit">
+      <input type="hidden" name="appId" value="951267dd53d83afbcdab796d8c762159">
+      <input type="hidden" name="orderId" value="rank1-999">
+      <input type="hidden" name="orderAmount" value="999">
+      <input type="hidden" name="orderCurrency" value="INR">
+      <input type="hidden" name="returnUrl" value="https://prediction-y.github.io/DreamII-winners-/thankyou.html">
+      <input type="hidden" name="notifyUrl" value="">
+      <button class="book-btn" type="submit">Book</button>
+    </form>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script>
-    // Confetti on page load
-    window.onload = () => {
-      const duration = 3000;
-      const animationEnd = Date.now() + duration;
-      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+  <!-- Rank 2 -->
+  <div class="rank-box">
+    <div class="rank-info">Rank 2 - ₹1,499</div>
+    <form method="POST" action="https://www.cashfree.com/checkout/post/submit">
+      <input type="hidden" name="appId" value="951267dd53d83afbcdab796d8c762159">
+      <input type="hidden" name="orderId" value="rank2-1499">
+      <input type="hidden" name="orderAmount" value="1499">
+      <input type="hidden" name="orderCurrency" value="INR">
+      <input type="hidden" name="returnUrl" value="https://prediction-y.github.io/DreamII-winners-/thankyou.html">
+      <input type="hidden" name="notifyUrl" value="">
+      <button class="book-btn" type="submit">Book</button>
+    </form>
+  </div>
 
-      function randomInRange(min, max) {
-        return Math.random() * (max - min) + min;
-      }
+  <!-- Rank 3 -->
+  <div class="rank-box">
+    <div class="rank-info">Rank 3 - ₹2,000</div>
+    <form method="POST" action="https://www.cashfree.com/checkout/post/submit">
+      <input type="hidden" name="appId" value="951267dd53d83afbcdab796d8c762159">
+      <input type="hidden" name="orderId" value="rank3-2000">
+      <input type="hidden" name="orderAmount" value="2000">
+      <input type="hidden" name="orderCurrency" value="INR">
+      <input type="hidden" name="returnUrl" value="https://prediction-y.github.io/DreamII-winners-/thankyou.html">
+      <input type="hidden" name="notifyUrl" value="">
+      <button class="book-btn" type="submit">Book</button>
+    </form>
+  </div>
 
-      const interval = setInterval(() => {
-        const timeLeft = animationEnd - Date.now();
-        if (timeLeft <= 0) return clearInterval(interval);
+  <!-- Rank 4 -->
+  <div class="rank-box">
+    <div class="rank-info">Rank 4 - ₹1,499</div>
+    <form method="POST" action="https://www.cashfree.com/checkout/post/submit">
+      <input type="hidden" name="appId" value="951267dd53d83afbcdab796d8c762159">
+      <input type="hidden" name="orderId" value="rank4-1499">
+      <input type="hidden" name="orderAmount" value="1499">
+      <input type="hidden" name="orderCurrency" value="INR">
+      <input type="hidden" name="returnUrl" value="https://prediction-y.github.io/DreamII-winners-/thankyou.html">
+      <input type="hidden" name="notifyUrl" value="">
+      <button class="book-btn" type="submit">Book</button>
+    </form>
+  </div>
 
-        const particleCount = 50 * (timeLeft / duration);
-        confetti({
-          particleCount,
-          origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-          ...defaults
-        });
-        confetti({
-          particleCount,
-          origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-          ...defaults
-        });
-      }, 250);
-    };
+  <!-- Rank 5 -->
+  <div class="rank-box">
+    <div class="rank-info">Rank 5 - ₹999</div>
+    <form method="POST" action="https://www.cashfree.com/checkout/post/submit">
+      <input type="hidden" name="appId" value="951267dd53d83afbcdab796d8c762159">
+      <input type="hidden" name="orderId" value="rank5-999">
+      <input type="hidden" name="orderAmount" value="999">
+      <input type="hidden" name="orderCurrency" value="INR">
+      <input type="hidden" name="returnUrl" value="https://prediction-y.github.io/DreamII-winners-/thankyou.html">
+      <input type="hidden" name="notifyUrl" value="">
+      <button class="book-btn" type="submit">Book</button>
+    </form>
+  </div>
 
-    // Timer logic
-    const countdownEl = document.getElementById("countdown");
-    const withdrawBtn = document.getElementById("withdrawBtn");
-    const STORAGE_KEY = "withdrawStartTime";
-    const TWELVE_HOURS = 12 * 60 * 60 * 1000;
+  <!-- RANK BOXES END -->
 
-    let startTime;
-
-    if (localStorage.getItem(STORAGE_KEY)) {
-      startTime = parseInt(localStorage.getItem(STORAGE_KEY));
-    } else {
-      startTime = new Date().getTime();
-      localStorage.setItem(STORAGE_KEY, startTime.toString());
-    }
-
-    const deadline = startTime + TWELVE_HOURS;
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const remaining = deadline - now;
-
-      if (remaining <= 0) {
-        countdownEl.innerHTML = "Link Expired";
-        withdrawBtn.style.display = "none";
-        return;
-      }
-
-      const hours = String(Math.floor(remaining / (1000 * 60 * 60))).padStart(2, '0');
-      const minutes = String(Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-      const seconds = String(Math.floor((remaining % (1000 * 60)) / 1000)).padStart(2, '0');
-
-      countdownEl.innerHTML = `Time left: ${hours}:${minutes}:${seconds}`;
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    withdrawBtn.href = "upi://pay?pa=ramchoudhary2315@ybl&pn=ramchoudhary&am=10000&cu=INR";
-  </script>
 </body>
 </html>
