@@ -3,117 +3,82 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dream11 Rank Booking</title>
+  <title>Dream II - Rank Booking</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      background: #f9f9f9;
       padding: 20px;
-      background: #f5f5f5;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 30px;
     }
     .rank-box {
-      background: #fff;
+      background: white;
+      padding: 20px;
+      margin: 15px auto;
       border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 15px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    .rank-info {
-      font-size: 18px;
+    .rank-title {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .price {
+      font-size: 20px;
+      color: green;
+      margin-bottom: 15px;
     }
     .book-btn {
-      background: #28a745;
+      background: #4CAF50;
       color: white;
+      padding: 10px 20px;
       border: none;
-      padding: 10px 16px;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
       font-size: 16px;
     }
     .book-btn:hover {
-      background: #218838;
+      background: #45a049;
     }
   </style>
 </head>
 <body>
 
-  <h2>Dream11 Style Rank Booking</h2>
+  <h1>Book Your Rank - Dream II</h1>
 
-  <!-- RANK BOXES START -->
-
-  <!-- Rank 1 -->
   <div class="rank-box">
-    <div class="rank-info">Rank 1 - ₹4,999</div>
-    <form method="POST" action="https://www.cashfree.com/checkout/post/submit">
-      <input type="hidden" name="appId" value="951267dd53d83afbcdab796d8c762159">
-      <input type="hidden" name="orderId" value="rank1-999">
-      <input type="hidden" name="orderAmount" value="999">
-      <input type="hidden" name="orderCurrency" value="INR">
-      <input type="hidden" name="returnUrl" value="https://prediction-y.github.io/DreamII-winners-/thankyou.html">
-      <input type="hidden" name="notifyUrl" value="">
-      <button class="book-btn" type="submit">Book</button>
-    </form>
+    <div class="rank-title">Rank 1</div>
+    <div class="price">₹5000</div>
+    <button class="book-btn" onclick="window.location.href='https://payments.cashfree.com/links?code=W8di8466r280'">Book Now</button>
   </div>
 
-  <!-- Rank 2 -->
   <div class="rank-box">
-    <div class="rank-info">Rank 2 - ₹3,999</div>
-    <form method="POST" action="https://www.cashfree.com/checkout/post/submit">
-      <input type="hidden" name="appId" value="951267dd53d83afbcdab796d8c762159">
-      <input type="hidden" name="orderId" value="rank2-1499">
-      <input type="hidden" name="orderAmount" value="1499">
-      <input type="hidden" name="orderCurrency" value="INR">
-      <input type="hidden" name="returnUrl" value="https://prediction-y.github.io/DreamII-winners-/thankyou.html">
-      <input type="hidden" name="notifyUrl" value="">
-      <button class="book-btn" type="submit">Book</button>
-    </form>
+    <div class="rank-title">Rank 2</div>
+    <div class="price">₹4000</div>
+    <button class="book-btn" onclick="window.location.href='https://payments.cashfree.com/links?code=k8di870spt90'">Book Now</button>
   </div>
 
-  <!-- Rank 3 -->
   <div class="rank-box">
-    <div class="rank-info">Rank 3 - ₹2,999</div>
-    <form method="POST" action="https://www.cashfree.com/checkout/post/submit">
-      <input type="hidden" name="appId" value="951267dd53d83afbcdab796d8c762159">
-      <input type="hidden" name="orderId" value="rank3-2000">
-      <input type="hidden" name="orderAmount" value="2000">
-      <input type="hidden" name="orderCurrency" value="INR">
-      <input type="hidden" name="returnUrl" value="https://prediction-y.github.io/DreamII-winners-/thankyou.html">
-      <input type="hidden" name="notifyUrl" value="">
-      <button class="book-btn" type="submit">Book</button>
-    </form>
+    <div class="rank-title">Rank 3</div>
+    <div class="price">₹3000</div>
+    <button class="book-btn" onclick="window.location.href='https://payments.cashfree.com/links?code=f8di96jsr280'">Book Now</button>
   </div>
 
-  <!-- Rank 4 -->
   <div class="rank-box">
-    <div class="rank-info">Rank 4 - ₹1,999</div>
-    <form method="POST" action="https://www.cashfree.com/checkout/post/submit">
-      <input type="hidden" name="appId" value="951267dd53d83afbcdab796d8c762159">
-      <input type="hidden" name="orderId" value="rank4-1499">
-      <input type="hidden" name="orderAmount" value="1499">
-      <input type="hidden" name="orderCurrency" value="INR">
-      <input type="hidden" name="returnUrl" value="https://prediction-y.github.io/DreamII-winners-/thankyou.html">
-      <input type="hidden" name="notifyUrl" value="">
-      <button class="book-btn" type="submit">Book</button>
-    </form>
+    <div class="rank-title">Rank 4</div>
+    <div class="price">₹2000</div>
+    <button class="book-btn" onclick="window.location.href='https://payments.cashfree.com/links?code=s8di8rni1280'">Book Now</button>
   </div>
 
-  <!-- Rank 5 -->
   <div class="rank-box">
-    <div class="rank-info">Rank 5 - ₹999</div>
-    <form method="POST" action="https://www.cashfree.com/checkout/post/submit">
-      <input type="hidden" name="appId" value="951267dd53d83afbcdab796d8c762159">
-      <input type="hidden" name="orderId" value="rank5-999">
-      <input type="hidden" name="orderAmount" value="999">
-      <input type="hidden" name="orderCurrency" value="INR">
-      <input type="hidden" name="returnUrl" value="https://prediction-y.github.io/DreamII-winners-/thankyou.html">
-      <input type="hidden" name="notifyUrl" value="">
-      <button class="book-btn" type="submit">Book</button>
-    </form>
+    <div class="rank-title">Rank 5</div>
+    <div class="price">₹1000</div>
+    <button class="book-btn" onclick="window.location.href='https://payments.cashfree.com/links?code=A8di8uq6ht90'">Book Now</button>
   </div>
-
-  <!-- RANK BOXES END -->
 
 </body>
 </html>
