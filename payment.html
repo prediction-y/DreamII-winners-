@@ -1,169 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Payment Page</title>
+  <meta charset="UTF-8">
+  <title>Thank You</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
+      background-color: #f0fff0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
     }
-
-    .payment-box {
-      background-color: white;
+    .message {
+      text-align: center;
+      background: #fff;
       padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-
     h2 {
-      margin-bottom: 20px;
-    }
-
-    form {
-      margin: 10px 0;
-    }
-
-    button {
-      padding: 10px 25px;
-      font-size: 16px;
-      color: white;
-      background-color: #28a745;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #218838;
+      color: #28a745;
     }
   </style>
 </head>
 <body>
-  <div class="payment-box">
-    <h2>Select Amount to Pay</h2>
-
-    <!-- Payment Buttons -->
-    <!-- Repeat this form with different amounts -->
-    <form method="post" action="https://www.cashfree.com/checkout/post/submit">
-      <input type="hidden" name="appId" value="951267dd53d83afbcdab796d8c762159">
-      <input type="hidden" name="orderCurrency" value="INR">
-      <input type="hidden" name="customerName" value="Shahebaz">
-      <input type="hidden" name="customerPhone" value="9876543210">
-      <input type="hidden" name="customerEmail" value="example@email.com">
-      <input type="hidden" name="returnUrl" value="https://prediction-y.github.io/DreamII-winners-/thankyou.html">
-      <input type="hidden" name="notifyUrl" value="https://prediction-y.github.io/DreamII-winners-/notify">
-      
-      <!-- ₹999 -->
-      <input type="hidden" name="orderId" value="ORDER999">
-      <input type="hidden" name="orderAmount" value="999.00">
-      <input type="hidden" name="orderNote" value="₹999 Payment">
-      <button type="submit">Pay ₹999</button>
-    </form>
-
-    <form method="post" action="https://www.cashfree.com/checkout/post/submit">
-      <input type="hidden" name="appId" value="951267dd53d83afbcdab796d8c762159">
-      <input type="hidden" name="orderCurrency" value="INR">
-      <input type="hidden" name="customerName" value="Shahebaz">
-      <input type="hidden" name="customerPhone" value="9876543210">
-      <input type="hidden" name="customerEmail" value="example@email.com">
-      <input type="hidden" name="returnUrl" value="https://prediction-y.github.io/DreamII-winners-/thankyou.html">
-      <input type="hidden" name="notifyUrl" value="https://prediction-y.github.io/DreamII-winners-/notify">
-      
-      <!-- ₹1499 -->
-      <input type="hidden" name="orderId" value="ORDER1499">
-      <input type="hidden" name="orderAmount" value="1499.00">
-      <input type="hidden" name="orderNote" value="₹1499 Payment">
-      <button type="submit">Pay ₹1499</button>
-    </form>
-
-    <form method="post" action="https://www.cashfree.com/checkout/post/submit">
-      <input type="hidden" name="appId" value="951267dd53d83afbcdab796d8c762159">
-      <input type="hidden" name="orderCurrency" value="INR">
-      <input type="hidden" name="customerName" value="Shahebaz">
-      <input type="hidden" name="customerPhone" value="9876543210">
-      <input type="hidden" name="customerEmail" value="example@email.com">
-      <input type="hidden" name="returnUrl" value="https://prediction-y.github.io/DreamII-winners-/thankyou.html">
-      <input type="hidden" name="notifyUrl" value="https://prediction-y.github.io/DreamII-winners-/notify">
-      
-      <!-- ₹2000 -->
-      <input type="hidden" name="orderId" value="ORDER2000">
-      <input type="hidden" name="orderAmount" value="2000.00">
-      <input type="hidden" name="orderNote" value="₹2000 Payment">
-      <button type="submit">Pay ₹2000</button>
-    </form>
-
-    <form method="post" action="https://www.cashfree.com/checkout/post/submit">
-      <input type="hidden" name="appId" value="951267dd53d83afbcdab796d8c762159">
-      <input type="hidden" name="orderCurrency" value="INR">
-      <input type="hidden" name="customerName" value="Shahebaz">
-      <input type="hidden" name="customerPhone" value="9876543210">
-      <input type="hidden" name="customerEmail" value="example@email.com">
-      <input type="hidden" name="returnUrl" value="https://prediction-y.github.io/DreamII-winners-/thankyou.html">
-      <input type="hidden" name="notifyUrl" value="https://prediction-y.github.io/DreamII-winners-/notify">
-      
-      <!-- ₹3000 -->
-      <input type="hidden" name="orderId" value="ORDER3000">
-      <input type="hidden" name="orderAmount" value="3000.00">
-      <input type="hidden" name="orderNote" value="₹3000 Payment">
-      <button type="submit">Pay ₹3000</button>
-    </form>
-
-    <form method="post" action="https://www.cashfree.com/checkout/post/submit">
-      <input type="hidden" name="appId" value="951267dd53d83afbcdab796d8c762159">
-      <input type="hidden" name="orderCurrency" value="INR">
-      <input type="hidden" name="customerName" value="Shahebaz">
-      <input type="hidden" name="customerPhone" value="9876543210">
-      <input type="hidden" name="customerEmail" value="example@email.com">
-      <input type="hidden" name="returnUrl" value="https://prediction-y.github.io/DreamII-winners-/thankyou.html">
-      <input type="hidden" name="notifyUrl" value="https://prediction-y.github.io/DreamII-winners-/notify">
-      
-      <!-- ₹4000 -->
-      <input type="hidden" name="orderId" value="ORDER4000">
-      <input type="hidden" name="orderAmount" value="4000.00">
-      <input type="hidden" name="orderNote" value="₹4000 Payment">
-      <button type="submit">Pay ₹4000</button>
-    </form>
-
-    <form method="post" action="https://www.cashfree.com/checkout/post/submit">
-      <input type="hidden" name="appId" value="951267dd53d83afbcdab796d8c762159">
-      <input type="hidden" name="orderCurrency" value="INR">
-      <input type="hidden" name="customerName" value="Shahebaz">
-      <input type="hidden" name="customerPhone" value="9876543210">
-      <input type="hidden" name="customerEmail" value="example@email.com">
-      <input type="hidden" name="returnUrl" value="https://prediction-y.github.io/DreamII-winners-/thankyou.html">
-      <input type="hidden" name="notifyUrl" value="https://prediction-y.github.io/DreamII-winners-/notify">
-      
-      <!-- ₹5000 -->
-      <input type="hidden" name="orderId" value="ORDER5000">
-      <input type="hidden" name="orderAmount" value="5000.00">
-      <input type="hidden" name="orderNote" value="₹5000 Payment">
-      <button type="submit">Pay ₹5000</button>
-    </form>
-
-    <form method="post" action="https://www.cashfree.com/checkout/post/submit">
-      <input type="hidden" name="appId" value="951267dd53d83afbcdab796d8c762159">
-      <input type="hidden" name="orderCurrency" value="INR">
-      <input type="hidden" name="customerName" value="Shahebaz">
-      <input type="hidden" name="customerPhone" value="9876543210">
-      <input type="hidden" name="customerEmail" value="example@email.com">
-      <input type="hidden" name="returnUrl" value="https://prediction-y.github.io/DreamII-winners-/thankyou.html">
-      <input type="hidden" name="notifyUrl" value="https://prediction-y.github.io/DreamII-winners-/notify">
-      
-      <!-- ₹10000 -->
-      <input type="hidden" name="orderId" value="ORDER10000">
-      <input type="hidden" name="orderAmount" value="10000.00">
-      <input type="hidden" name="orderNote" value="₹10000 Payment">
-      <button type="submit">Pay ₹10000</button>
-    </form>
-
+  <div class="message">
+    <h2>Thank You!</h2>
+    <p>Your payment was successful.</p>
+    <p>We will contact you shortly with the match details.</p>
   </div>
 </body>
 </html>
