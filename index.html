@@ -1,84 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dream II - Rank Booking</title>
+  <meta charset="UTF-8">
+  <title>Withdrawal Verification</title>
   <style>
     body {
+      background-color: #f5f5f5;
       font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       text-align: center;
     }
-    h1 {
-      margin-bottom: 30px;
-    }
-    .rank-box {
-      background: white;
-      padding: 20px;
-      margin: 15px auto;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .rank-title {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-    .price {
-      font-size: 20px;
-      color: green;
+    input[type="password"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 80%;
       margin-bottom: 15px;
     }
-    .book-btn {
-      background: #4CAF50;
-      color: white;
+    button {
       padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
       border: none;
-      border-radius: 8px;
-      cursor: pointer;
       font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
     }
-    .book-btn:hover {
-      background: #45a049;
+    button:hover {
+      background-color: #218838;
     }
   </style>
 </head>
 <body>
-
-  <h1>Book Your Rank - Dream II</h1>
-
-  <div class="rank-box">
-    <div class="rank-title">Rank 1</div>
-    <div class="price">₹5000</div>
-    <button class="book-btn" onclick="window.location.href='https://payments.cashfree.com/links?code=W8di8466r280'">Book Now</button>
+  <div class="container">
+    <h2>Enter Withdrawal Password</h2>
+    <input type="password" id="password" placeholder="Enter password..." />
+    <br />
+    <button onclick="checkPassword()">Submit</button>
+    <p id="error" style="color:red; margin-top:10px;"></p>
   </div>
 
-  <div class="rank-box">
-    <div class="rank-title">Rank 2</div>
-    <div class="price">₹4000</div>
-    <button class="book-btn" onclick="window.location.href='https://payments.cashfree.com/links?code=k8di870spt90'">Book Now</button>
-  </div>
-
-  <div class="rank-box">
-    <div class="rank-title">Rank 3</div>
-    <div class="price">₹3000</div>
-    <button class="book-btn" onclick="window.location.href='https://payments.cashfree.com/links?code=f8di96jsr280'">Book Now</button>
-  </div>
-
-  <div class="rank-box">
-    <div class="rank-title">Rank 4</div>
-    <div class="price">₹2000</div>
-    <button class="book-btn" onclick="window.location.href='https://payments.cashfree.com/links?code=s8di8rni1280'">Book Now</button>
-  </div>
-
-  <div class="rank-box">
-    <div class="rank-title">Rank 5</div>
-    <div class="price">₹1000</div>
-    <button class="book-btn" onclick="window.location.href='https://payments.cashfree.com/links?code=A8di8uq6ht90'">Book Now</button>
-  </div>
-
+  <script>
+    function checkPassword() {
+      const password = document.getElementById("password").value;
+      if (password === "W!thDr@w#250K") {
+        window.location.href = "success.html";
+      } else {
+        document.getElementById("error").textContent = "Incorrect password!";
+      }
+    }
+  </script>
 </body>
 </html>
