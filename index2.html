@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Secure Withdrawal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      text-align: center;
+      padding-top: 100px;
+    }
+    input[type="password"] {
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Enter Withdrawal Password</h2>
+  <input type="password" id="pass" placeholder="Enter password">
+  <br>
+  <button onclick="checkPassword()">Submit</button>
+
+  <script>
+    function checkPassword() {
+      var password = document.getElementById("pass").value;
+      if (password === "No.1") {
+        window.location.href = "success2.html";
+      } else {
+        alert("Incorrect password! Try again.");
+      }
+    }
+  </script>
+</body>
+</html>
