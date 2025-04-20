@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Secure Withdrawal</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      background: #f0f8ff;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .box {
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+    input[type="password"] {
+      padding: 12px;
+      width: 100%;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      border-radius: 6px;
+    }
+    button {
+      background: #007bff;
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Withdrawal Password Required</h2>
+    <input type="password" id="pass" placeholder="Enter Password" />
+    <button onclick="check()">Submit</button>
+  </div>
+
+  <script>
+    function check() {
+      const pass = document.getElementById("pass").value;
+      if (pass === "@Withdraw250K!") {
+        window.location.href = "success3.html";
+      } else {
+        alert("Incorrect password. Try again.");
+      }
+    }
+  </script>
+</body>
+</html>
