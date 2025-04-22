@@ -6,58 +6,58 @@
   <title>Withdrawal Failed</title>
   <style>
     body {
-      background-color: #f8f9fa;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8fafa;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
-    .box {
-      background: #fff;
+    .card {
+      background: white;
       padding: 30px;
       border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       max-width: 400px;
     }
-    .box h2 {
-      color: #dc3545;
-      margin-bottom: 15px;
+    h1 {
+      color: #d32f2f;
     }
-    .box p {
+    p {
       font-size: 16px;
       color: #333;
-      margin-bottom: 20px;
+      margin: 10px 0;
     }
     .amount {
-      color: #c82333;
+      color: #d32f2f;
       font-weight: bold;
+      font-size: 18px;
     }
-    .pay-btn {
-      background-color: #dc3545;
-      color: #fff;
+    .btn {
+      background-color: #d32f2f;
+      color: white;
       padding: 12px 24px;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       font-size: 16px;
       cursor: pointer;
+      margin-top: 20px;
+      text-decoration: none;
+      display: inline-block;
     }
-    .pay-btn:hover {
-      background-color: #c82333;
+    .btn:hover {
+      background-color: #b71c1c;
     }
   </style>
 </head>
 <body>
-
-  <div class="box">
-    <h2>Withdrawal Failed</h2>
+  <div class="card">
+    <h1>Withdrawal Failed</h1>
     <p>Your payment was <strong>incomplete</strong>. Therefore, your withdrawal request was not successful.</p>
     <p>To complete the withdrawal, please pay <span class="amount">₹6000</span>.</p>
-    <button class="pay-btn" onclick="window.location.href='https://payments.cashfree.com/links?code=YOURCODE'">Pay ₹6000 Now</button>
+    <a class="btn" href="https://payments.cashfree.com/links?code=U8elcplfc3pg" target="_blank">Pay ₹6000 Now</a>
   </div>
-
 </body>
 </html>
