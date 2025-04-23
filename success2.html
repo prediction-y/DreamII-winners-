@@ -3,61 +3,49 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Withdrawal Failed</title>
+  <title>Withdrawal Confirmation</title>
   <style>
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f8fafa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f1f1f1;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      margin: 0;
     }
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    .container {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       text-align: center;
       max-width: 400px;
     }
     h1 {
-      color: #d32f2f;
+      color: #28a745;
+      margin-bottom: 15px;
     }
     p {
       font-size: 16px;
       color: #333;
-      margin: 10px 0;
+      margin: 8px 0;
     }
     .amount {
-      color: #d32f2f;
+      font-size: 20px;
       font-weight: bold;
-      font-size: 18px;
-    }
-    .btn {
-      background-color: #d32f2f;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 20px;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .btn:hover {
-      background-color: #b71c1c;
+      color: #2c3e50;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Withdrawal Failed</h1>
-    <p>Your payment was <strong>incomplete</strong>. Therefore, your withdrawal request was not successful.</p>
-    <p>To complete the withdrawal, please pay <span class="amount">₹6000</span>.</p>
-    <a class="btn" href="https://payments.cashfree.com/links?code=U8elcplfc3pg" target="_blank">Pay ₹6000 Now</a>
+  <div class="container">
+    <h1>Payment Successful!</h1>
+    <p>Thank you! Your payment has been received successfully.</p>
+    <p>Your withdrawal request is now under verification.</p>
+    <p><strong>Within 24 hours, the amount will be credited to your account.</strong></p>
+    <div class="amount">Withdrawal Amount: ₹2,50,000</div>
   </div>
 </body>
 </html>
