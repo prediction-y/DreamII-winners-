@@ -1,51 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Withdrawal Confirmation</title>
+  <meta charset="UTF-8">
+  <title>Withdrawal Status</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f1f1f1;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f2f2f2;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
     }
-    .container {
-      background: #fff;
-      padding: 30px 40px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+    .box {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
       text-align: center;
-      max-width: 400px;
     }
-    h1 {
-      color: #28a745;
+
+    .status {
+      font-size: 22px;
+      font-weight: bold;
+      color: #e63946;
       margin-bottom: 15px;
     }
-    p {
+
+    .message {
       font-size: 16px;
       color: #333;
-      margin: 8px 0;
+      line-height: 1.6;
     }
-    .amount {
-      font-size: 20px;
+
+    .highlight {
+      color: #d00000;
       font-weight: bold;
-      color: #2c3e50;
-      margin-top: 10px;
+    }
+
+    .refund {
+      margin-top: 20px;
+      color: #2a9d8f;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Payment Successful!</h1>
-    <p>Thank you! Your payment has been received successfully.</p>
-    <p>Your withdrawal request is now under verification.</p>
-    <p><strong>Within 24 hours, the amount will be credited to your account.</strong></p>
-    <div class="amount">Withdrawal Amount: ₹2,50,000</div>
+  <div class="box">
+    <div class="status">Withdrawal eKYC Unsuccessful</div>
+    <div class="message">
+      Your withdrawal eKYC was <span class="highlight">unsuccessful</span><br>
+      because the payment was not made from the <span class="highlight">official account</span>.<br><br>
+      Please make the payment through the official account to complete your withdrawal process.
+    </div>
+    <div class="refund">
+      The ₹6000 you paid will be refunded within 3 working days.
+    </div>
   </div>
 </body>
 </html>
