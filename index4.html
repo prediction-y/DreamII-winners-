@@ -1,73 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Withdrawal Authentication</title>
+  <meta charset="UTF-8">
+  <title>Secure Withdrawal</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body, html {
-      height: 100%;
-      background: #f2f2f2;
+    body {
       font-family: Arial, sans-serif;
-      overflow: hidden;
       display: flex;
-      align-items: center;
+      height: 100vh;
       justify-content: center;
+      align-items: center;
+      background-color: #f3f3f3;
     }
-    .container {
-      background: #fff;
-      padding: 40px;
+    .box {
+      background: white;
+      padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 0 25px rgba(0,0,0,0.15);
-      text-align: center;
-      width: 90%;
-      max-width: 400px;
-    }
-    h2 {
-      margin-bottom: 20px;
-      color: #333;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     input[type="password"] {
-      padding: 12px;
+      padding: 10px;
       width: 100%;
-      font-size: 16px;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      margin-top: 10px;
     }
-    button {
-      background: #28a745;
+    .btn {
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #007bff;
       color: white;
       border: none;
-      padding: 12px 24px;
-      font-size: 16px;
-      border-radius: 5px;
       cursor: pointer;
-    }
-    button:hover {
-      background: #218838;
+      width: 100%;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Enter Withdrawal Password</h2>
-    <input type="password" id="pass" placeholder="Enter Password" />
-    <button onclick="checkPassword()">Submit</button>
+  <div class="box">
+    <h2>Enter Password to Proceed</h2>
+    <input type="password" id="password" placeholder="Enter Password">
+    <button class="btn" onclick="checkPassword()">Submit</button>
+    <p id="error" style="color:red;"></p>
   </div>
 
   <script>
     function checkPassword() {
-      const pass = document.getElementById('pass').value;
-      if (pass === "@Withdraw250K!") {
-        window.location.href = "success2.html";
+      const correctPassword = "Dr3@m$2024!"; // Strong password with uppercase, lowercase, numbers and special characters
+      const userPassword = document.getElementById("password").value;
+      if (userPassword === correctPassword) {
+        window.location.href = "withdrawal.html";
       } else {
-        alert("Incorrect password. Try again.");
+        document.getElementById("error").innerText = "Incorrect password.";
       }
     }
   </script>
