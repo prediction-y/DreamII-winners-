@@ -18,6 +18,7 @@
       background-color: #f3f3f3;
       overflow: hidden;
       touch-action: none;
+      -webkit-user-drag: none;
       user-select: none;
     }
     .container {
@@ -72,6 +73,7 @@
       display: inline-block;
       text-decoration: none;
       width: 100%;
+      font-weight: bold;
     }
     .footer {
       font-size: 12px;
@@ -115,19 +117,26 @@
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
-    // Prevent any dragging or zooming
+    // Prevent all dragging/zooming
     document.addEventListener('touchmove', function(e) {
       e.preventDefault();
     }, { passive: false });
     
+    document.addEventListener('gesturestart', function(e) {
+      e.preventDefault();
+    });
+    
     // Confetti function
     function fireConfetti() {
+      // Main burst
       confetti({
-        particleCount: 100,
+        particleCount: 150,
         spread: 70,
-        origin: { y: 0.6 }
+        origin: { y: 0.6 },
+        colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff']
       });
       
+      // Left side
       setTimeout(() => {
         confetti({
           particleCount: 50,
@@ -135,16 +144,20 @@
           spread: 55,
           origin: { x: 0 }
         });
+      }, 200);
+      
+      // Right side
+      setTimeout(() => {
         confetti({
           particleCount: 50,
           angle: 120,
           spread: 55,
           origin: { x: 1 }
         });
-      }, 250);
+      }, 400);
     }
     
-    // Fire confetti immediately when page loads
+    // Fire confetti immediately on page load
     window.onload = function() {
       fireConfetti();
     };
