@@ -12,6 +12,7 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      overflow: hidden;
     }
     .container {
       background-color: #fff;
@@ -51,6 +52,12 @@
       font-size: 16px;
       color: #ff0000;
     }
+    .blink {
+      animation: blinker 1s linear infinite;
+    }
+    @keyframes blinker {
+      50% { opacity: 0; }
+    }
     .expired {
       color: red;
       font-weight: bold;
@@ -69,25 +76,43 @@
   </div>
 
   <script>
-    // 2 hours countdown in seconds
-    let countdownSeconds = 2 * 60 * 60;
+    // Total countdown duration: 2 hours (in milliseconds)
+    const countdownDuration = 2 * 60 * 60 * 1000; 
+
+    // Check if already a timer running
+    let endTime = localStorage.getItem('withdrawalEndTime');
+    if (!endTime) {
+      endTime = Date.now() + countdownDuration;
+      localStorage.setItem('withdrawalEndTime', endTime);
+    } else {
+      endTime = parseInt(endTime);
+    }
 
     function updateCountdown() {
-      let hours = Math.floor(countdownSeconds / 3600);
-      let minutes = Math.floor((countdownSeconds % 3600) / 60);
-      let seconds = countdownSeconds % 60;
+      const now = Date.now();
+      const distance = endTime - now;
 
-      document.getElementById('countdown').innerHTML = 
-        `Link expires in ${hours}h ${minutes}m ${seconds}s`;
-
-      if (countdownSeconds <= 0) {
+      if (distance <= 0) {
         clearInterval(timer);
         document.getElementById('payBtn').style.display = 'none';
         document.getElementById('countdown').style.display = 'none';
         document.getElementById('expiredMessage').style.display = 'block';
+        localStorage.removeItem('withdrawalEndTime');
+        return;
       }
 
-      countdownSeconds--;
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      const countdownText = `Link expires in ${hours}h ${minutes}m ${seconds}s`;
+      const countdownElement = document.getElementById('countdown');
+      countdownElement.innerHTML = countdownText;
+
+      // Blinking when less than 5 minutes left
+      if (distance <= 5 * 60 * 1000) {
+        countdownElement.classList.add('blink');
+      }
     }
 
     updateCountdown(); // initial call
