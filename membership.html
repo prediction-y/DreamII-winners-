@@ -1,214 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Special Offer Membership</title>
+  <meta charset="UTF-8">
+  <title>Join Membership</title>
   <style>
-    :root {
-      --primary-color: #4a00e0;
-      --secondary-color: #8e2de2;
-      --accent-color: #ff6b6b;
-    }
-
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: white;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 500px;
-      background-color: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      font-family: Arial, sans-serif;
       text-align: center;
+      padding: 50px;
     }
-
-    h1, h2 {
-      background: linear-gradient(to right, #fff, #ddd);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .price {
-      font-size: 3rem;
-      font-weight: bold;
-      margin: 20px 0;
-      color: var(--accent-color);
-    }
-
-    .join-btn {
-      background-color: var(--accent-color);
-      color: white;
-      border: none;
-      padding: 15px 40px;
-      font-size: 1.2rem;
-      border-radius: 50px;
-      cursor: pointer;
-      margin: 20px 0;
-      font-weight: bold;
-    }
-
-    .tagline {
-      font-size: 1.1rem;
-      margin-bottom: 30px;
-    }
-
-    .form-container,
-    .success-message {
+    #membership-details {
       display: none;
-      animation: fadeIn 0.5s;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-      text-align: left;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      border: none;
-      background-color: rgba(255, 255, 255, 0.2);
-      color: white;
-      font-size: 1rem;
-    }
-
-    .form-actions {
-      display: flex;
-      justify-content: space-between;
       margin-top: 30px;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
     }
-
     .btn {
+      background-color: #28a745;
+      color: white;
       padding: 12px 25px;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .btn-back {
-      background-color: transparent;
-      border: 1px solid white;
-      color: white;
-    }
-
-    .btn-next {
-      background-color: var(--accent-color);
+      font-size: 16px;
       border: none;
-      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 20px;
+      text-decoration: none;
+      display: inline-block;
     }
-
-    .success-icon {
-      font-size: 4rem;
-      color: #00ff7f;
-      margin-bottom: 20px;
+    .btn:hover {
+      background-color: #218838;
+    }
+    a {
+      font-size: 18px;
+      color: #007bff;
+      cursor: pointer;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div id="offer-container">
-      <h1>SPECIAL OFFER</h1>
-      <div class="price">₹599</div>
-      <div class="tagline">Join membership - 100% Winning Guarantee</div>
-      <button class="join-btn" onclick="showForm()">JOIN NOW</button>
-    </div>
 
-    <div class="form-container" id="form-container">
-      <h2>Membership Details</h2>
-      <form id="membership-form">
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" placeholder="Enter your full name" required />
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" placeholder="Enter your phone number" required />
-        </div>
-        <div class="form-group">
-          <label for="email">Email ID</label>
-          <input type="email" id="email" placeholder="Enter your email address" required />
-        </div>
-        <div class="form-group">
-          <label for="dream11-id">Dream11 User ID</label>
-          <input type="text" id="dream11-id" placeholder="Enter your Dream11 ID" required />
-        </div>
-        <div class="form-actions">
-          <button type="button" class="btn btn-back" onclick="hideForm()">Back</button>
-          <button type="button" class="btn btn-next" onclick="processPayment()">Proceed to Payment</button>
-        </div>
-      </form>
-    </div>
+  <h2>Welcome to Premium Access</h2>
+  <a onclick="showMembership()">Join Membership</a>
 
-    <div class="success-message" id="success-message">
-      <div class="success-icon">✓</div>
-      <h2>Membership Successfully Joined!</h2>
-      <p>Thank you for joining. Your payment of ₹599 has been received.</p>
-    </div>
+  <div id="membership-details">
+    <h3>1 Month Membership</h3>
+    <p><strong>Note:</strong> Winning is 100% confirmed for Rank 1 to 5.</p>
+    <a class="btn" href="upi://pay?pa=abid345mehmood@okicici&pn=Membership+Fee&am=699&cu=INR" target="_blank">
+      Pay ₹699
+    </a>
   </div>
 
   <script>
-    function showForm() {
-      document.getElementById('offer-container').style.display = 'none';
-      document.getElementById('form-container').style.display = 'block';
-    }
-
-    function hideForm() {
-      document.getElementById('form-container').style.display = 'none';
-      document.getElementById('offer-container').style.display = 'block';
-    }
-
-    function processPayment() {
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const email = document.getElementById('email').value;
-      const dream11Id = document.getElementById('dream11-id').value;
-
-      if (!name || !phone || !email || !dream11Id) {
-        alert('Please fill all the fields');
-        return;
-      }
-
-      // Save form completion
-      sessionStorage.setItem('membershipComplete', 'true');
-
-      // Redirect to UPI payment
-      const upiUrl = "upi://pay?pa=6005973034@ybl&pn=Dream11%20Membership&am=599&cu=INR";
-      window.location.href = upiUrl;
-    }
-
-    // On load, check if user completed payment
-    window.onload = function() {
-      const done = sessionStorage.getItem('membershipComplete');
-      if (done === 'true') {
-        document.getElementById('offer-container').style.display = 'none';
-        document.getElementById('form-container').style.display = 'none';
-        document.getElementById('success-message').style.display = 'block';
-        sessionStorage.removeItem('membershipComplete');
-      }
+    function showMembership() {
+      document.getElementById('membership-details').style.display = 'block';
     }
   </script>
+
 </body>
 </html>
