@@ -5,35 +5,58 @@
   <title>Join Membership</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f8fb;
+      margin: 0;
+      padding: 0;
     }
+
+    .container {
+      max-width: 600px;
+      margin: 80px auto;
+      background-color: #fff;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
     #membership-details {
       display: none;
       margin-top: 30px;
-      border: 1px solid #ccc;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #ccc;
     }
+
+    .note {
+      font-size: 18px;
+      color: #444;
+      margin: 15px 0;
+    }
+
     .btn {
       background-color: #28a745;
       color: white;
-      padding: 12px 25px;
-      font-size: 16px;
+      padding: 15px 35px;
+      font-size: 18px;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
-      margin-top: 20px;
       text-decoration: none;
       display: inline-block;
+      transition: background-color 0.3s ease;
+      margin-top: 25px;
     }
+
     .btn:hover {
       background-color: #218838;
     }
-    a {
-      font-size: 18px;
+
+    .join-link {
+      font-size: 20px;
       color: #007bff;
       cursor: pointer;
       text-decoration: underline;
@@ -42,15 +65,17 @@
 </head>
 <body>
 
-  <h2>Welcome to Premium Access</h2>
-  <a onclick="showMembership()">Join Membership</a>
+  <div class="container">
+    <h2>Welcome to Premium Access</h2>
+    <div class="join-link" onclick="showMembership()">Join Membership</div>
 
-  <div id="membership-details">
-    <h3>1 Month Membership</h3>
-    <p><strong>Note:</strong> Winning is 100% confirmed for Rank 1 to 5.</p>
-    <a class="btn" href="upi://pay?pa=abid345mehmood@okicici&pn=Membership+Fee&am=699&cu=INR" target="_blank">
-      Pay ₹699
-    </a>
+    <div id="membership-details">
+      <h3 style="font-size: 24px; margin-top: 30px;">1 Month Membership</h3>
+      <p class="note"><strong>Note:</strong> Winning is 100% confirmed for Rank 1 to 5.</p>
+      <a class="btn" href="upi://pay?pa=abid345mehmood@okicici&pn=Membership+Fee&am=699&cu=INR" target="_blank">
+        Pay ₹699
+      </a>
+    </div>
   </div>
 
   <script>
