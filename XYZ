@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream11 Profile</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; }
+        .container { width: 300px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .header { text-align: center; }
+        .profile-pic { width: 100px; height: 100px; border-radius: 50%; background-color: #ccc; margin: 10px auto; }
+        .skill-score { font-size: 24px; font-weight: bold; }
+        .champions-club, .career-stats, .recently-played { margin-top: 20px; }
+        .club-level { font-weight: bold; }
+        .stats { display: flex; justify-content: space-between; }
+        .recent-game { background: #f9f9f9; padding: 10px; border-radius: 5px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="profile-pic"></div>
+            <h2>RAJENDR HITTERS 1267484</h2>
+            <p>RAJENDRA MUNDA</p>
+            <p class="skill-score">Skill Score: 1000+</p>
+        </div>
+        <div class="champions-club">
+            <h3>Champions Club</h3>
+            <p class="club-level">Challenger Level</p>
+            <p>Earn 💰 90 to upgrade your club level</p>
+        </div>
+        <div class="career-stats">
+            <h3>Career Stats</h3>
+            <div class="stats">
+                <p>Contests: 32</p>
+                <p>Matches: 12</p>
+            </div>
+            <div class="stats">
+                <p>Series: 1</p>
+                <p>Sports: 1</p>
+            </div>
+            <p>You have been playing on Dream11 since Feb 2021</p>
+        </div>
+        <div class="recently-played">
+            <h3>Recently Played</h3>
+            <div class="recent-game">
+                <p>DC vs RCB</p>
+                <p>RCB beat DC by 6 wickets</p>
+                <p>Date: Apr 27, 2025</p>
+                <p>Highest Points: 787.5 (T1)</p>
+                <p>Teams Created: 1</p>
+                <p>Dream Team: 1147pts</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
