@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rank Booking MY 11 CIRCLE</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #28a745;
+      color: white;
+      padding: 15px 0;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    h2 {
+      text-align: center;
+      margin: 20px 0 10px;
+      color: #333;
+    }
+    .rank-box {
+      background-color: #fff;
+      padding: 20px;
+      margin: 15px auto;
+      max-width: 320px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    .price-line {
+      font-size: 18px;
+      margin-bottom: 15px;
+      font-weight: bold;
+      color: #222;
+    }
+    .book-button {
+      background-color: #28a745;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .note {
+      margin: 30px 15px;
+      font-size: 16px;
+      color: #333;
+      text-align: center;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+
+  <header>MY 11 CIRCLE RANK BOOKING</header>
+  <h2>Rank Booking Rate List</h2>
+
+  <div class="rank-box">
+    <div class="price-line">Rank 1 - ₹6999</div>
+    <a class="book-button" href="upi://pay?pa=paymentmanager8256@okicici&pn=Rank%201%20Booking&am=5999&cu=INR" target="_blank">Book Now</a>
+  </div>
+
+  <div class="rank-box">
+    <div class="price-line">Rank 2 - ₹5500</div>
+    <a class="book-button" href="upi://pay?pa=paymentmanager8256@okicici&pn=Rank%202%20Booking&am=4999&cu=INR" target="_blank">Book Now</a>
+  </div>
+
+  <div class="rank-box">
+    <div class="price-line">Rank 3 - ₹4500</div>
+    <a class="book-button" href="upi://pay?pa=paymentmanager8256@okicici&pn=Rank%203%20Booking&am=3999&cu=INR" target="_blank">Book Now</a>
+  </div>
+
+  <div class="rank-box">
+    <div class="price-line">Rank 4 - ₹3500</div>
+    <a class="book-button" href="upi://pay?pa=paymentmanager8256@okicici&pn=Rank%204%20Booking&am=2999&cu=INR" target="_blank">Book Now</a>
+  </div>
+
+  <div class="rank-box">
+    <div class="price-line">Rank 5 - ₹2200</div>
+    <a class="book-button" href="upi://pay?pa=paymentmanager8256@okicici&pn=Rank%205%20Booking&am=1999&cu=INR" target="_blank">Book Now</a>
+  </div>
+
+  <div class="note">
+    If you don't win, money will be <strong>DOUBLE REFUNDED ✅</strong><br>
+    1 to 5 Rank <strong>Confirm Winning</strong><br><br>
+    <strong>Confirm Winning </strong>
+  </div>
+
+</body>
+</html>
