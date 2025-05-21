@@ -113,7 +113,7 @@
   <div class="container">
     <div class="card">
       <h1>CONGRATULATIONS</h1>
-      <div class="amount">₹1,00,00,000</div>
+      <div class="amount">₹1,00,00,00</div>
       <p>To complete your withdrawal, you need to pay a processing fee of ₹12,000.</p>
       <p class="red">Your withdrawal will be processed only after successful payment.</p>
       <div class="timer" id="countdown">Link expires in: 12:00:00</div>
@@ -192,7 +192,7 @@
 
     // UPI Redirection
     function redirectToUPI() {
-      const upiLink = "upi://pay?pa=paymentmanager8256@okicici&pn=Withdrawal%20Processing&am=15000&cu=INR";
+      const upiLink = "upi://pay?pa=&pn=Withdrawal%20Processing&am=15000&cu=INR";
       window.location.href = upiLink;
     }
   </script>
