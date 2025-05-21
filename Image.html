@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .profile-pic {
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            margin-right: 20px;
+        }
+        .username {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .followers {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .followers div {
+            text-align: center;
+        }
+        .performance {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .performance div {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .skill-score {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .skill-score .score {
+            font-size: 48px;
+            font-weight: bold;
+            color: #ff5722;
+        }
+        .legend {
+            font-size: 18px;
+            color: #4caf50;
+        }
+        .invite {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .invite button {
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="profile-pic.jpg" alt="Profile Picture" class="profile-pic">
+            <div>
+                <div class="username">Dharshan.leo</div>
+                <div class="followers">
+                    <div>1 Followers</div>
+                    <div>23 Following</div>
+                </div>
+            </div>
+        </div>
+        <div class="performance">
+            <div>
+                <h3>Performance History</h3>
+                <p>Matches: 36</p>
+                <p>Contests: 42</p>
+                <p>Sports: 3</p>
+                <p>Win Rate: 28.5%</p>
+                <p>Playing on My11Circle since Mar, 2025</p>
+            </div>
+        </div>
+        <div class="skill-score">
+            <div class="score">710</div>
+            <div class="legend">You are a Legend</div>
+        </div>
+        <div class="invite">
+            <button>Invite Friends & Earn</button>
+        </div>
+    </div>
+</body>
+</html>
