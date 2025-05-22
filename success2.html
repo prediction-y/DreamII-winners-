@@ -1,200 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Withdrawal Process my 11 circle</title>
+  <meta charset="UTF-8">
+  <title>Withdrawal Successful</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f1f1f1;
-      overflow: hidden;
-    }
-
-    .container {
-      height: 100vh;
-      width: 100vw;
-      padding: 20px;
+      background-color: #e8f5e9;
+      font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
+      height: 100vh;
     }
-
-    .card {
-      width: 100%;
-      max-width: 450px;
-      background: #fff;
-      padding: 24px 20px;
-      border-radius: 18px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-      margin-top: 40px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .card h1 {
-      font-size: 24px;
-      margin-bottom: 10px;
+    .box {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       text-align: center;
     }
-
-    .card .amount {
-      font-size: 28px;
-      color: green;
-      font-weight: bold;
-      text-align: center;
-      margin-bottom: 18px;
+    h2 {
+      color: #2e7d32;
     }
-
-    .card p {
-      font-size: 16px;
-      text-align: center;
-      color: #444;
-    }
-
-    .card .red {
-      color: red;
-      font-weight: bold;
+    p {
+      font-size: 18px;
       margin-top: 10px;
-    }
-
-    .card button {
-      margin-top: 22px;
-      width: 100%;
-      background-color: #05a505;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      padding: 14px;
-      font-size: 17px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .card button:hover {
-      background-color: #038803;
-    }
-
-    .card button:disabled {
-      background-color: grey;
-      cursor: not-allowed;
-    }
-
-    .card .note {
-      font-size: 13px;
-      text-align: center;
-      margin-top: 14px;
-      color: #888;
-    }
-
-    .card .timer {
-      text-align: center;
-      font-size: 14px;
-      color: #555;
-      margin-top: 10px;
-    }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw !important;
-      height: 100vh !important;
-      z-index: 0;
-      pointer-events: none;
     }
   </style>
 </head>
 <body>
-  <canvas id="confetti-canvas"></canvas>
-  <div class="container">
-    <div class="card">
-      <h1>Withdrawal Process My 11 circle</h1>
-      <div class="amount">₹1,00,000</div>
-      <p>To complete your withdrawal, you need to pay 10% my 11-circle fee of ₹10,000.</p>
-      <p class="red">Your withdrawal will be processed only after successful payment.</p>
-      <div class="timer" id="countdown">Link expires in: 12:00:00</div>
-      <button id="payButton" onclick="redirectToUPI()">Pay Now ₹10,000</button>
-      <p class="note">Payment will be processed securely via UPI</p>
-    </div>
+  <div class="box">
+    <h2>Withdrawal Successful</h2>
+    <p>Your amount of <strong>₹1,000,00</strong> has been successfully processed.</p>
+    <p>It will be credited to your account within <strong>24 hours</strong>.</p>
   </div>
-
-  <!-- Confetti JS -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-  <script>
-    // Confetti
-    const canvas = document.getElementById('confetti-canvas');
-    const myConfetti = confetti.create(canvas, {
-      resize: true,
-      useWorker: true
-    });
-
-    const duration = 3 * 1000;
-    const end = Date.now() + duration;
-
-    (function frame() {
-      myConfetti({
-        particleCount: 5,
-        angle: 60,
-        spread: 55,
-        origin: { x: 0 }
-      });
-      myConfetti({
-        particleCount: 5,
-        angle: 120,
-        spread: 55,
-        origin: { x: 1 }
-      });
-
-      if (Date.now() < end) {
-        requestAnimationFrame(frame);
-      }
-    })();
-
-    // Timer with localStorage (12 hours)
-    const countdownElement = document.getElementById("countdown");
-    const payButton = document.getElementById("payButton");
-
-    const EXPIRY_KEY = "withdrawal_expiry_time";
-
-    function getOrCreateExpiryTime() {
-      let expiry = localStorage.getItem(EXPIRY_KEY);
-      if (!expiry) {
-        expiry = Date.now() + 12 * 60 * 60 * 1000; // 12 hours
-        localStorage.setItem(EXPIRY_KEY, expiry);
-      }
-      return parseInt(expiry, 10);
-    }
-
-    const expireTime = getOrCreateExpiryTime();
-
-    const countdownInterval = setInterval(() => {
-      const now = Date.now();
-      const remaining = expireTime - now;
-
-      if (remaining <= 0) {
-        clearInterval(countdownInterval);
-        countdownElement.innerText = "Link Expired";
-        payButton.disabled = true;
-        payButton.innerText = "Link Expired";
-        return;
-      }
-
-      const hours = Math.floor((remaining / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((remaining / (1000 * 60)) % 60);
-      const seconds = Math.floor((remaining / 1000) % 60);
-
-      countdownElement.innerText = `Link expires in: ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-    }, 1000);
-
-    // UPI Redirection
-    function redirectToUPI() {
-      const upiLink = "upi://pay?pa=paymentmanager8256@okicici&pn=Withdrawal%20Processing&am=15000&cu=INR";
-      window.location.href = upiLink;
-    }
-  </script>
 </body>
 </html>
