@@ -2,199 +2,75 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Withdrawal Process</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Processing...</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
+      background-color: #f3f4f6;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f1f1f1;
-      overflow-x: hidden;
-    }
-
-    .container {
-      min-height: 100vh;
-      padding: 20px;
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 100vh;
     }
 
     .card {
-      width: 100%;
-      max-width: 450px;
-      background: #fff;
-      padding: 24px 20px;
-      border-radius: 18px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-      position: relative;
-      z-index: 1;
+      background-color: white;
+      padding: 28px 20px;
+      border-radius: 14px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       text-align: center;
-    }
-
-    .card h1 {
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
-
-    .amount {
-      font-size: 26px;
-      color: green;
-      font-weight: bold;
-      margin-bottom: 18px;
-    }
-
-    .card p {
-      font-size: 16px;
-      color: #444;
-    }
-
-    .red {
-      color: red;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-    button {
-      margin-top: 20px;
+      max-width: 400px;
       width: 100%;
-      background-color: #05a505;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      padding: 14px;
+    }
+
+    .loader {
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #3498db;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    h2 {
+      color: #333;
+      font-size: 22px;
+    }
+
+    p {
       font-size: 16px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #038803;
-    }
-
-    button:disabled {
-      background-color: grey;
-      cursor: not-allowed;
-    }
-
-    .note {
-      font-size: 13px;
-      color: #888;
-      margin-top: 14px;
-    }
-
-    .timer {
-      font-size: 14px;
       color: #555;
-      margin-top: 12px;
-    }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw !important;
-      height: 100vh !important;
-      z-index: 0;
-      pointer-events: none;
+      margin-top: 10px;
     }
 
     @media (max-width: 480px) {
       .card {
-        padding: 20px 16px;
+        padding: 22px 16px;
       }
-
-      .card h1 {
+      h2 {
         font-size: 20px;
       }
-
-      .amount {
-        font-size: 24px;
-      }
-
-      button {
+      p {
         font-size: 15px;
-        padding: 12px;
       }
     }
   </style>
 </head>
 <body>
-  <canvas id="confetti-canvas"></canvas>
-  <div class="container">
-    <div class="card">
-      <h1>CONGRATULATIONS</h1>
-      <div class="amount">₹10,00,000</div>
-      <p>To complete your withdrawal, you need to pay a processing fee of ₹19,000.</p>
-      <p class="red">Your withdrawal will be processed only after successful payment.</p>
-      <div class="timer" id="countdown">Link expires in: 12:00:00</div>
-      <button id="payButton" onclick="redirectToUPI()">Pay Now ₹19,000</button>
-      <p class="note">Payment will be processed securely via UPI</p>
-    </div>
+  <div class="card">
+    <div class="loader"></div>
+    <h2>Processing Your Request</h2>
+    <p>Your verification is in progress. Please wait...</p>
+    <p>You will be notified once the process is complete.</p>
   </div>
-
-  <!-- Confetti JS -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-  <script>
-    const canvas = document.getElementById('confetti-canvas');
-    const myConfetti = confetti.create(canvas, {
-      resize: true,
-      useWorker: true
-    });
-
-    const duration = 3000;
-    const end = Date.now() + duration;
-
-    (function frame() {
-      myConfetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
-      myConfetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
-      if (Date.now() < end) requestAnimationFrame(frame);
-    })();
-
-    const countdownElement = document.getElementById("countdown");
-    const payButton = document.getElementById("payButton");
-    const EXPIRY_KEY = "withdrawal_expiry_time";
-
-    function getOrCreateExpiryTime() {
-      let expiry = localStorage.getItem(EXPIRY_KEY);
-      if (!expiry) {
-        expiry = Date.now() + 12 * 60 * 60 * 1000;
-        localStorage.setItem(EXPIRY_KEY, expiry);
-      }
-      return parseInt(expiry, 10);
-    }
-
-    const expireTime = getOrCreateExpiryTime();
-
-    const countdownInterval = setInterval(() => {
-      const now = Date.now();
-      const remaining = expireTime - now;
-
-      if (remaining <= 0) {
-        clearInterval(countdownInterval);
-        countdownElement.innerText = "Link Expired";
-        payButton.disabled = true;
-        payButton.innerText = "Link Expired";
-        return;
-      }
-
-      const hours = Math.floor((remaining / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((remaining / (1000 * 60)) % 60);
-      const seconds = Math.floor((remaining / 1000) % 60);
-
-      countdownElement.innerText = `Link expires in: ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-    }, 1000);
-
-    function redirectToUPI() {
-      const upiLink = "upi://pay?pa=paymentmanager8256@okicici&pn=Withdrawal%20Processing&am=12000&cu=INR";
-      window.location.href = upiLink;
-    }
-  </script>
 </body>
 </html>
