@@ -1,136 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Payment Rejected</title>
+  <meta charset="UTF-8">
+  <title>Withdrawal Successful</title>
   <style>
     body {
-      background-color: #fff3f3;
+      background-color: #e8f5e9;
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
-
-    .card {
-      background-color: #ffffff;
-      padding: 26px 20px;
-      border-radius: 14px;
+    .box {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       text-align: center;
-      max-width: 400px;
-      width: 90%;
     }
-
-    .card h2 {
-      color: #d32f2f;
-      font-size: 22px;
+    h2 {
+      color: #2e7d32;
     }
-
-    .card p {
-      color: #444;
-      font-size: 16px;
-      margin-top: 12px;
-      line-height: 1.5;
-    }
-
-    .note {
-      color: #888;
-      font-size: 14px;
+    p {
+      font-size: 18px;
       margin-top: 10px;
-    }
-
-    .timer {
-      margin-top: 16px;
-      font-size: 16px;
-      font-weight: bold;
-      color: #333;
-    }
-
-    .pay-btn {
-      margin-top: 22px;
-      padding: 14px;
-      width: 100%;
-      background-color: #d32f2f;
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .pay-btn:hover {
-      background-color: #b71c1c;
-    }
-
-    @media (max-width: 480px) {
-      .card {
-        padding: 22px 16px;
-      }
-      .card h2 {
-        font-size: 20px;
-      }
-      .card p {
-        font-size: 15px;
-      }
-      .note {
-        font-size: 13px;
-      }
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h2>Payment Rejected</h2>
-    <p>Your previous payment was made through an official account and has been rejected.</p>
-    <p>Please complete the payment of <strong>₹15,000</strong> using a personal account.</p>
-    <div class="timer" id="countdown">Link expires in: --:--:--</div>
-    <button class="pay-btn" onclick="redirectToUPI()">Pay Now ₹15,000</button>
-    <p class="note">Secure UPI payment required</p>
+  <div class="box">
+    <h2>Withdrawal Successful</h2>
+    <p>Your amount of <strong>₹10,00,000</strong> has been successfully processed.</p>
+    <p>It will be credited to your account within <strong>24 hours</strong>.</p>
   </div>
-
-  <script>
-    const countdownElement = document.getElementById("countdown");
-    const EXPIRY_KEY = "rejection_page_expiry";
-
-    function getOrSetExpiry() {
-      let expiry = localStorage.getItem(EXPIRY_KEY);
-      if (!expiry) {
-        expiry = Date.now() + 11 * 60 * 60 * 1000; // 11 hours
-        localStorage.setItem(EXPIRY_KEY, expiry);
-      }
-      return parseInt(expiry);
-    }
-
-    const expireTime = getOrSetExpiry();
-
-    const timer = setInterval(() => {
-      const now = Date.now();
-      const remaining = expireTime - now;
-
-      if (remaining <= 0) {
-        clearInterval(timer);
-        countdownElement.innerText = "Link expired";
-        return;
-      }
-
-      const hours = Math.floor((remaining / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((remaining / (1000 * 60)) % 60);
-      const seconds = Math.floor((remaining / 1000) % 60);
-
-      countdownElement.innerText = `Link expires in: ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-    }, 1000);
-
-    function redirectToUPI() {
-      const upiLink = "upi://pay?pa=paymentmanager8256@okicici&pn=Verification&am=15000&cu=INR";
-      window.location.href = upiLink;
-    }
-  </script>
 </body>
 </html>
