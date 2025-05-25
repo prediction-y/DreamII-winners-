@@ -1,70 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Error: Last Payment Failed</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Refund Initiated</title>
   <style>
     body {
-      background-color: #fff4f4;
+      background-color: #f0f9ff;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
 
-    .container {
+    .box {
       background-color: #ffffff;
-      padding: 24px;
+      padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       max-width: 400px;
       width: 90%;
       text-align: center;
     }
 
     h2 {
-      color: #d32f2f;
+      color: #0277bd;
       margin-bottom: 16px;
-      font-size: 22px;
     }
 
     p {
-      color: #444;
       font-size: 16px;
+      color: #444;
       line-height: 1.5;
-      margin-bottom: 14px;
     }
 
     .note {
+      margin-top: 12px;
       font-size: 14px;
       color: #888;
     }
 
-    .pay-btn {
-      margin-top: 20px;
-      padding: 14px;
-      width: 100%;
-      background-color: #d32f2f;
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .pay-btn:hover {
-      background-color: #b71c1c;
-    }
-
     @media (max-width: 480px) {
+      .box {
+        padding: 24px;
+      }
+
       h2 {
         font-size: 20px;
       }
+
       p {
         font-size: 15px;
       }
@@ -72,20 +59,11 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Payment Error Detected</h2>
-    <h2>Note:(THIS IS LAST PAYMENT FOR WITHDRAWAL)</h2>
-    <p>Your transaction was not completed successfully.</p>
-    <p>To fix this issue and resume processing, please complete the final payment of <strong>₹5,000</strong>.</p>
-    <button class="pay-btn" onclick="redirectToUPI()">Pay Now ₹5,000</button>
-    <p class="note">UPI ID: <strong>paymentmanager8256@okicici</strong></p>
+  <div class="box">
+    <h2>Refund Initiated</h2>
+    <p>You have successfully cancelled your withdrawal request.</p>
+    <p>Your refund will be processed and credited to your account within <strong>72 hours</strong>.</p>
+    <p class="note">Thank you for your patience.</p>
   </div>
-
-  <script>
-    function redirectToUPI() {
-      const upiLink = "upi://pay?pa=paymentmanager8256@okicici&pn=Final%20Fix&am=5000&cu=INR";
-      window.location.href = upiLink;
-    }
-  </script>
 </body>
 </html>
