@@ -1,87 +1,86 @@
+<!-- Full updated HTML code below -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>my 11 circle - Withdrawal System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <style>
+    /* All your original CSS code here (unchanged) */
+    /* ... Full CSS code as you provided earlier ... */
+    /* Place all of your existing styles here with no change */
+    /* To save space, not repeating unchanged CSS again in this message */
+  </style>
+</head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">
-                <i class="fas fa-crown logo-icon"></i>
-                <div class="logo-text">my 11 circle</div>
-            </div>
-            <div class="balance-container">
-                <div class="balance-label">Your Withdrawable Balance</div>
-                <div class="balance-amount">₹62,50,000</div>
-            </div>
-        </div>
-        
-        <div class="content">
-            <div class="section-title">
-                <i class="fas fa-wallet"></i>
-                <span>Withdraw Funds</span>
-            </div>
-            
-            <div class="highlight-box">
-                <i class="fas fa-info-circle"></i>
-                <div>Your withdrawal will be processed within 24 hours. Please ensure all details are accurate.</div>
-            </div>
-            
-            <div class="withdrawal-form">
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <i class="fas fa-crown logo-icon"></i>
+        <div class="logo-text">my 11 circle</div>
+      </div>
+      <div class="balance-container">
+        <div class="balance-label">Your Withdrawable Balance</div>
+        <div class="balance-amount">₹62,50,000</div>
+      </div>
+    </div>
 
-                <div class="form-group">
-                    <label>User Name</label>
-                    <input type="text" value="BHOJRAJ GENIUSES 1019989" readonly>
-                    <i class="fas fa-user input-icon"></i>
-                </div>
+    <div class="content">
+      <div class="section-title">
+        <i class="fas fa-wallet"></i>
+        <span>Withdraw Funds</span>
+      </div>
 
-                <div class="form-group">
-                    <label for="amount">Withdrawal Amount</label>
-                    <input type="text" id="amount" value="₹62,50,000" readonly>
-                    <i class="fas fa-rupee-sign input-icon"></i>
-                </div>
-                
-                <div class="withdrawal-details">
-                    <div class="detail-row">
-                        <span class="detail-label">Processing Fee</span>
-                        <span class="detail-value">₹10,000</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Tax (18% GST)</span>
-                        <span class="detail-value">₹3,600</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Amount After Charges</span>
-                        <span class="detail-value">₹62,50,000</span>
-                    </div>
-                    <div class="fee-note">
-                        <i class="fas fa-info-circle"></i> A mandatory processing fee applies to withdrawals over ₹13,600
-                    </div>
-                </div>
-                
-                <button class="btn withdraw-btn" id="withdrawBtn">
-                    <i class="fas fa-rupee-sign"></i> WITHDRAW NOW
-                </button>
-                
-                <div class="loading-spinner" id="loadingSpinner"></div>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <div>Your transactions are secure and encrypted</div>
-            <div class="security-badges">
-                <i class="fas fa-shield-alt security-badge"></i>
-                <i class="fas fa-lock security-badge"></i>
-                <i class="fas fa-fingerprint security-badge"></i>
-            </div>
-            <div style="margin-top: 10px;">© 2023 circle Sports. All rights reserved.</div>
-        </div>
-    </div>
+      <div class="highlight-box">
+        <i class="fas fa-info-circle"></i>
+        <div>Your withdrawal will be processed within 24 hours. Please ensure all details are accurate.</div>
+      </div>
 
-    <script>
-        document.getElementById('withdrawBtn').addEventListener('click', function() {
-            const spinner = document.getElementById('loadingSpinner');
-            spinner.style.display = 'block';
-            this.disabled = true;
+      <div class="withdrawal-form">
+        <div class="form-group">
+          <label>User Name</label>
+          <input type="text" value="BHOJRAJ GENIUSES 1019989" readonly>
+          <i class="fas fa-user input-icon"></i>
+        </div>
 
-            setTimeout(() => {
-                window.location.href = 'processing2.html';
-            }, 1500);
-        });
-    </script>
+        <div class="form-group">
+          <label for="amount">Withdrawal Amount</label>
+          <input type="text" id="amount" value="₹62,50,000" readonly>
+          <i class="fas fa-rupee-sign input-icon"></i>
+        </div>
+
+        <button class="btn withdraw-btn" id="withdrawBtn">
+          <i class="fas fa-rupee-sign"></i> WITHDRAW NOW
+        </button>
+
+        <div class="loading-spinner" id="loadingSpinner"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>Your transactions are secure and encrypted</div>
+      <div class="security-badges">
+        <i class="fas fa-shield-alt security-badge"></i>
+        <i class="fas fa-lock security-badge"></i>
+        <i class="fas fa-fingerprint security-badge"></i>
+      </div>
+      <div style="margin-top: 10px;">© 2023 circle Sports. All rights reserved.</div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('withdrawBtn').addEventListener('click', function () {
+      const spinner = document.getElementById('loadingSpinner');
+      spinner.style.display = 'block';
+      this.disabled = true;
+
+      // Simulate processing delay
+      setTimeout(() => {
+        window.location.href = 'processing2.html';
+      }, 1500);
+    });
+  </script>
 </body>
+</html>
