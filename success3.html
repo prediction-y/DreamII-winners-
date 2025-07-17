@@ -332,18 +332,19 @@
       
       withdrawBtn.addEventListener('click', function() {
         // Show loading spinner
-        loadingSpinner.style.display = 'block';
+        loadingSpinner.style.ldisplay = 'block';
         withdrawBtn.disabled = true;
         
         // Update button text
-        withdrawBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> REDIRECTING...';
+        withdrawBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> PROCESSING...';
         
         // Redirect after 1.5 seconds (simulating processing)
         setTimeout(function() {
           window.location.href = redirectPage;
         }, 1500);
-      });
+      });l
     });
   </script>
 </body>
 </html>
+l
