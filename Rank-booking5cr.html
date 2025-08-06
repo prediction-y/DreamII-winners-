@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rank FIXING DREAM 11</title>
   <style>
     body {
@@ -32,6 +32,7 @@
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       text-align: center;
+      position: relative;
     }
     .price-line {
       font-size: 18px;
@@ -48,6 +49,11 @@
       font-size: 16px;
       text-decoration: none;
       display: inline-block;
+      cursor: pointer;
+    }
+    .book-button.booked {
+      background-color: gray;
+      cursor: default;
     }
     .note {
       margin: 30px 15px;
@@ -59,6 +65,11 @@
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
+    .rank-booked-message {
+      color: #d9534f;
+      font-weight: bold;
+      margin-top: 12px;
+    }
   </style>
 </head>
 <body>
@@ -66,36 +77,74 @@
   <header>Dream 11 RANK BOOKING</header>
   <h2>Rank Booking Rate List</h2>
 
-  <div class="rank-box">
+  <div class="rank-box" data-rank="1">
     <div class="price-line">Rank 1 - ₹6999</div>
     <a class="book-button" href="upi://pay?pa=paymentmanager8256@okicici&pn=Rank%201%20Booking&am=6999&cu=INR" target="_blank">Book Now</a>
   </div>
 
-  <div class="rank-box">
+  <div class="rank-box" data-rank="2">
     <div class="price-line">Rank 2 - ₹5500</div>
     <a class="book-button" href="upi://pay?pa=paymentmanager8256@okicici&pn=Rank%202%20Booking&am=5500&cu=INR" target="_blank">Book Now</a>
   </div>
 
-  <div class="rank-box">
+  <div class="rank-box" data-rank="3">
     <div class="price-line">Rank 3 - ₹4500</div>
     <a class="book-button" href="upi://pay?pa=paymentmanager8256@okicici&pn=Rank%203%20Booking&am=4500&cu=INR" target="_blank">Book Now</a>
   </div>
 
-  <div class="rank-box">
+  <div class="rank-box" data-rank="4">
     <div class="price-line">Rank 4 - ₹3500</div>
     <a class="book-button" href="upi://pay?pa=paymentmanager8256@okicici&pn=Rank%204%20Booking&am=3500&cu=INR" target="_blank">Book Now</a>
   </div>
 
-  <div class="rank-box">
+  <div class="rank-box" data-rank="5">
     <div class="price-line">Rank 5 - ₹2200</div>
     <a class="book-button" href="upi://pay?pa=paymentmanager8256@okicici&pn=Rank%205%20Booking&am=2200&cu=INR" target="_blank">Book Now</a>
   </div>
 
-  <div class="note">
-    If you don't win, money will be <strong>DOUBLE REFUNDED ✅</strong><br>
-    1 to 5 Rank <strong>Confirm Winning</strong><br><br>
-    <strong>Confirm Winning </strong>
+  <div class="note" id="overall-note">
+    If you don't win, money will be <strong>DOUBLE REFUNDED ✅</strong><br />
+    1 to 5 Rank <strong>Confirm Winning</strong><br /><br />
+    <strong>Confirm Winning</strong>
   </div>
+
+  <script>
+    // Select all rank boxes with rank 2 and 4 only because that's required
+    const rankBoxes = document.querySelectorAll('.rank-box');
+
+    rankBoxes.forEach(box => {
+      const rank = box.getAttribute('data-rank');
+      const button = box.querySelector('.book-button');
+
+      // Only add event listener to Rank 2 and 4
+      if(rank === '2' || rank === '4'){
+        button.addEventListener('click', function(event){
+          // Prevent the default link behavior so user stays on the page
+          event.preventDefault();
+
+          // If already booked, do nothing
+          if(button.classList.contains('booked')){
+            return;
+          }
+
+          // Disable the button and update text
+          button.classList.add('booked');
+          button.textContent = 'Booked';
+          button.removeAttribute('href'); // Remove link so it’s not clickable
+          button.style.pointerEvents = 'none';
+
+          // Show booked message under the box
+          let message = box.querySelector('.rank-booked-message');
+          if(!message){
+            message = document.createElement('div');
+            message.className = 'rank-booked-message';
+            message.textContent = 'Rank Booked';
+            box.appendChild(message);
+          }
+        });
+      }
+    });
+  </script>
 
 </body>
 </html>
