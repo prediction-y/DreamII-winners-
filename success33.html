@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Withdrawal Issue - Dream11</title>
+    <title>Payment Approved - Dream11</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -25,7 +25,7 @@
         }
         
         .container {
-            max-width: 600px;
+            max-width: 500px;
             width: 100%;
             background: white;
             border-radius: 20px;
@@ -60,160 +60,198 @@
             letter-spacing: 1px;
         }
         
-        .content {
-            padding: 30px;
+        .processing-container {
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
         }
         
-        .status-alert {
-            background: linear-gradient(to right, #ffebee, #ffffff);
+        .success-animation {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .checkmark {
+            position: relative;
+            width: 100px;
+            height: 100px;
+        }
+        
+        .checkmark-circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 8px solid #27ae60;
+            opacity: 0.2;
+        }
+        
+        .checkmark-icon {
+            position: absolute;
+            top: 22px;
+            left: 18px;
+            font-size: 60px;
+            color: #27ae60;
+            animation: scaleCheck 0.5s ease;
+        }
+        
+        .processing-ring {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border: 8px solid transparent;
+            border-top-color: #3498db;
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+        }
+        
+        .processing-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #27ae60;
+            margin-bottom: 15px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        .processing-text {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .amount-display {
+            font-size: 38px;
+            font-weight: 800;
+            color: #2c3e50;
+            margin: 25px 0;
+            padding: 15px 30px;
+            background: linear-gradient(to right, #f8f9fa, #ffffff);
             border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 25px;
-            border-left: 5px solid #e74c3c;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
         }
         
-        .alert-icon {
+        .amount-display::before {
+            content: '';
             position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 40px;
-            color: #e74c3c;
-            opacity: 0.2;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(39, 174, 96, 0.1), transparent);
+            animation: shine 3s infinite;
         }
         
-        .alert-title {
-            color: #c0392b;
-            font-size: 28px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .alert-content {
-            color: #7f8c8d;
-            line-height: 1.7;
-            margin-bottom: 15px;
-        }
-        
-        .violation-reason {
+        .processing-details {
             background: #f8f9fa;
-            border-radius: 10px;
+            border-radius: 15px;
             padding: 20px;
-            margin: 20px 0;
-            border-left: 4px solid #f39c12;
+            margin: 20px auto;
+            max-width: 400px;
+            text-align: left;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
         }
         
-        .violation-reason h3 {
-            color: #d35400;
-            margin-bottom: 15px;
+        .detail-row {
             display: flex;
-            align-items: center;
-            gap: 10px;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
         }
         
-        .violation-reason ul {
-            padding-left: 25px;
+        .detail-row:last-child {
+            border-bottom: none;
         }
         
-        .violation-reason li {
-            margin-bottom: 10px;
-            color: #555;
+        .detail-label {
+            color: #666;
+            font-weight: 500;
         }
         
-        .penalty-section {
-            background: linear-gradient(to right, #fff8e1, #ffffff);
+        .detail-value {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .timeline-section {
+            background: linear-gradient(to right, #e8f5e9, #ffffff);
             border-radius: 15px;
             padding: 25px;
             margin: 25px 0;
             text-align: center;
-            border: 2px dashed #f1c40f;
-        }
-        
-        .penalty-title {
-            font-size: 22px;
-            color: #d35400;
-            margin-bottom: 15px;
-        }
-        
-        .penalty-amount {
-            font-size: 48px;
-            font-weight: 800;
-            color: #e74c3c;
-            margin: 20px 0;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #00b894;
+            max-width: 400px;
+            margin: 20px auto;
             position: relative;
-            display: inline-block;
+            overflow: hidden;
         }
         
-        .penalty-amount::after {
-            content: 'PENALTY FEE';
-            position: absolute;
-            bottom: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 14px;
-            font-weight: 600;
-            color: #e74c3c;
-            letter-spacing: 1px;
-        }
-        
-        .penalty-note {
-            color: #7d6608;
-            font-size: 16px;
-            margin-top: 30px;
-            line-height: 1.6;
-        }
-        
-        .action-section {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 25px;
-        }
-        
-        .pay-btn {
-            background: linear-gradient(to right, #27ae60, #2ecc71);
-            color: white;
-            padding: 18px;
-            border-radius: 50px;
-            font-size: 20px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s;
-        }
-        
-        .pay-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-        }
-        
-        .contact-btn {
-            background: transparent;
-            color: #3498db;
-            padding: 15px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            border: 2px solid #3498db;
-            cursor: pointer;
+        .timeline-title {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            transition: all 0.3s;
         }
         
-        .contact-btn:hover {
-            background: #e8f4f8;
+        .timeline-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin: 25px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .timeline-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 40%;
+            background: linear-gradient(to right, #3498db, #27ae60);
+            border-radius: 4px;
+            animation: progressPulse 3s infinite ease-in-out;
+        }
+        
+        .timeline-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+        
+        .processing-note {
+            background: linear-gradient(to right, #fff8e1, #ffffff);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #f1c40f;
+            max-width: 400px;
+            margin: 20px auto;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .processing-note i {
+            margin-right: 10px;
+            color: #f1c40f;
         }
         
         .footer {
@@ -237,84 +275,61 @@
             color: #3498db;
         }
         
-        .terms {
-            margin-top: 20px;
-            font-size: 13px;
-            color: #95a5a6;
-            line-height: 1.6;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
-        .contact-message {
-            background: linear-gradient(to right, #e8f4f8, #ffffff);
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 25px;
-            text-align: center;
-            border-left: 4px solid #3498db;
-            display: none;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
         
-        .contact-message h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+        @keyframes scaleCheck {
+            0% { transform: scale(0); }
+            70% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
         
-        .whatsapp-link {
-            display: inline-block;
-            background: #25D366;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: all 0.3s;
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
         
-        .whatsapp-link:hover {
-            background: #128C7E;
-            transform: translateY(-3px);
+        @keyframes progressPulse {
+            0% { width: 40%; opacity: 0.8; }
+            50% { width: 45%; opacity: 1; }
+            100% { width: 40%; opacity: 0.8; }
         }
         
-        .whatsapp-number {
-            font-size: 24px;
-            font-weight: 700;
-            color: #2c3e50;
-            margin: 15px 0;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            display: inline-block;
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            border-radius: 50%;
+            animation: confetti-fall 5s ease-in-out forwards;
+            z-index: 10;
+        }
+        
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
         
         @media (max-width: 480px) {
-            .content {
-                padding: 20px 15px;
+            .processing-title {
+                font-size: 26px;
             }
             
-            .alert-title {
-                font-size: 24px;
+            .amount-display {
+                font-size: 28px;
+                padding: 12px 20px;
             }
             
-            .penalty-amount {
-                font-size: 36px;
-            }
-            
-            .pay-btn {
-                padding: 15px;
-                font-size: 18px;
-            }
-            
-            .whatsapp-number {
-                font-size: 18px;
+            .processing-container {
+                padding: 30px 15px;
             }
         }
     </style>
@@ -328,76 +343,69 @@
             </div>
         </div>
         
-        <div class="content">
-            <div class="status-alert">
-                <i class="fas fa-exclamation-triangle alert-icon"></i>
-                <h2 class="alert-title">
-                    <i class="fas fa-ban"></i> Amount freez
-                </h2>
-                <p class="alert-content">
-                    Your withdrawal request for <span class="warning-highlight">₹1,40,000</span> has been rejected due to violation of our contest participation guidelines.
-                </p>
-                <p class="alert-content">
-                    Your funds have been temporarily frozen pending compliance verification.
-                </p>
+        <div class="processing-container">
+            <div class="success-animation">
+                <div class="processing-ring"></div>
+                <div class="processing-ring" style="width: 140px; height: 140px; border-top-color: #27ae60; animation-delay: -0.5s;"></div>
+                <div class="checkmark">
+                    <div class="checkmark-circle"></div>
+                    <i class="fas fa-check checkmark-icon"></i>
+                </div>
             </div>
             
-            <div class="violation-reason">
-                <h3><i class="fas fa-exclamation-circle"></i> Reason for Rejection</h3>
-                <ul>
-                    <li>The team shared with your prime member was intended for participation in <span class="warning-highlight">only 1 contest</span>.</li>
-                    <li>Our records indicate that your prime member used the same team to join <span class="warning-highlight">3 different contests</span>.</li>
-                    <li>This violates Dream11's contest participation guidelines.</li>
-                    <li>As a result, your winnings are subject to review.</li>
-                </ul>
+            <h2 class="processing-title">Payment Approved!</h2>
+            <p class="processing-text">Your payment has been successfully approved and is now being processed.</p>
+            
+            <div class="amount-display">
+                ₹10,000
             </div>
             
-            <div class="penalty-section">
-                <h3 class="penalty-title">Penalty Required to Resolve Issue</h3>
-                <div class="penalty-amount">₹10,000</div>
-                <p class="penalty-note">
-                    To resolve this matter and unfreeze your funds, please pay the penalty fee. Once paid, your withdrawal will be processed within 24-48 hours.
-                </p>
+            <div class="processing-details">
+                <div class="detail-row">
+                    <span class="detail-label">Transaction ID:</span>
+                    <span class="detail-value">D11PY98234761</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Payment Type:</span>
+                    <span class="detail-value">Penalty Fee</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Date & Time:</span>
+                    <span class="detail-value">12 August 2025, 7:20 pm</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="detail-value" style="color: #27ae60;">Approved</span>
+                </div>
             </div>
             
-            <div class="action-section">
-                <button class="pay-btn" id="payBtn">
-                    <i class="fas fa-rupee-sign"></i> PAY PENALTY & UNFREEZE FUNDS
-                </button>
-                <button class="contact-btn" id="contactBtn">
-                    <i class="fas fa-headset"></i> CONTACT SUPPORT
-                </button>
-            </div>
-            
-            <div class="contact-message" id="contactMessage">
-                <h3><i class="fab fa-whatsapp"></i> Contact Malik Mumbai to Complete Payment</h3>
-                <p>Please contact our authorized payment agent to complete your penalty payment:</p>
+            <div class="timeline-section">
+                <h3 class="timeline-title">
+                    <i class="fas fa-clock"></i> Processing Timeline
+                </h3>
+                <p>Your payment is being processed and may take:</p>
+                <div class="time-highlight">12-14 Hours</div>
                 
-                <div class="whatsapp-number">
-                    <i class="fas fa-user"></i> Malik Mumbai
+                <div class="timeline-bar">
+                    <div class="timeline-progress"></div>
                 </div>
                 
-                <div class="whatsapp-number">
-                    <i class="fas fa-phone"></i> +91 80824 85036
+                <div class="timeline-labels">
+                    <span>Started</span>
+                    <span>In Progress</span>
+                    <span>Completed</span>
                 </div>
-                
-                <a href="https://wa.me/918082485036" class="whatsapp-link" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Message on WhatsApp
-                </a>
-                
-                <p style="margin-top: 15px; font-size: 14px; color: #7f8c8d;">
-                    <i class="fas fa-info-circle"></i> Contact Malik Mumbai directly on WhatsApp to complete your payment and resolve this issue.
-                </p>
             </div>
             
-            <div class="terms">
-                <p><i class="fas fa-info-circle"></i> By paying this penalty, you acknowledge the violation of our terms and agree to comply with Dream11's contest participation guidelines in the future.</p>
-                <p>Failure to resolve this matter may result in permanent account suspension.</p>
+            <div class="processing-note">
+                <i class="fas fa-info-circle"></i>
+                Your withdrawal will be processed automatically after payment verification completes. 
+                You'll receive a confirmation once funds are transferred.
             </div>
         </div>
         
         <div class="footer">
-            <div>Need immediate assistance? Contact support@dream11.com or call 1800-123-4567</div>
+            <div>Need help? Contact support@dream11.com</div>
             <div class="security-badges">
                 <i class="fas fa-shield-alt security-badge"></i>
                 <i class="fas fa-lock security-badge"></i>
@@ -408,31 +416,31 @@
     </div>
 
     <script>
-        document.getElementById('payBtn').addEventListener('click', function() {
-            const btn = this;
-            const originalText = btn.innerHTML;
+        // Create confetti effect
+        function createConfetti() {
+            const colors = ['#3498db', '#e74c3c', '#f1c40f', '#2ecc71', '#9b59b6'];
+            const container = document.querySelector('.container');
             
-            // Show processing
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Request...';
-            btn.disabled = true;
-            
-            // Simulate processing
-            setTimeout(() => {
-                // Show contact message
-                document.getElementById('contactMessage').style.display = 'block';
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti-piece';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = confetti.style.width;
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
                 
-                // Reset button
-                btn.innerHTML = originalText;
-                btn.disabled = false;
+                container.appendChild(confetti);
                 
-                // Scroll to message
-                document.getElementById('contactMessage').scrollIntoView({ behavior: 'smooth' });
-            }, 1500);
-        });
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
         
-        document.getElementById('contactBtn').addEventListener('click', function() {
-            alert('Please contact our support team at support@dream11.com or call 1800-123-4567 to discuss this matter.');
-        });
+        // Create confetti on page load
+        window.addEventListener('load', createConfetti);
     </script>
 </body>
 </html>
