@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Processing - Dream11</title>
+    <title>Withdrawal Successful - Dream11</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -22,11 +22,10 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-            overflow-x: hidden;
         }
         
         .container {
-            max-width: 800px;
+            max-width: 500px;
             width: 100%;
             background: white;
             border-radius: 20px;
@@ -61,253 +60,137 @@
             letter-spacing: 1px;
         }
         
-        .processing-container {
+        .success-container {
             text-align: center;
             padding: 40px 20px;
-            position: relative;
         }
         
-        .payment-animation {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 20px auto;
+        .success-icon {
+            font-size: 100px;
+            color: #00b894;
+            margin: 20px 0;
+            animation: bounce 1s ease;
         }
         
-        .payment-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 80px;
-            color: #3498db;
-            z-index: 2;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        .payment-ring {
-            position: absolute;
-            width: 160px;
-            height: 160px;
-            border: 8px solid transparent;
-            border-top-color: #27ae60;
-            border-radius: 50%;
-            animation: spin 2s linear infinite;
-        }
-        
-        .payment-ring:nth-child(2) {
-            width: 140px;
-            height: 140px;
-            border-top-color: #f1c40f;
-            animation-delay: -0.5s;
-        }
-        
-        .payment-ring:nth-child(3) {
-            width: 120px;
-            height: 120px;
-            border-top-color: #e74c3c;
-            animation-delay: -1s;
-        }
-        
-        .processing-title {
+        .success-title {
             font-size: 32px;
             font-weight: 700;
             color: #2c3e50;
             margin-bottom: 15px;
-            animation: pulse 1.5s ease-in-out infinite;
         }
         
-        .processing-text {
+        .success-text {
             font-size: 18px;
             color: #555;
             line-height: 1.6;
             margin-bottom: 10px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
         }
         
         .amount-display {
             font-size: 38px;
             font-weight: 800;
-            color: #e74c3c;
+            color: #2c3e50;
             margin: 25px 0;
             padding: 15px 30px;
             background: linear-gradient(to right, #f8f9fa, #ffffff);
             border-radius: 15px;
             display: inline-block;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
         }
         
-        .amount-display::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(231, 76, 60, 0.1), transparent);
-            animation: shine 2s infinite;
-        }
-        
-        .progress-container {
-            display: flex;
-            justify-content: center;
-            margin: 30px 0;
-        }
-        
-        .progress-stages {
-            display: flex;
-            width: 100%;
-            max-width: 600px;
-            justify-content: space-between;
-            position: relative;
-        }
-        
-        .progress-stages::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            height: 6px;
-            width: 100%;
-            background: #e0e0e0;
-            z-index: 1;
-            border-radius: 3px;
-        }
-        
-        .progress-bar {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            height: 6px;
-            width: 0%;
-            background: linear-gradient(to right, #3498db, #27ae60);
-            z-index: 2;
-            transition: width 1s ease;
-            border-radius: 3px;
-        }
-        
-        .stage {
-            position: relative;
-            z-index: 3;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .stage-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #e0e0e0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 8px;
-            transition: all 0.5s ease;
-            font-size: 20px;
-        }
-        
-        .stage.active .stage-icon {
-            background: #3498db;
-            color: white;
-            box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
-            animation: pulse 1.5s infinite;
-        }
-        
-        .stage.completed .stage-icon {
-            background: #27ae60;
-            color: white;
-        }
-        
-        .stage-text {
-            font-size: 14px;
-            color: #7f8c8d;
-            font-weight: 500;
-            text-align: center;
-            max-width: 100px;
-        }
-        
-        .processing-note {
-            background: linear-gradient(to right, #e8f5e9, #ffffff);
+        .transaction-details {
+            background: #f8f9fa;
             border-radius: 15px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 400px;
+            text-align: left;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .detail-value {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .countdown-container {
+            background: linear-gradient(to right, #fff8e1, #ffffff);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px auto;
+            max-width: 400px;
+            text-align: center;
+            border-left: 4px solid #f1c40f;
+        }
+        
+        .countdown-title {
+            font-size: 18px;
+            color: #d35400;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .countdown-timer {
+            font-size: 32px;
+            font-weight: 700;
+            color: #e74c3c;
+            font-family: monospace;
+            letter-spacing: 2px;
+        }
+        
+        .countdown-note {
+            color: #7d6608;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(to right, #e8f5e9, #ffffff);
+            border-radius: 12px;
             padding: 20px;
             margin: 25px 0;
             border-left: 4px solid #00b894;
-            max-width: 600px;
+            max-width: 400px;
             margin: 20px auto;
             text-align: center;
             font-weight: 500;
         }
         
-        .processing-note i {
+        .highlight-box i {
             margin-right: 10px;
             color: #00b894;
         }
         
-        .time-remaining {
-            background: linear-gradient(to right, #e3f2fd, #ffffff);
+        .expired-message {
+            display: none;
+            background: linear-gradient(to right, #ffebee, #ffffff);
             border-radius: 15px;
             padding: 20px;
-            margin: 25px 0;
-            border-left: 4px solid #3498db;
-            max-width: 600px;
-            margin: 20px auto;
+            margin: 25px auto;
+            max-width: 400px;
             text-align: center;
+            border-left: 4px solid #e74c3c;
+            color: #c0392b;
             font-weight: 500;
-        }
-        
-        .timer {
-            font-size: 36px;
-            font-weight: 700;
-            color: #e74c3c;
-            margin: 10px 0;
-            font-family: 'Courier New', monospace;
-        }
-        
-        .info-cards {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin: 30px 0;
-        }
-        
-        .info-card {
-            flex: 1;
-            min-width: 200px;
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-        
-        .info-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .info-card i {
-            font-size: 36px;
-            margin-bottom: 15px;
-            color: #3498db;
-        }
-        
-        .info-card h3 {
-            font-size: 18px;
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-        
-        .info-card p {
-            font-size: 14px;
-            color: #7f8c8d;
         }
         
         .footer {
@@ -331,15 +214,10 @@
             color: #3498db;
         }
         
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
         }
         
         @keyframes pulse {
@@ -348,48 +226,8 @@
             100% { transform: scale(1); }
         }
         
-        @keyframes shine {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-20px);}
-            60% {transform: translateY(-10px);}
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                max-width: 95%;
-            }
-            
-            .progress-stages {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 20px;
-            }
-            
-            .progress-stages::before {
-                display: none;
-            }
-            
-            .progress-bar {
-                display: none;
-            }
-            
-            .info-cards {
-                flex-direction: column;
-            }
-        }
-        
         @media (max-width: 480px) {
-            .processing-title {
+            .success-title {
                 font-size: 26px;
             }
             
@@ -398,23 +236,12 @@
                 padding: 12px 20px;
             }
             
-            .payment-animation {
-                width: 160px;
-                height: 160px;
+            .transaction-details {
+                padding: 15px;
             }
             
-            .payment-icon {
-                font-size: 60px;
-            }
-            
-            .stage-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
-            }
-            
-            .timer {
-                font-size: 28px;
+            .countdown-timer {
+                font-size: 24px;
             }
         }
     </style>
@@ -428,83 +255,56 @@
             </div>
         </div>
         
-        <div class="processing-container" id="processingSection">
-            <div class="payment-animation">
-                <div class="payment-ring"></div>
-                <div class="payment-ring"></div>
-                <div class="payment-ring"></div>
+        <div class="success-container">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
             </div>
-            
-            <h2 class="processing-title">Processing Your Payment</h2>
-            <p class="processing-text">We are securely processing your withdrawal request. Please note this may take up to 24 hours to complete.</p>
+            <h2 class="success-title">Withdrawal Successful!</h2>
+            <p class="success-text">Your withdrawal request has been processed successfully.</p>
             
             <div class="amount-display">
-                ₹5,000
+                ₹1,40,000
             </div>
             
-            <div class="progress-container">
-                <div class="progress-stages">
-                    <div class="progress-bar" id="progressBar"></div>
-                    <div class="stage active" id="initStage">
-                        <div class="stage-icon">
-                            <i class="fas fa-lock"></i>
-                        </div>
-                        <div class="stage-text">Payment Initiated</div>
-                    </div>
-                    <div class="stage" id="processingStage">
-                        <div class="stage-icon">
-                            <i class="fas fa-sync"></i>
-                        </div>
-                        <div class="stage-text">Processing</div>
-                    </div>
-                    <div class="stage" id="securityStage">
-                        <div class="stage-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <div class="stage-text">Security Check</div>
-                    </div>
-                    <div class="stage" id="completeStage">
-                        <div class="stage-icon">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <div class="stage-text">Completion</div>
-                    </div>
+            <div class="transaction-details">
+                <div class="detail-row">
+                    <span class="detail-label">Transaction ID:</span>
+                    <span class="detail-value">D11TX98234761</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Date & Time:</span>
+                    <span class="detail-value">5 June 2025, 14:35 IST</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="detail-value" style="color: #00b894;">Completed</span>
                 </div>
             </div>
             
-            <div class="processing-note">
+            <div class="highlight-box">
                 <i class="fas fa-clock"></i>
-                This process may take up to 24 hours to complete. Your funds will be released after successful processing.
+                The amount has been credited to your account and will reflect within 72 hours
             </div>
             
-            <div class="time-remaining">
-                <i class="fas fa-hourglass-half"></i>
-                <p>Estimated time remaining:</p>
-                <div class="timer" id="timer">23:59:59</div>
-                <p>Your payment is securely being processed</p>
+            <div class="countdown-container" id="countdownContainer">
+                <h3 class="countdown-title">
+                    <i class="fas fa-hourglass-half"></i> Link Expires In
+                </h3>
+                <div class="countdown-timer" id="countdownTimer">
+                    24:00:00
+                </div>
+                <p class="countdown-note">
+                    This page will expire in <span id="countdownHours">24</span> hours. Please save your transaction details.
+                </p>
             </div>
             
-            <div class="info-cards">
-                <div class="info-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Secure Processing</h3>
-                    <p>Bank-level security with 256-bit encryption</p>
-                </div>
-                <div class="info-card">
-                    <i class="fas fa-history"></i>
-                    <h3>24-Hour Processing</h3>
-                    <p>For security, payments may take up to 24 hours</p>
-                </div>
-                <div class="info-card">
-                    <i class="fas fa-headset"></i>
-                    <h3>Support Available</h3>
-                    <p>Contact us anytime for assistance</p>
-                </div>
+            <div class="expired-message" id="expiredMessage">
+                <i class="fas fa-exclamation-triangle"></i> This link has expired. Please contact support for assistance.
             </div>
         </div>
         
         <div class="footer">
-            <div>Need help? Contact support@dream11.com or call 1800-123-4567</div>
+            <div>Need help? Contact support@dream11.com</div>
             <div class="security-badges">
                 <i class="fas fa-shield-alt security-badge"></i>
                 <i class="fas fa-lock security-badge"></i>
@@ -516,74 +316,59 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const progressBar = document.getElementById('progressBar');
-            const initStage = document.getElementById('initStage');
-            const processingStage = document.getElementById('processingStage');
-            const securityStage = document.getElementById('securityStage');
-            const completeStage = document.getElementById('completeStage');
-            const timer = document.getElementById('timer');
+            const countdownTimer = document.getElementById('countdownTimer');
+            const countdownContainer = document.getElementById('countdownContainer');
+            const expiredMessage = document.getElementById('expiredMessage');
+            const countdownHours = document.getElementById('countdownHours');
             
-            // Set initial time (24 hours in seconds)
-            let totalSeconds = 24 * 60 * 60;
+            // Check localStorage for existing timer
+            const storedTime = localStorage.getItem('withdrawalTimerEnd');
+            let endTime;
             
-            // Update the timer every second
-            const timerInterval = setInterval(updateTimer, 1000);
-            
-            function updateTimer() {
-                totalSeconds--;
-                
-                if (totalSeconds <= 0) {
-                    clearInterval(timerInterval);
-                    timer.textContent = "00:00:00";
+            if (storedTime) {
+                endTime = new Date(parseInt(storedTime));
+                // Check if timer has already expired
+                if (new Date() > endTime) {
+                    showExpiredMessage();
                     return;
                 }
-                
-                const hours = Math.floor(totalSeconds / 3600);
-                const minutes = Math.floor((totalSeconds % 3600) / 60);
-                const seconds = totalSeconds % 60;
-                
-                timer.textContent = 
-                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            } else {
+                // Set new timer for 24 hours from now
+                endTime = new Date();
+                endTime.setHours(endTime.getHours() + 24);
+                localStorage.setItem('withdrawalTimerEnd', endTime.getTime());
             }
             
-            // Start the progress bar animation (simulating initial processing)
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += 1;
-                progressBar.style.width = progress + '%';
+            // Update countdown every second
+            const countdown = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = endTime - now;
                 
-                if (progress >= 100) {
-                    clearInterval(interval);
+                // Time calculations
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                // Display result
+                countdownTimer.innerHTML = 
+                    (hours < 10 ? "0" + hours : hours) + ":" + 
+                    (minutes < 10 ? "0" + minutes : minutes) + ":" + 
+                    (seconds < 10 ? "0" + seconds : seconds);
+                
+                countdownHours.textContent = hours > 0 ? hours : 1;
+                
+                // If countdown finished
+                if (distance < 0) {
+                    clearInterval(countdown);
+                    showExpiredMessage();
+                    localStorage.removeItem('withdrawalTimerEnd');
                 }
-            }, 50);
-            
-            // Simulate initial processing stages
-            setTimeout(() => {
-                initStage.classList.remove('active');
-                initStage.classList.add('completed');
-                processingStage.classList.add('active');
             }, 1000);
             
-            setTimeout(() => {
-                processingStage.classList.remove('active');
-                processingStage.classList.add('completed');
-                securityStage.classList.add('active');
-            }, 3000);
-            
-            setTimeout(() => {
-                securityStage.classList.remove('active');
-                securityStage.classList.add('completed');
-                completeStage.classList.add('active');
-            }, 5000);
-            
-            // Show completion after 24 hours (simulated)
-            setTimeout(() => {
-                completeStage.classList.remove('active');
-                completeStage.classList.add('completed');
-                
-                // Show completion message
-                alert("Payment processing complete! ₹5,000 has been successfully processed.");
-            }, 86400000); // 24 hours in milliseconds
+            function showExpiredMessage() {
+                countdownContainer.style.display = 'none';
+                expiredMessage.style.display = 'block';
+            }
         });
     </script>
 </body>
