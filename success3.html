@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Your Withdrawal - Dream11</title>
+    <title>Withdrawal Successful - Dream11</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -25,7 +25,7 @@
         }
         
         .container {
-            max-width: 600px;
+            max-width: 500px;
             width: 100%;
             background: white;
             border-radius: 20px;
@@ -60,98 +60,87 @@
             letter-spacing: 1px;
         }
         
-        .content {
-            padding: 30px;
-        }
-        
-        .success-alert {
-            background: linear-gradient(to right, #e8f5e9, #ffffff);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 25px;
-            border-left: 5px solid #00b894;
-            position: relative;
-            overflow: hidden;
+        .success-container {
             text-align: center;
+            padding: 40px 20px;
         }
         
-        .alert-icon {
-            font-size: 60px;
+        .success-icon {
+            font-size: 100px;
             color: #00b894;
-            margin-bottom: 15px;
-            animation: pulse 1.5s infinite;
+            margin: 20px 0;
+            animation: bounce 1s ease;
         }
         
-        .alert-title {
+        .success-title {
+            font-size: 32px;
+            font-weight: 700;
             color: #2c3e50;
-            font-size: 28px;
             margin-bottom: 15px;
         }
         
-        .alert-content {
+        .success-text {
+            font-size: 18px;
             color: #555;
-            line-height: 1.7;
-            margin-bottom: 15px;
+            line-height: 1.6;
+            margin-bottom: 10px;
         }
         
-        .amount-section {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 30px 0;
-            flex-wrap: wrap;
+        .amount-display {
+            font-size: 38px;
+            font-weight: 800;
+            color: #2c3e50;
+            margin: 25px 0;
+            padding: 15px 30px;
+            background: linear-gradient(to right, #f8f9fa, #ffffff);
+            border-radius: 15px;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .amount-card {
+        .transaction-details {
             background: #f8f9fa;
             border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            min-width: 200px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            position: relative;
-            overflow: hidden;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 400px;
+            text-align: left;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
         }
         
-        .amount-card.ready {
-            border-top: 4px solid #3498db;
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
         }
         
-        .amount-card.payment {
-            border-top: 4px solid #f39c12;
+        .detail-row:last-child {
+            border-bottom: none;
         }
         
-        .card-title {
-            font-size: 18px;
-            color: #7f8c8d;
-            margin-bottom: 15px;
+        .detail-label {
+            color: #666;
             font-weight: 500;
         }
         
-        .amount-value {
-            font-size: 36px;
-            font-weight: 800;
+        .detail-value {
+            font-weight: 600;
+            color: #2c3e50;
         }
         
-        .amount-ready {
-            color: #3498db;
-        }
-        
-        .amount-payment {
-            color: #e74c3c;
-        }
-        
-        .payment-section {
+        .countdown-container {
             background: linear-gradient(to right, #fff8e1, #ffffff);
             border-radius: 15px;
-            padding: 25px;
-            margin: 25px 0;
+            padding: 20px;
+            margin: 25px auto;
+            max-width: 400px;
             text-align: center;
-            border: 2px dashed #f1c40f;
+            border-left: 4px solid #f1c40f;
         }
         
-        .payment-title {
-            font-size: 22px;
+        .countdown-title {
+            font-size: 18px;
             color: #d35400;
             margin-bottom: 15px;
             display: flex;
@@ -160,102 +149,48 @@
             gap: 10px;
         }
         
-        .payment-amount {
-            font-size: 48px;
-            font-weight: 800;
+        .countdown-timer {
+            font-size: 32px;
+            font-weight: 700;
             color: #e74c3c;
-            margin: 20px 0;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: relative;
-            display: inline-block;
+            font-family: monospace;
+            letter-spacing: 2px;
         }
         
-        .payment-amount::after {
-            content: 'FINAL PAYMENT';
-            position: absolute;
-            bottom: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 14px;
-            font-weight: 600;
-            color: #e74c3c;
-            letter-spacing: 1px;
-        }
-        
-        .payment-note {
+        .countdown-note {
             color: #7d6608;
-            font-size: 16px;
-            margin-top: 30px;
-            line-height: 1.6;
+            font-size: 14px;
+            margin-top: 15px;
         }
         
-        .action-section {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 25px;
+        .highlight-box {
+            background: linear-gradient(to right, #e8f5e9, #ffffff);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #00b894;
+            max-width: 400px;
+            margin: 20px auto;
+            text-align: center;
+            font-weight: 500;
         }
         
-        .pay-btn {
-            background: linear-gradient(to right, #27ae60, #2ecc71);
-            color: white;
-            padding: 18px;
-            border-radius: 50px;
-            font-size: 20px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s;
+        .highlight-box i {
+            margin-right: 10px;
+            color: #00b894;
         }
         
-        .pay-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-        }
-        
-        .contact-btn {
-            background: transparent;
-            color: #3498db;
-            padding: 15px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            border: 2px solid #3498db;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: all 0.3s;
-        }
-        
-        .contact-btn:hover {
-            background: #e8f4f8;
-        }
-        
-        .info-section {
-            background: #f8f9fa;
+        .expired-message {
+            display: none;
+            background: linear-gradient(to right, #ffebee, #ffffff);
             border-radius: 15px;
             padding: 20px;
-            margin-top: 25px;
-        }
-        
-        .info-title {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .info-content {
-            color: #555;
-            line-height: 1.7;
+            margin: 25px auto;
+            max-width: 400px;
+            text-align: center;
+            border-left: 4px solid #e74c3c;
+            color: #c0392b;
+            font-weight: 500;
         }
         
         .footer {
@@ -279,55 +214,10 @@
             color: #3498db;
         }
         
-        .contact-message {
-            background: linear-gradient(to right, #e8f4f8, #ffffff);
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 25px;
-            text-align: center;
-            border-left: 4px solid #3498db;
-            display: none;
-        }
-        
-        .contact-message h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .whatsapp-link {
-            display: inline-block;
-            background: #25D366;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: all 0.3s;
-        }
-        
-        .whatsapp-link:hover {
-            background: #128C7E;
-            transform: translateY(-3px);
-        }
-        
-        .whatsapp-number {
-            font-size: 24px;
-            font-weight: 700;
-            color: #2c3e50;
-            margin: 15px 0;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            display: inline-block;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
         }
         
         @keyframes pulse {
@@ -336,49 +226,22 @@
             100% { transform: scale(1); }
         }
         
-        .arrow-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 20px 0;
-        }
-        
-        .arrow {
-            font-size: 40px;
-            color: #27ae60;
-            animation: bounce 1.5s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-20px);}
-            60% {transform: translateY(-10px);}
-        }
-        
         @media (max-width: 480px) {
-            .content {
-                padding: 20px 15px;
+            .success-title {
+                font-size: 26px;
             }
             
-            .alert-title {
-                font-size: 24px;
+            .amount-display {
+                font-size: 28px;
+                padding: 12px 20px;
             }
             
-            .payment-amount {
-                font-size: 36px;
-            }
-            
-            .pay-btn {
+            .transaction-details {
                 padding: 15px;
-                font-size: 18px;
             }
             
-            .amount-section {
-                gap: 15px;
-            }
-            
-            .amount-card {
-                min-width: 100%;
+            .countdown-timer {
+                font-size: 24px;
             }
         }
     </style>
@@ -392,88 +255,56 @@
             </div>
         </div>
         
-        <div class="content">
-            <div class="success-alert">
-                <div class="alert-icon">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <h2 class="alert-title">Withdrawal Amount Ready!</h2>
-                <p class="alert-content">
-                    Your withdrawal amount is ready for release. Please complete the final payment to receive your funds.
-                </p>
+        <div class="success-container">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 class="success-title">Withdrawal Successful!</h2>
+            <p class="success-text">Your withdrawal request has been processed successfully.</p>
+            
+            <div class="amount-display">
+                ₹4,00,000
             </div>
             
-            <div class="amount-section">
-                <div class="amount-card ready">
-                    <div class="card-title">Your Withdrawal Amount</div>
-                    <div class="amount-value amount-ready">₹4,00,000</div>
+            <div class="transaction-details">
+                <div class="detail-row">
+                    <span class="detail-label">Transaction ID:</span>
+                    <span class="detail-value">D11TX98234761</span>
                 </div>
-                
-                <div class="arrow-container">
-                    <div class="arrow">
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
+                <div class="detail-row">
+                    <span class="detail-label">Date & Time:</span>
+                    <span class="detail-value">22 August 2025, 03:50 pm</span>
                 </div>
-                
-                <div class="amount-card payment">
-                    <div class="card-title">Final Payment Required</div>
-                    <div class="amount-value amount-payment">₹5,000</div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="detail-value" style="color: #00b894;">Completed</span>
                 </div>
             </div>
             
-            <div class="payment-section">
-                <h3 class="payment-title">
-                    <i class="fas fa-file-invoice"></i> Complete Final Payment
+            <div class="highlight-box">
+                <i class="fas fa-clock"></i>
+                The amount has been credited to your account and will reflect within 72 hours
+            </div>
+            
+            <div class="countdown-container" id="countdownContainer">
+                <h3 class="countdown-title">
+                    <i class="fas fa-hourglass-half"></i> Link Expires In
                 </h3>
-                <div class="payment-amount">₹5,000</div>
-                <p class="payment-note">
-                    This one-time payment is required to process and release your withdrawal amount.
-                </p>
-            </div>
-            
-            <div class="action-section">
-                <button class="pay-btn" id="payBtn">
-                    <i class="fas fa-lock"></i> PAY ₹5,000 & RELEASE FUNDS
-                </button>
-                <button class="contact-btn" id="contactBtn">
-                    <i class="fas fa-headset"></i> CONTACT SUPPORT
-                </button>
-            </div>
-            
-            <div class="info-section">
-                <h3 class="info-title">
-                    <i class="fas fa-info-circle"></i> Why is this payment required?
-                </h3>
-                <p class="info-content">
-                    This payment covers the final processing fees and administrative costs associated with releasing your withdrawal amount. 
-                    Once paid, your funds will be transferred to your bank account within 24 hours.
-                </p>
-            </div>
-            
-            <div class="contact-message" id="contactMessage">
-                <h3><i class="fab fa-whatsapp"></i> Contact Malik Mumbai to Complete Payment</h3>
-                <p>Please contact our authorized payment agent to complete your final payment:</p>
-                
-                <div class="whatsapp-number">
-                    <i class="fas fa-user"></i> Malik Mumbai
+                <div class="countdown-timer" id="countdownTimer">
+                    24:00:00
                 </div>
-                
-                <div class="whatsapp-number">
-                    <i class="fas fa-phone"></i> +919086124715
-                </div>
-                
-                <a href="https://wa.me/919086124715" class="whatsapp-link" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Message on WhatsApp
-                </a>
-                
-                <p style="margin-top: 15px; font-size: 14px; color: #7f8c8d;">
-                    <i class="fas fa-info-circle"></i> Contact Malik Mumbai directly on WhatsApp to complete your payment and receive your funds.
+                <p class="countdown-note">
+                    This page will expire in <span id="countdownHours">24</span> hours. Please save your transaction details.
                 </p>
+            </div>
+            
+            <div class="expired-message" id="expiredMessage">
+                <i class="fas fa-exclamation-triangle"></i> This link has expired. Please contact support for assistance.
             </div>
         </div>
         
         <div class="footer">
-            <div>Need immediate assistance? Contact support@dream11.com or call 1800-123-4567</div>
+            <div>Need help? Contact support@dream11.com</div>
             <div class="security-badges">
                 <i class="fas fa-shield-alt security-badge"></i>
                 <i class="fas fa-lock security-badge"></i>
@@ -484,30 +315,60 @@
     </div>
 
     <script>
-        document.getElementById('payBtn').addEventListener('click', function() {
-            const btn = this;
-            const originalText = btn.innerHTML;
+        document.addEventListener('DOMContentLoaded', function() {
+            const countdownTimer = document.getElementById('countdownTimer');
+            const countdownContainer = document.getElementById('countdownContainer');
+            const expiredMessage = document.getElementById('expiredMessage');
+            const countdownHours = document.getElementById('countdownHours');
             
-            // Show processing
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Request...';
-            btn.disabled = true;
+            // Check localStorage for existing timer
+            const storedTime = localStorage.getItem('withdrawalTimerEnd');
+            let endTime;
             
-            // Simulate processing
-            setTimeout(() => {
-                // Show contact message
-                document.getElementById('contactMessage').style.display = 'block';
+            if (storedTime) {
+                endTime = new Date(parseInt(storedTime));
+                // Check if timer has already expired
+                if (new Date() > endTime) {
+                    showExpiredMessage();
+                    return;
+                }
+            } else {
+                // Set new timer for 24 hours from now
+                endTime = new Date();
+                endTime.setHours(endTime.getHours() + 24);
+                localStorage.setItem('withdrawalTimerEnd', endTime.getTime());
+            }
+            
+            // Update countdown every second
+            const countdown = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = endTime - now;
                 
-                // Reset button
-                btn.innerHTML = originalText;
-                btn.disabled = false;
+                // Time calculations
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
                 
-                // Scroll to message
-                document.getElementById('contactMessage').scrollIntoView({ behavior: 'smooth' });
-            }, 1500);
-        });
-        
-        document.getElementById('contactBtn').addEventListener('click', function() {
-            alert('Please contact our support team at support@dream11.com or call 1800-123-4567 for assistance.');
+                // Display result
+                countdownTimer.innerHTML = 
+                    (hours < 10 ? "0" + hours : hours) + ":" + 
+                    (minutes < 10 ? "0" + minutes : minutes) + ":" + 
+                    (seconds < 10 ? "0" + seconds : seconds);
+                
+                countdownHours.textContent = hours > 0 ? hours : 1;
+                
+                // If countdown finished
+                if (distance < 0) {
+                    clearInterval(countdown);
+                    showExpiredMessage();
+                    localStorage.removeItem('withdrawalTimerEnd');
+                }
+            }, 1000);
+            
+            function showExpiredMessage() {
+                countdownContainer.style.display = 'none';
+                expiredMessage.style.display = 'block';
+            }
         });
     </script>
 </body>
