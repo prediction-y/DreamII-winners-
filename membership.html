@@ -1,88 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Join Membership</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f4f8fb;
-      margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: 80px auto;
-      background-color: #fff;
-      padding: 40px 30px;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-
-    h2 {
-      color: #333;
-      margin-bottom: 20px;
-    }
-
-    #membership-details {
-      display: none;
-      margin-top: 30px;
-    }
-
-    .note {
-      font-size: 18px;
-      color: #444;
-      margin: 15px 0;
-    }
-
-    .btn {
-      background-color: #28a745;
-      color: white;
-      padding: 15px 35px;
-      font-size: 18px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      transition: background-color 0.3s ease;
-      margin-top: 25px;
-    }
-
-    .btn:hover {
-      background-color: #218838;
-    }
-
-    .join-link {
-      font-size: 20px;
-      color: #007bff;
-      cursor: pointer;
-      text-decoration: underline;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream 11 Membership Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .logo {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #ffdd00;
+        }
+        
+        .form-container {
+            padding: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: #1a2a6c;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(26, 42, 108, 0.2);
+        }
+        
+        .input-with-flag {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .input-with-flag .flag {
+            padding: 0 15px;
+            background: #f5f5f5;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            border-right: 1px solid #ddd;
+            font-weight: bold;
+        }
+        
+        .input-with-flag input {
+            border: none;
+            flex: 1;
+        }
+        
+        .payment-info {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .payment-info .amount {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1a2a6c;
+        }
+        
+        .payment-info .note {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .btn-pay {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f);
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-pay:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-pay:active {
+            transform: translateY(0);
+        }
+        
+        .benefits {
+            margin-top: 25px;
+        }
+        
+        .benefits h3 {
+            margin-bottom: 15px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .benefit-list {
+            list-style-type: none;
+        }
+        
+        .benefit-list li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .benefit-list li i {
+            color: #1a2a6c;
+            font-size: 18px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+        
+        .upi-info {
+            background-color: #f0f8ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .upi-id {
+            font-weight: bold;
+            color: #1a2a6c;
+            font-size: 16px;
+            margin: 10px 0;
+            padding: 8px;
+            background-color: #e6f7ff;
+            border-radius: 5px;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <div class="container">
-    <h2>Welcome to Premium Access</h2>
-    <div class="join-link" onclick="showMembership()">Join Membership</div>
-
-    <div id="membership-details">
-      <h3 style="font-size: 24px; margin-top: 30px;">1 Month Membership</h3>
-      <p class="note"><strong>Note:</strong> Winning is 100% confirmed for Rank 1 to 5.</p>
-      <a class="btn" href="upi://pay?pa=abid345mehmood@okicici&pn=Membership+Fee&am=699&cu=INR" target="_blank">
-        Pay ₹699
-      </a>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-crown"></i>
+            </div>
+            <h1>Dream 11 Membership</h1>
+            <p>Join India's biggest sports gaming community</p>
+        </div>
+        
+        <div class="form-container">
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mobile">Indian Mobile Number</label>
+                    <div class="input-with-flag">
+                        <div class="flag">+91</div>
+                        <input type="tel" id="mobile" placeholder="Enter your 10-digit mobile number" pattern="[0-9]{10}" required>
+                    </div>
+                </div>
+                
+                <div class="payment-info">
+                    <div class="amount">₹1,999</div>
+                    <div class="note">One-time payment for annual membership</div>
+                </div>
+                
+                <button type="submit" class="btn-pay">
+                    <i class="fas fa-lock"></i>
+                    Proceed to Payment
+                </button>
+            </form>
+            
+            <div class="upi-info">
+                <p>You will be redirected to your UPI app to complete the payment to:</p>
+                <div class="upi-id">6005973034@ibl</div>
+                <p>Please ensure you have a UPI app installed on your device</p>
+            </div>
+            
+            <div class="benefits">
+                <h3>Membership Benefits</h3>
+                <ul class="benefit-list">
+                    <li><i class="fas fa-check-circle"></i> Access to all premium contests</li>
+                    <li><i class="fas fa-check-circle"></i> Expert team recommendations</li>
+                    <li><i class="fas fa-check-circle"></i> Exclusive fantasy tips</li>
+                    <li><i class="fas fa-check-circle"></i> Priority customer support</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>By joining, you agree to our Terms of Service and Privacy Policy</p>
+        </div>
     </div>
-  </div>
 
-  <script>
-    function showMembership() {
-      document.getElementById('membership-details').style.display = 'block';
-    }
-  </script>
-
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const mobile = document.getElementById('mobile').value;
+            
+            // Basic validation
+            if (!name || !mobile) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            if (!/^[0-9]{10}$/.test(mobile)) {
+                alert('Please enter a valid 10-digit mobile number');
+                return;
+            }
+            
+            // Create UPI payment link
+            const upiId = '6005973034@ibl';
+            const amount = '1999';
+            const transactionNote = `Dream11 Membership for ${name}`;
+            
+            // Generate UPI payment URL
+            const upiLinks = {
+                googlePay: `tez://upi/pay?pa=${upiId}&pn=Dream11&am=${amount}&tn=${encodeURIComponent(transactionNote)}`,
+                phonePe: `phonepe://pay?pa=${upiId}&pn=Dream11&am=${amount}&tn=${encodeURIComponent(transactionNote)}`,
+                paytm: `paytmmp://pay?pa=${upiId}&pn=Dream11&am=${amount}&tn=${encodeURIComponent(transactionNote)}`,
+                upi: `upi://pay?pa=${upiId}&pn=Dream11&am=${amount}&tn=${encodeURIComponent(transactionNote)}`
+            };
+            
+            // Try to open the UPI app
+            const redirectToUPI = () => {
+                // Try to open Google Pay first
+                window.location.href = upiLinks.googlePay;
+                
+                // Fallback to other apps if first attempt fails
+                setTimeout(() => {
+                    window.location.href = upiLinks.phonePe;
+                }, 200);
+                
+                setTimeout(() => {
+                    window.location.href = upiLinks.paytm;
+                }, 400);
+                
+                setTimeout(() => {
+                    window.location.href = upiLinks.upi;
+                }, 600);
+                
+                setTimeout(() => {
+                    alert('Please complete the payment in your UPI app using the provided UPI ID: ' + upiId);
+                }, 1000);
+            };
+            
+            // Show confirmation before redirecting
+            const isConfirmed = confirm(`You will be redirected to your UPI app to complete the payment of ₹1,999. Click OK to continue.`);
+            
+            if (isConfirmed) {
+                redirectToUPI();
+            }
+        });
+    </script>
 </body>
 </html>
